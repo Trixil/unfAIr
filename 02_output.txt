@@ -1,0 +1,37 @@
+02: # TextToSpeech.py
+
+Fetch: None
+
+Code: 
+```python
+import pyttsx3
+
+def convert_text_to_speech(text):
+    engine = pyttsx3.init()
+    engine.setProperty('voice', 'voice_files_list')
+    engine.setProperty('rate', 150)
+    engine.say(text)
+    engine.runAndWait()
+
+text = input("Enter the text to convert to speech: ")
+convert_text_to_speech(text)
+```
+02: # file_reader_script.py
+
+# This script reads the content of each file name in the "file_names_list"
+# and appends the text content of each file to a list named "text_content_list".
+
+import os
+
+file_names_list = ['file1.txt', 'file2.txt', 'file3.txt']
+text_content_list = []
+
+for file_name in file_names_list:
+    # Assuming all files are in the same directory as this script
+    file_path = os.path.join(os.path.dirname(__file__), file_name)
+    
+    with open(file_path, 'r') as file:
+        text_content = file.read()
+        text_content_list.append(text_content)
+
+text_content_list

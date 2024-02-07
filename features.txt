@@ -1,0 +1,8 @@
+features
+
+1. wizard "message", "fetch", "code" format
+2. overseer takes instructions from director, remembers it, keeps track of progress of each task, and creates first task to wizard. updates task progress upon code receipt. once you mark one task as finished, move on to the next task in the list you were given. once all tasks have been completed, write "SEND" on the first line of your message.
+3. documenter writes asterisks at end of line
+DONE
+
+4. create conversation in .txt

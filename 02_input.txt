@@ -1,0 +1,19 @@
+02: To-do:
+- TextToSpeech: In progress
+- File_Reader: Not started
+- User Interface Role: Not started
+
+Current instruction for 02:
+Please start working on the TextToSpeech task by implementing the code to convert text to speech using the voice samples from the `voice_files_list` and the pyttsx3 library, and play the generated speech. 
+
+Completed: NO
+02: To-do:
+- TextToSpeech: In progress
+- File_Reader: Not started
+- User Interface Role: Not started
+- TextToSpeechConverter: Not started
+
+Current instruction for 02:
+Please create a script that reads the content of each file name in the "file_names_list" and appends the text content of each file to a list named "text_content_list". Return the final list as the output.
+
+Completed: NO

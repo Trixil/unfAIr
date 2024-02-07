@@ -1,0 +1,11 @@
+00: Your objective is to create a text to speech program that speaks in a character's voice with voice samples located in C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. To accomplish this task, write the specific roles for 01 and 02 and clearly delineate them for easier parsing in this format: "01: (role)
+ Instructions: (instructions for 01)".
+00: Your objective is to create a text to speech program that speaks in a character's voice with voice samples located in C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. To accomplish this task, write the specific roles for 01 and 02 and clearly delineate them for easier parsing in this format: "01: (role)
+ Instructions: (instructions for 01)".
+An iteration has been finished. Here is the documentation for it:
+******
+File name: script2.py
+Content: This script fetches the list of file names present in the specified directory and prints them.
+************
+File name: TextToSpeech.py
+Content: This script converts the user input text into speech using the pyttsx3 library. It prompts the user to enter the text and then converts it into speech using the default voice and with a rate of 150.

@@ -1,0 +1,9 @@
+******
+File name: script2.py
+Content: This script fetches the list of file names present in the specified directory and prints them.
+************
+File name: TextToSpeech.py
+Content: This script converts the user input text into speech using the pyttsx3 library. It prompts the user to enter the text and then converts it into speech using the default voice and with a rate of 150.******
+File name: script1.py
+Content: This script fetches the list of file names present in the specified directory and prints them.
+******

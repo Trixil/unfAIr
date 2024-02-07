@@ -1,0 +1,43 @@
+01: # script2.py
+
+Fetch: None
+Code:
+```python
+import os
+
+# Specify the directory path
+directory = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
+
+# Initialize the list to store file names
+file_names_list = []
+
+# Scan the directory
+for file_name in os.listdir(directory):
+    # Append the file name to the list
+    file_names_list.append(file_name)
+
+# Print the list of file names
+print(file_names_list)
+```
+01: # script1.py
+
+Fetch: None
+Code:
+```python
+import os
+
+directory = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
+voice_samples = []
+
+for filename in os.listdir(directory):
+    if filename.endswith(".txt"):
+        file_path = os.path.join(directory, filename)
+        with open(file_path, "r") as file:
+            content = file.read()
+            voice_samples.append(content)
+
+output_filepath = os.path.join(directory, "voice_samples.txt")
+with open(output_filepath, "w") as output_file:
+    for sample in voice_samples:
+        output_file.write(sample + "\n")
+```
