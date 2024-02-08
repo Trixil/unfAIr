@@ -1,40 +1,12 @@
 01: To-do:
-1. Write a script that reads all the voice sample files located in "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" directory. Open each file and store the text content of each file in a list. Save this list to a file called "voice_samples.txt" in the same directory. (COMPLETED)
-2. Write a script that scans the specified directory "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" and gets the list of all files in that directory. Save the file names in a list named "file_names_list". (IN PROGRESS)
-3. Implement the functionality of scanning the specified directory for voice sample files and appending their paths to a list called `voice_files_list`. (COMPLETED)
-4. Read the input text and convert it to speech using the character's voice.
-5. Access the voice samples located in C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09.
-6. Generate an audio file in an appropriate format (e.g., MP3, WAV) containing the speech output.
-7. Save the audio file to a specified location.
+1. Use the `os` module to check if the given directory `C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09` exists. (In progress)
+2. If the directory exists, use the `os` module to list all the files in that directory. (Not started)
+3. Filter the file list to only include files ending with the extension ".wav". (Not started)
+4. Store the filtered file names in a list. (Not started)
+5. Sort the list in alphabetical order. (Not started)
+6. Store the sorted file names in a file named "voice_samples.txt" in the same directory. (Not started)
+7. Read the content of each file using the `wave` module to get the audio duration in seconds. (Not started)
+8. Store the file names and their corresponding audio durations in a dictionary named "file_durations". (Not started)
 
 Current instruction for you:
-Please implement task 2, which is writing a script that scans the specified directory and gets the list of all files in that directory. Save the file names in a list named "file_names_list".
-
-Completed:
-1. Write a script that reads all the voice sample files located in "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" directory. Open each file and store the text content of each file in a list. Save this list to a file called "voice_samples.txt" in the same directory. (COMPLETED)
-2. Implement the functionality of scanning the specified directory for voice sample files and appending their paths to a list called `voice_files_list`. (COMPLETED)
-01: To-do:
-1. Create a script that reads all the voice sample files located in "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" directory. Open each file and store the text content of each file in a list. Save this list to a file called "voice_samples.txt" in the same directory. (Progress: 0%)
-2. Create a script that scans the specified directory "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" and gets the list of all files in that directory. Save the file names in a list named "file_names_list". (Progress: 100%)
-3. Implement the functionality of scanning the specified directory for voice sample files and appending their paths to a list called `voice_files_list`. (Progress: 100%)
-4. Create a script to convert input text to speech using the character's voice and save it as an audio file. (Progress: 0%)
-5. Fetch the list of file names present in the directory "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" and store them in a list variable called "file_list". (Progress: 0%)
-
-Current instruction for you:
-Please complete task number 1: Create a script that reads all the voice sample files located in "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" directory. Open each file and store the text content of each file in a list. Save this list to a file called "voice_samples.txt" in the same directory.
-
-Completed:
-NO
-01: To-do:
-1. FileReader: NO
-2. File_Scanner: NO
-3. FileScanner: NO
-4. Speech Processing Role: NO
-5. FileLister: NO
-6. File Management Role: NO
-
-Current instruction for you, 01:
-Please implement the FileReader script.
-
-Completed:
-NO
+1. Use the `os` module to check if the given directory `C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09` exists.

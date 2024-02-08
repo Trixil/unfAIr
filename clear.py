@@ -6,13 +6,17 @@ def clear():
         postbox = json.load(json_file)
 
     postbox["00"]["usercontent"] = "Your objective is to create a text to speech program that speaks in a character's voice with voice samples located in C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. To accomplish this task, write the specific roles for 01 and 02 and clearly delineate them for easier parsing in this format: \"01: (role)\n Instructions: (instructions for 01)\".";
+    postbox["01 Overseer"]["systemcontent"] = "You are collaborating with multiple LLMs to create requested software. You and the other LLMs are able to read, write, edit, and execute any scripts or files you like. You are given a \"To-do list\" which is a set of tasks for the LLM known as \"01\" to accomplish. In EVERY response you give, you must include \"To-do:\n(tasks and their progress)\", \"Current instruction for you:\n(immediate instruction for 01)\". In To-do, repeat the set of tasks along with their current completion progress and include this in every response of yours. Every time 01 responds with code you asked for, make sure everything has been implemented for the current instruction. Once the to-do list is completed, write \"SEND CODE\" at the top of your response.";
+    postbox["02 Overseer"]["systemcontent"] = "You are collaborating with multiple LLMs to create requested software. You and the other LLMs are able to read, write, and execute any scripts or files you like. You are given a \"To-do list\" which is a set of tasks for the LLM known as \"02\" to accomplish. In EVERY response you give, you must include \"To-do:\n(tasks and their progress)\", \"Current instruction for you:\n(immediate instruction for 02)\". In To-do, repeat the set of tasks along with their current completion progress and include this in every response of yours. Every time 02 responds with code you asked for, make sure everything has been implemented for the current instruction. Once the to-do list is completed, write \"SEND CODE\" at the top of your response."
     postbox["01"]["usercontent"] = "";
     postbox["02"]["usercontent"] = "";
+    postbox["01 Overseer"]["usercontent"] = "";
+    postbox["02 Overseer"]["usercontent"] = "";
     postbox["scribe"]["usercontent"] = "";
 
     postbox["00"]["cachedmessage"] = "";
-    postbox["01"]["cachedmessage"] = "";
-    postbox["02"]["cachedmessage"] = "";
+    postbox["01 Overseer"]["cachedmessage"] = "";
+    postbox["02 Overseer"]["cachedmessage"] = "";
     postbox["scribe"]["cachedmessage"] = "";
 
     with open('postbox.json', 'w') as json_file:
@@ -20,10 +24,22 @@ def clear():
 
     open('user_documentation.txt', 'w').close()
 
-    open('00_output.txt', 'w').close()
+    open('conversation.txt', 'w').close()
+    open('00_input.txt', 'w').close()
+    open('01_input.txt', 'w').close()
+    open('02_input.txt', 'w').close()
+    open('scribe_input.txt', 'w').close()
+    open('01 Overseer_input.txt', 'w').close()
+    open('02 Overseer_input.txt', 'w').close()
+
     open('01_output.txt', 'w').close()
     open('02_output.txt', 'w').close()
+    open('00_output.txt', 'w').close()
     open('scribe_output.txt', 'w').close()
+    open('01 Overseer_output.txt', 'w').close()
+    open('02 Overseer_output.txt', 'w').close()
+
+
     '''
     # List of files and directories to keep
     keep_list = ['__pycache__', 'cachedrequests', 'misc', 'clear.py', 'sequencer.py', 'features.txt', 'messenger.py', 'postbox.json', 'user_documentation.txt']
@@ -56,3 +72,4 @@ def clear():
 
 
     '''
+clear()

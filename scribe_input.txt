@@ -1,96 +1,15 @@
 scribe: Current documentation stored in user_documentation.txt:
 No documentation written yet.
 
-# script2.py
-
 Fetch: None
 Code:
 ```python
 import os
 
-# Specify the directory path
-directory = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
+directory = 'C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09'
 
-# Initialize the list to store file names
-file_names_list = []
-
-# Scan the directory
-for file_name in os.listdir(directory):
-    # Append the file name to the list
-    file_names_list.append(file_name)
-
-# Print the list of file names
-print(file_names_list)
-```
-scribe: Current documentation stored in user_documentation.txt:
-******
-File name: script2.py
-Content: This script fetches the list of file names present in the specified directory and prints them.
-******
-# TextToSpeech.py
-
-Fetch: None
-
-Code: 
-```python
-import pyttsx3
-
-def convert_text_to_speech(text):
-    engine = pyttsx3.init()
-    engine.setProperty('voice', 'voice_files_list')
-    engine.setProperty('rate', 150)
-    engine.say(text)
-    engine.runAndWait()
-
-text = input("Enter the text to convert to speech: ")
-convert_text_to_speech(text)
-```
-scribe: Current documentation stored in user_documentation.txt:
-******
-File name: script2.py
-Content: This script fetches the list of file names present in the specified directory and prints them.
-************
-File name: TextToSpeech.py
-Content: This script converts the user input text into speech using the pyttsx3 library. It prompts the user to enter the text and then converts it into speech using the default voice and with a rate of 150.
-# script1.py
-
-Fetch: None
-Code:
-```python
-import os
-
-directory = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
-voice_samples = []
-
-for filename in os.listdir(directory):
-    if filename.endswith(".txt"):
-        file_path = os.path.join(directory, filename)
-        with open(file_path, "r") as file:
-            content = file.read()
-            voice_samples.append(content)
-
-output_filepath = os.path.join(directory, "voice_samples.txt")
-with open(output_filepath, "w") as output_file:
-    for sample in voice_samples:
-        output_file.write(sample + "\n")
-```
-scribe: Current documentation stored in user_documentation.txt:
-No documentation written yet.
-
-# file_reader.py
-
-Fetch: None
-Code:
-```python
-def read_file(file_name):
-    try:
-        with open(file_name, 'r') as file:
-            content = file.read()
-            return content
-    except FileNotFoundError:
-        return "File not found."
-
-file_name = input("Enter the name of the file to read: ")
-file_content = read_file(file_name)
-print(file_content)
+if os.path.exists(directory):
+    print("The directory exists!")
+else:
+    print("The directory does not exist.")
 ```

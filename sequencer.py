@@ -5,29 +5,32 @@ import subprocess
 import os
 import textwrap
 
+clear()
 user_input = ""
-def executor(code):
-    start_index = code.find('Code:\n')
-    end_index = len(code)
+
+def filename_return(response):
+    filename_start_index = response.find('File name: ')+11
+    filename_end_index = response.find('\n', filename_start_index+1)
+    if((filename_start_index == -1) or (filename_end_index == -1)):
+        print('Error: Could not find file name. Here is the response:\n' + response)
+    filename = response[filename_start_index:filename_end_index]
+    return filename
+
+def executor(response):
     
-    code = code[start_index:end_index]
+    filename = filename_return(response)
 
-    if(code.find("```python\n") != -1):
-        start_index = code.find("```python\n") + 9
-        end_index = code.rfind("```")-3
-    code = code[start_index: end_index].strip()
-    start_quote = code.find('#') 
-    end_quote = code.find('\n', start_quote + 1)
+    code_start_index = response.find('Code:\n```python\n')+18
+    code_end_index = response.find('```', code_start_index+1)
+    if((code_start_index == -1) or (code_end_index == -1)):
+        print('Error: Could not find code. Here is the response:\n' + response)
+    code = response[code_start_index:code_end_index]
 
-    filename_start_index = code.find('File name:')
-        filename_end_index = code.find('\n', filename_start_index+1)
-        if (filename_start_index != -1):
-            filename = code[filename_start_index:filename_end_index]
-        start_index = code.find('Code:\n')
-    if(start_quote != -1 & end_quote != -1):
-        extracted_string = code[start_quote+2:end_quote]
-        with open(extracted_string, 'w') as docs_file:
-            docs_file.write(code)
+    with open(filename, 'w') as wizardcode:
+        wizadcode.write(code)
+
+    return code
+
 
 def update_documentation(file_path, file_description):
 
@@ -40,16 +43,30 @@ def update_documentation(file_path, file_description):
     filefound = False
     with open("user_documentation.txt", "r+") as f:
         for line in lines:
-            if ((line.strip("\n") != file_path_line) & (filefound == False)):
+            if ((line.strip("\n") != file_path_line) and (filefound == False)):
                 f.write(line)
             if (line.strip("\n") == file_path_line):
                 filefound = True
                 print('filefound=true')
-            if((filefound == True) & (line.strip("\n") == "******")):
+            if((filefound == True) and (line.strip("\n") == "******")):
                 filefound = False
                 f.write(file_path_line + file_description_line)
 
         f.truncate()
+
+def fetcher(response):
+    if(response.find('Fetch: None') == -1):
+        fetch_start_index = response.find('Fetch:')+7
+        fetch_end_index = response.find('\n', fetch_start_index)
+        if((fetch_start_index == -1) or (fetch_end_index == -1)):
+            print('Error: Could not find fetch path. Here is the response:\n' + response)
+        fetch_filename = response[fetch_start_index:fetch_end_index]
+    
+        with open(fetch_filename, 'r') as fetch_file:
+            toreturn = fetch_file.read()
+        return toreturn
+    else
+        return 'None'
 
 def read_json_file(file_path):
     try:
@@ -86,7 +103,6 @@ while True:
             selected_substring = instructions[start_index+3:end_index].strip()
             postbox[str(i).zfill(2) + ' Overseer']["usercontent"] = selected_substring
             postbox[str(i).zfill(2) + ' Overseer']["systemcontent"] += selected_substring
-            print(f"Substring for Wizard {i}:\n{selected_substring}\n")
         else:
             print(f"The string '{i:02d}:' was not found.")
 
@@ -100,41 +116,41 @@ while True:
 
         overseer_instruction = request(id + ' Overseer', 'Update the to-do list with each conversation with ' + id + ' and output it in your To-do field', 1)
         finalpass = False
+        header_docs = ''
         while(finalpass == False):
-            wizardresponse = request(id, overseer_instruction, 1)
-            fetch_index = wizardresponse.find('Fetch:')
-            fetchpath = wizardresponse[fetch_index+7:wizardresponse.find('\n', fetch_index)]
+            wizardresponse = request(id, overseer_instruction + header_docs, 1)
 
+            executor(wizardresponse)
+            fetchpath = fetcher(wizardresponse)
+            
             overseer_instruction = request(id + ' Overseer', wizardresponse, 1)
-            finalpass = (overseer_instruction.find('Completed: Yes') or overseer_instruction.find('Completed: YES'))
-            if(fetchpath != 'None'):
+            finalpass = (overseer_instruction.find('SEND CODE') != -1)
+            if(fetchpath.find('None') == -1):
                 with open(fetchpath, 'r') as code_file:
                     requested_code = code_file.read()
                     overseer_instruction += '\nContents of ' + fetchpath +'\n' + requested_code
 
-        code = wizardresponse
-        # opening and printing docs
-        with open('user_documentation.txt', 'r') as docs_file:
-            docs = docs_file.read()
+            # opening and printing docs
+            with open('user_documentation.txt', 'r') as docs_file:
+                docs = docs_file.read()
         
-        # checking if docs is empty and appending it to wizard input string
-        if(docs == ''):
-            docs = 'No documentation written yet.\n'
-        header_docs = 'Current documentation stored in user_documentation.txt:\n' + docs + '\n'
+            # checking if docs is empty and appending it to wizard input string
+            if(docs == ''):
+                docs = 'No documentation written yet.\n'
+            header_docs = 'Current documentation stored in user_documentation.txt:\n' + docs + '\n'
 
-        input_text = request("scribe", header_docs + code, 1)
-        file_name_start = input_text.find("File name: ") + len("File name: ")
-        file_name_end = input_text.find("\n", file_name_start)
-        file_name = input_text[file_name_start:file_name_end]
+            input_text = request("scribe", header_docs + wizardresponse, 1)
+            file_name_start = input_text.find("File name: ") + len("File name: ")
+            file_name_end = input_text.find("\n", file_name_start)
+            file_name = input_text[file_name_start:file_name_end]
         
-        content_start = input_text.find("Content: ") + len("Content: ")
-        content = input_text[content_start:]
+            content_start = input_text.find("Content: ") + len("Content: ")
+            content = input_text[content_start:]
 
-        with open('user_documentation.txt', 'a') as docs_file:
-            docs_file.write(input_text)
-            docs_file.close()
-        update_documentation(file_name, content)
-    
+            with open('user_documentation.txt', 'a') as docs_file:
+                docs_file.write(input_text)
+                docs_file.close()
+            update_documentation(file_name, content)
     
     with open('user_documentation.txt', 'r') as docs_file:
         docs = docs_file.read()

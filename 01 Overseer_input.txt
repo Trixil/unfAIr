@@ -1,63 +1,13 @@
 01 Overseer: Update the to-do list with each conversation with 01 and output it in your To-do field
-01 Overseer: # script2.py
-
-Fetch: None
+01 Overseer: Fetch: None
 Code:
 ```python
 import os
 
-# Specify the directory path
-directory = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
+directory = 'C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09'
 
-# Initialize the list to store file names
-file_names_list = []
-
-# Scan the directory
-for file_name in os.listdir(directory):
-    # Append the file name to the list
-    file_names_list.append(file_name)
-
-# Print the list of file names
-print(file_names_list)
-```
-01 Overseer: Update the to-do list with each conversation with 01 and output it in your To-do field
-01 Overseer: # script1.py
-
-Fetch: None
-Code:
-```python
-import os
-
-directory = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
-voice_samples = []
-
-for filename in os.listdir(directory):
-    if filename.endswith(".txt"):
-        file_path = os.path.join(directory, filename)
-        with open(file_path, "r") as file:
-            content = file.read()
-            voice_samples.append(content)
-
-output_filepath = os.path.join(directory, "voice_samples.txt")
-with open(output_filepath, "w") as output_file:
-    for sample in voice_samples:
-        output_file.write(sample + "\n")
-```
-01 Overseer: Update the to-do list with each conversation with 01 and output it in your To-do field
-01 Overseer: # file_reader.py
-
-Fetch: None
-Code:
-```python
-def read_file(file_name):
-    try:
-        with open(file_name, 'r') as file:
-            content = file.read()
-            return content
-    except FileNotFoundError:
-        return "File not found."
-
-file_name = input("Enter the name of the file to read: ")
-file_content = read_file(file_name)
-print(file_content)
+if os.path.exists(directory):
+    print("The directory exists!")
+else:
+    print("The directory does not exist.")
 ```

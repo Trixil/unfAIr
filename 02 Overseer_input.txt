@@ -1,71 +1,8 @@
 02 Overseer: Update the to-do list with each conversation with 02 and output it in your To-do field
-02 Overseer: # TextToSpeech.py
+02 Overseer: File name: example_script.py
+Code:
+```python
+import gtts
+```
 
 Fetch: None
-
-Code: 
-```python
-import pyttsx3
-
-def convert_text_to_speech(text):
-    engine = pyttsx3.init()
-    engine.setProperty('voice', 'voice_files_list')
-    engine.setProperty('rate', 150)
-    engine.say(text)
-    engine.runAndWait()
-
-text = input("Enter the text to convert to speech: ")
-convert_text_to_speech(text)
-```
-02 Overseer: Update the to-do list with each conversation with 02 and output it in your To-do field
-02 Overseer: # file_reader_script.py
-
-# This script reads the content of each file name in the "file_names_list"
-# and appends the text content of each file to a list named "text_content_list".
-
-import os
-
-file_names_list = ['file1.txt', 'file2.txt', 'file3.txt']
-text_content_list = []
-
-for file_name in file_names_list:
-    # Assuming all files are in the same directory as this script
-    file_path = os.path.join(os.path.dirname(__file__), file_name)
-    
-    with open(file_path, 'r') as file:
-        text_content = file.read()
-        text_content_list.append(text_content)
-
-text_content_list
-02 Overseer: Update the to-do list with each conversation with 02 and output it in your To-do field
-02 Overseer: Fetch: voice_files_list
-Code: 
-```python
-# text_to_speech.py
-
-import pyttsx3
-
-# List of voice samples
-voice_files_list = ["voice1.wav", "voice2.wav", "voice3.wav"]
-
-# Initialize the Text-to-speech engine
-engine = pyttsx3.init()
-
-# Iterate through each voice sample file
-for file in voice_files_list:
-    # Set the voice sample file path
-    file_path = "path/to/voice/samples/" + file
-    
-    # Set the voice sample as the current voice
-    engine.setProperty("voice", file_path)
-    
-    # Speak the text
-    engine.say("Hello, this is a voice sample.")
-    
-    # Save the spoken text as audio file
-    engine.save_to_file("Hello, this is a voice sample.", "output_" + file)
-    
-    # Run the text-to-speech conversion
-    engine.runAndWait()
-```
-In the above code, we utilize the pyttsx3 library to implement text-to-speech functionality. We iterate through each voice sample file in the provided `voice_files_list`, set it as the current voice, and then use the `engine.say()` method to convert the text into speech. Finally, we save the spoken text as an audio file using the `engine.save_to_file()` method.

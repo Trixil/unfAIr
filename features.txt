@@ -7,4 +7,5 @@ DONE
 
 4. create conversation in .txt
 DONE
-5. overseer 
+5. overseer to do is parsed and saved as 01_progress.txt
+6. make overseer say "PASS ON"

@@ -33,6 +33,6 @@ def request(id, usercontent, send):
         with open(postbox_path, 'w') as json_file:
             json.dump(postbox, json_file, indent=3)
         
-        return postbox[id]["cachedmessage"]
+        return completion.choices[0].message.content
     else:
         return postbox[id]["cachedmessage"]
