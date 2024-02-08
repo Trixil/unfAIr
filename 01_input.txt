@@ -1,22 +1,31 @@
 01: To-do:
-1. Use a speech recognition library to convert the given text into phonetic transcriptions. (In progress)
-2. Extract the character name from the text. (Not started)
-3. Create a dictionary mapping character names to voice file paths. (Not started)
-4. Use the extracted character name to fetch the corresponding voice sample file path from the dictionary. (Not started)
-5. Convert the fetched voice sample file into text-to-speech using a text-to-speech engine. (Not started)
-6. Save the generated speech as an audio file. (Not started)
+1. Read the list of voice samples available in the specified directory: C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. (Not started)
+2. Store the file names of the voice samples in a list. (Not started)
 
 Current instruction for you:
-Please implement step 2 - Extract the character name from the text.
-01: To-do:
-1. Use a speech recognition library to convert the given text into phonetic transcriptions. (Not started)
-2. Extract the character name from the text. (In progress)
-3. Create a dictionary mapping character names to voice file paths. (Not started)
-4. Use the extracted character name to fetch the corresponding voice sample file path from the dictionary. (Not started)
-5. Convert the fetched voice sample file into text-to-speech using a text-to-speech engine. (Not started)
-6. Save the generated speech as an audio file. (Not started)
+Please implement the code to read the list of voice samples from the specified directory and store the file names in a list.Current documentation stored in user_documentation.txt:
+No documentation written yet.
 
-Current instruction for you (01): Write the logic in the `extract_character` function to extract the character name from the given text. Please replace the comment with your code.Current documentation stored in user_documentation.txt:
+01: Current instruction for you: Implement the code below.
+
+```python
+import os
+
+# Specify the directory path
+directory = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
+
+# Get the list of file names in the directory
+voice_samples = os.listdir(directory)
+
+# Print the file names
+print(voice_samples)
+```
+
+To-do:
+1. Read the list of voice samples available in the specified directory: C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. (In progress)
+2. Store the file names of the voice samples in a list. (In progress)
+Contents of user_documentation.txt
+Current documentation stored in user_documentation.txt:
 No documentation written yet.
 
 

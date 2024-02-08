@@ -1,12 +1,39 @@
 01 Overseer: Update the to-do list with each conversation with 01 and output it in your To-do field
-01 Overseer: Fetch: None
-File name: extract_character.py
+01 Overseer: Fetch: user_documentation.txt
+File name: read_voice_samples.py
 Code:
 ```python
-def extract_character(text):
-    character_name = ""
-    # logic to extract character name from text
-    # character_name = ...
+import os
 
-    return character_name
+# Specify the directory path
+directory = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
+
+# Get the list of file names in the directory
+voice_samples = os.listdir(directory)
+
+# Print the file names
+print(voice_samples)
 ```
+To-do:
+1. Read the list of voice samples available in the specified directory: C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. (Not started)
+2. Store the file names of the voice samples in a list. (Not started)
+
+
+01 Overseer: Fetch: user_documentation.txtCurrent instruction for you: Implement the code below.
+
+```python
+import os
+
+# Specify the directory path
+directory = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
+
+# Get the list of file names in the directory
+voice_samples = os.listdir(directory)
+
+# Print the file names
+print(voice_samples)
+```
+
+To-do:
+1. Read the list of voice samples available in the specified directory: C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. (In progress)
+2. Store the file names of the voice samples in a list. (In progress

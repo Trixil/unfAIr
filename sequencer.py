@@ -14,23 +14,25 @@ def filename_return(response):
     if((filename_start_index == -1) or (filename_end_index == -1)):
         print('Error: Could not find file name. Here is the response:\n' + response)
     filename = response[filename_start_index:filename_end_index]
+    print('filename: ' + filename)
     return filename
 
 def executor(response):
     
     filename = filename_return(response)
 
-    code_start_index = response.find('Code:\n```python\n')+18
+    code_start_index = response.find('Code:\n```python\n')+16
     code_end_index = response.find('```', code_start_index+1)
     if((code_start_index == -1) or (code_end_index == -1)):
         print('Error: Could not find code. Here is the response:\n' + response)
-    code = response[code_start_index:code_end_index]
-
-    with open(filename, 'w') as wizardcode:
-        wizardcode.write(code)
+        code = ''
+    else:
+        code = response[code_start_index:code_end_index]
+        print('code\n' + code)
+        with open(filename, 'w') as wizardcode:
+            wizardcode.write(code)
 
     return code
-
 
 def update_documentation(file_path, file_description):
 
@@ -61,12 +63,14 @@ def fetcher(response):
         if((fetch_start_index == -1) or (fetch_end_index == -1)):
             print('Error: Could not find fetch path. Here is the response:\n' + response)
         fetch_filename = response[fetch_start_index:fetch_end_index]
-    
+        print('fetch: ' + fetch_filename)
+        if(fetch_filename == 'user_documentation.tx'):
+            fetch_filename = 'user_documentation.txt'
         with open(fetch_filename, 'r') as fetch_file:
             toreturn = fetch_file.read()
-        return toreturn
+        return [fetch_filename, toreturn]
     else:
-        return 'None'
+        return ['None', 'No file requested']
 
 def read_json_file(file_path):
     try:
@@ -115,20 +119,25 @@ while True:
             json.dump(postbox, json_file, indent=3)
 
         overseer_instruction = request(id + ' Overseer', 'Update the to-do list with each conversation with ' + id + ' and output it in your To-do field', 1)
+        to_do_end_index = overseer_instruction.find('Current instruction for you:\n')
+        to_do = overseer_instruction[0:to_do_end_index]
         finalpass = False
         header_docs = ''
+        overseer_instruction += 'Current documentation stored in user_documentation.txt:\nNo documentation written yet.\n'
         while(finalpass == False):
             wizardresponse = request(id, overseer_instruction + header_docs, 1)
 
             executor(wizardresponse)
-            fetchpath = fetcher(wizardresponse)
-            
-            overseer_instruction = request(id + ' Overseer', wizardresponse, 1)
+            fetchcontent = fetcher(wizardresponse)
+            fetch_file_name = fetchcontent[0]
+            fetch_file_content = fetchcontent[1]
+
+            overseer_instruction = request(id + ' Overseer', wizardresponse + to_do, 1)
+
             finalpass = (overseer_instruction.find('SEND CODE') != -1)
-            if(fetchpath.find('None') == -1):
-                with open(fetchpath, 'r') as code_file:
-                    requested_code = code_file.read()
-                    overseer_instruction += '\nContents of ' + fetchpath +'\n' + requested_code
+            to_do_end_index = overseer_instruction.find('Current instruction for you:\n')
+            to_do = overseer_instruction[0:to_do_end_index]
+            overseer_instruction += '\nContents of ' + fetch_file_name +'\n' + fetch_file_content
 
             # opening and printing docs
             with open('user_documentation.txt', 'r') as docs_file:

@@ -1,14 +1,137 @@
 scribe: Current documentation stored in user_documentation.txt:
 No documentation written yet.
 
-Fetch: None
-File name: extract_character.py
+Fetch: user_documentation.txt
+File name: read_voice_samples.py
 Code:
 ```python
-def extract_character(text):
-    character_name = ""
-    # logic to extract character name from text
-    # character_name = ...
+import os
 
-    return character_name
+# Specify the directory path
+directory = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
+
+# Get the list of file names in the directory
+voice_samples = os.listdir(directory)
+
+# Print the file names
+print(voice_samples)
 ```
+
+scribe: Current documentation stored in user_documentation.txt:
+******
+File name: read_voice_samples.py
+Content: This code reads the file names in a specified directory and prints them. The directory path is hardcoded in the code and needs to be changed to the desired directory path.
+Fetch: user_documentation.txt
+scribe: Current documentation stored in user_documentation.txt:
+******
+File name: read_voice_samples.py
+Content: This code reads the file names in a specified directory and prints them. The directory path is hardcoded in the code and needs to be changed to the desired directory path.******
+File name: read_voice_samples.py
+Content: This code reads the file names in a specified directory and prints them. The directory path is hardcoded in the code and needs to be changed to the desired directory path.
+******
+
+File name: user_documentation.txt
+Content: This file stores the documentation for all code files received. It keeps track of the file name, file path, and a brief description of each code file.
+******
+Fetch: user_documentation.txt
+scribe: Current documentation stored in user_documentation.txt:
+******
+File name: read_voice_samples.py
+Content: This code reads the file names in a specified directory and prints them. The directory path is hardcoded in the code and needs to be changed to the desired directory path.******
+File name: read_voice_samples.py
+Content: This code reads the file names in a specified directory and prints them. The directory path is hardcoded in the code and needs to be changed to the desired directory path.
+******
+
+File name: user_documentation.txt
+Content: This file stores the documentation for all code files received. It keeps track of the file name, file path, and a brief description of each code file.
+************
+File name: user_documentation.txt
+Content: This file stores the documentation for all code files received. It keeps track of the file name, file path, and a brief description of each code file.
+******
+Fetch: user_documentation.txt
+scribe: Current documentation stored in user_documentation.txt:
+******
+File name: read_voice_samples.py
+Content: This code reads the file names in a specified directory and prints them. The directory path is hardcoded in the code and needs to be changed to the desired directory path.******
+File name: read_voice_samples.py
+Content: This code reads the file names in a specified directory and prints them. The directory path is hardcoded in the code and needs to be changed to the desired directory path.
+******
+
+File name: user_documentation.txt
+Content: This file stores the documentation for all code files received. It keeps track of the file name, file path, and a brief description of each code file.
+************
+File name: user_documentation.txt
+Content: This file stores the documentation for all code files received. It keeps track of the file name, file path, and a brief description of each code file.
+************
+File name: user_documentation.txt
+Content: This file stores the documentation for all code files received. It keeps track of the file name, file path, and a brief description of each code file.
+******
+Fetch: user_documentation.txt
+scribe: Current documentation stored in user_documentation.txt:
+******
+File name: read_voice_samples.py
+Content: This code reads the file names in a specified directory and prints them. The directory path is hardcoded in the code and needs to be changed to the desired directory path.******
+File name: read_voice_samples.py
+Content: This code reads the file names in a specified directory and prints them. The directory path is hardcoded in the code and needs to be changed to the desired directory path.
+******
+
+File name: user_documentation.txt
+Content: This file stores the documentation for all code files received. It keeps track of the file name, file path, and a brief description of each code file.
+************
+File name: user_documentation.txt
+Content: This file stores the documentation for all code files received. It keeps track of the file name, file path, and a brief description of each code file.
+************
+File name: user_documentation.txt
+Content: This file stores the documentation for all code files received. It keeps track of the file name, file path, and a brief description of each code file.
+************
+File name: user_documentation.txt
+Content: This file stores the documentation for all code files received. It keeps track of the file name, file path, and a brief description of each code file.
+******
+Fetch: user_documentation.txt
+scribe: Current documentation stored in user_documentation.txt:
+******
+File name: read_voice_samples.py
+Content: This code reads the file names in a specified directory and prints them. The directory path is hardcoded in the code and needs to be changed to the desired directory path.******
+File name: read_voice_samples.py
+Content: This code reads the file names in a specified directory and prints them. The directory path is hardcoded in the code and needs to be changed to the desired directory path.
+******
+
+File name: user_documentation.txt
+Content: This file stores the documentation for all code files received. It keeps track of the file name, file path, and a brief description of each code file.
+************
+File name: user_documentation.txt
+Content: This file stores the documentation for all code files received. It keeps track of the file name, file path, and a brief description of each code file.
+************
+File name: user_documentation.txt
+Content: This file stores the documentation for all code files received. It keeps track of the file name, file path, and a brief description of each code file.
+************
+File name: user_documentation.txt
+Content: This file stores the documentation for all code files received. It keeps track of the file name, file path, and a brief description of each code file.
+******File name: user_documentation.txt
+Content: This file stores the documentation for all code files received. It keeps track of the file name, file path, and a brief description of each code file.
+Fetch: user_documentation.txt
+scribe: Current documentation stored in user_documentation.txt:
+******
+File name: read_voice_samples.py
+Content: This code reads the file names in a specified directory and prints them. The directory path is hardcoded in the code and needs to be changed to the desired directory path.******
+File name: read_voice_samples.py
+Content: This code reads the file names in a specified directory and prints them. The directory path is hardcoded in the code and needs to be changed to the desired directory path.
+******
+
+File name: user_documentation.txt
+Content: This file stores the documentation for all code files received. It keeps track of the file name, file path, and a brief description of each code file.
+************
+File name: user_documentation.txt
+Content: This file stores the documentation for all code files received. It keeps track of the file name, file path, and a brief description of each code file.
+************
+File name: user_documentation.txt
+Content: This file stores the documentation for all code files received. It keeps track of the file name, file path, and a brief description of each code file.
+************
+File name: user_documentation.txt
+Content: This file stores the documentation for all code files received. It keeps track of the file name, file path, and a brief description of each code file.
+******File name: user_documentation.txt
+Content: This file stores the documentation for all code files received. It keeps track of the file name, file path, and a brief description of each code file.******
+File name: user_documentation.txt
+Content: This file stores the documentation for all code files received. It keeps track of the file name, file path, and a brief description of each code file.
+******
+Fetch: None
