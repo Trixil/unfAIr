@@ -1,30 +1,14 @@
 scribe: ******
-File name: read_voice_samples.py
-Content: This code reads the file names in a specified directory and prints them. The directory path is hardcoded in the code and needs to be changed to the desired directory path.
-scribe: ******
-File name: read_voice_samples.py
-Content: This code reads the file names in a specified directory and prints them. The directory path is hardcoded in the code and needs to be changed to the desired directory path.
+File name: access_directory_script.py
+Content: ~access_directory_script.py, ~Your_Directory_Path/access_directory_script.py - This script is written in python and includes a function `access_directory` that attempts to change the current working directory to a specified directory path. If the directory does not exist, it outputs a message indicating that the directory does not exist. It includes a test accessing a specific directory.
 ******
+scribe: ******
+File name: access_directory.py
+Content: This python script is located at ~access_directory.py. It is used to access and list the contents of a specified directory (in this case, "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"). It confirms the successful access by printing "Directory accessed successfully", and if any exception occurs, it prints the relevant error message.
+******
+scribe: ******
+File name: enumerate_audio_files.py
+Content: ~enumerate_audio_files.py, ~"C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"/enumerate_audio_files.py
 
-File name: user_documentation.txt
-Content: This file stores the documentation for all code files received. It keeps track of the file name, file path, and a brief description of each code file.
+This script enumerates through a specified directory path to find audio files (mp3, wav, flac formats). It stores and returns the filenames and metadata of these audio files.
 ******
-scribe: ******
-File name: user_documentation.txt
-Content: This file stores the documentation for all code files received. It keeps track of the file name, file path, and a brief description of each code file.
-******
-scribe: ******
-File name: user_documentation.txt
-Content: This file stores the documentation for all code files received. It keeps track of the file name, file path, and a brief description of each code file.
-******
-scribe: ******
-File name: user_documentation.txt
-Content: This file stores the documentation for all code files received. It keeps track of the file name, file path, and a brief description of each code file.
-******
-scribe: File name: user_documentation.txt
-Content: This file stores the documentation for all code files received. It keeps track of the file name, file path, and a brief description of each code file.
-scribe: ******
-File name: user_documentation.txt
-Content: This file stores the documentation for all code files received. It keeps track of the file name, file path, and a brief description of each code file.
-******
-scribe: Fetch: None

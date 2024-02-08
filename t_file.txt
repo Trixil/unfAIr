@@ -1,0 +1,8 @@
+# Open the file and read the lines
+with open('text_file.txt', 'r') as file:
+    lines = file.readlines()
+
+# Remove newline characters and leading/trailing spaces
+parsed_lines = [line.strip() for line in lines]
+
+parsed_lines

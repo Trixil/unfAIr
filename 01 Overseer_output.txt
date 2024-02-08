@@ -1,38 +1,63 @@
 01 Overseer: To-do:
-1. Read the list of voice samples available in the specified directory: C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. (Not started)
-2. Store the file names of the voice samples in a list. (Not started)
+1. Access the specified directory: C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09 - Status: Not started
+2. Enumerate all audio files within this directory, recording their filenames and metadata for further processing - Status: Not started
+3. For each audio file, apply an automatic speech recognition algorithm to transcribe the spoken text. Save the transcription paired with the filename - Status: Not started
+4. Extract the raw audio data from the sound files, preprocess this data as necessary for the text to speech library to interpret it - Status: Not started
+5. Save the preprocessed audio data and transcriptions in an easily readable format, such as .csv, for later use by the text to speech algorithm - Status: Not started
 
 Current instruction for you:
-Please implement the code to read the list of voice samples from the specified directory and store the file names in a list.
-01 Overseer: Current instruction for you: Implement the code below.
-
-```python
-import os
-
-# Specify the directory path
-directory = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
-
-# Get the list of file names in the directory
-voice_samples = os.listdir(directory)
-
-# Print the file names
-print(voice_samples)
-```
+Start by implementing the code to access the specified directory: C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09.
+01 Overseer: Current instruction for you:
+Inspect and run the provided code to verify that it successfully accesses the specified directory. Please return any output the code provides for further inspection. If the access is successful, update the first task's status to "Completed". 
 
 To-do:
-1. Read the list of voice samples available in the specified directory: C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. (In progress)
-2. Store the file names of the voice samples in a list. (In progress)
-01 Overseer: SEND CODE
+1. Access the specified directory: C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09 - Status: In Progress
+2. Enumerate all audio files within this directory, recording their filenames and metadata for further processing - Status: Not started
+3. For each audio file, apply an automatic speech recognition algorithm to transcribe the spoken text. Save the transcription paired with the filename - Status: Not started
+4. Extract the raw audio data from the sound files, preprocess this data as necessary for the text to speech library to interpret it - Status: Not started
+5. Save the preprocessed audio data and transcriptions in an easily readable format, such as .csv, for later use by the text to speech algorithm - Status: Not started
+01 Overseer: To-do:
+1. Access the specified directory: C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09 - Completed
+2. Enumerate all audio files within this directory, recording their filenames and metadata for further processing - Not Started
+3. For each audio file, apply an automatic speech recognition algorithm to transcribe the spoken text. Save the transcription paired with the filename - Not Started
+4. Extract the raw audio data from the sound files, preprocess this data as necessary for the text to speech library to interpret it - Not Started
+5. Save the preprocessed audio data and transcriptions in an easily readable format, such as .csv, for later use by the text to speech algorithm - Not Started
+
+Current instruction for you:
+Please create an enumerate_audio_files.py script that will list all audio files in the directory, capturing their file names and metadata.
+
+Note: The script should be built to handle typical audio file extensions (such as .mp3, .wav, .flac) and needs to use the os and mutagen libraries (for metadata retrieval).
+
 ```python
 import os
+import mutagen
 
-# Specify the directory path
-directory = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
+directory_path = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
 
-# Get the list of file names in the directory
-voice_samples = os.listdir(directory)
+def enumerate_audio_files(directory_path):
+    audio_files_data = { "filenames": [], "metadata": [] } # To store filenames and metadata of audio files
 
-# Print the file names
-print(voice_samples)
+    for filename in os.listdir(directory_path):
+        if filename.endswith((".mp3", ".wav", ".flac")):
+            audio_files_data["filenames"].append(filename)
+
+            file_path = os.path.join(directory_path, filename)
+            file_metadata = mutagen.File(file_path, easy=True)
+
+            audio_files_data["metadata"].append(dict(file_metadata))
+
+    return audio_files_data
+
+enumerate_audio_files(directory_path)
 ```
+01 Overseer: Current instruction for you:
+Please confirm if the above script fetches the names and the metadata of all the audio files present in the target directory. Make sure that the script outputs the data in the defined format: {filenames: [file1, file2,...], metadata:[metadata1, metadata2,...]} where the file names and its corresponding metadata are located at the same index in their respective lists. 
 
+If the script works as expected, create a new Python function named 'transcribe_audio_files'. This function should loop through every audio file in the directory and transcribe their content using an automatic speech recognition algorithm, such as Google Speech Recognition. Use the filenames and metadata fetched previously.
+
+To-do:
+1. Access the specified directory: C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09 - Completed
+2. Enumerate all audio files within this directory, recording their filenames and metadata for further processing - In Progress 
+3. For each audio file, apply an automatic speech recognition algorithm to transcribe the spoken text. Save the transcription paired with the filename - Not Started
+4. Extract the raw audio data from the sound files, preprocess this data as necessary for the text to speech library to interpret it - Not Started
+5. Save the preprocessed audio data and transcriptions in an easily readable format, such as .csv, for later use by the text to speech algorithm - Not Started

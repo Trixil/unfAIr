@@ -12,7 +12,7 @@ def request(id, usercontent, send):
     systemcontent = postbox[id]["systemcontent"]
     if(send == 1):
         completion = client.chat.completions.create(
-          model="gpt-3.5-turbo",
+          model="gpt-4",
           messages=[
             {"role": "system", "content": f"{systemcontent}"},
             {"role": "user", "content": f"{usercontent}"}

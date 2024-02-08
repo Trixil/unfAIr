@@ -5,20 +5,27 @@ import subprocess
 import os
 import textwrap
 
+output_dir = "output/"
+
+print("Current working directory changed to", os.getcwd())
 clear()
 user_input = ""
 
 def filename_return(response):
     filename_start_index = response.find('File name: ')+11
     filename_end_index = response.find('\n', filename_start_index+1)
-    if((filename_start_index == -1) or (filename_end_index == -1)):
+    if((filename_start_index != -1) and (filename_end_index == -1)):
+        filename_end_index = len(response)
+    if(filename_start_index == -1):
         print('Error: Could not find file name. Here is the response:\n' + response)
+        return 'NULL'
     filename = response[filename_start_index:filename_end_index]
     print('filename: ' + filename)
     return filename
 
 def executor(response):
     
+    unnamed_code_flag = 0
     filename = filename_return(response)
 
     code_start_index = response.find('Code:\n```python\n')+16
@@ -29,21 +36,25 @@ def executor(response):
     else:
         code = response[code_start_index:code_end_index]
         print('code\n' + code)
-        with open(filename, 'w') as wizardcode:
-            wizardcode.write(code)
 
-    return code
+        if(filename == 'NULL'):
+            unnamed_code_flag = 1
+        else:
+            with open(output_dir + filename, 'w') as wizardcode:
+                wizardcode.write(code)
+
+    return [code, unnamed_code_flag]
 
 def update_documentation(file_path, file_description):
 
-    file_path_line = f"File name: {file_path}\n"
-    file_description_line = f"Content: {file_description}\n"
+    file_path_line = f"File name: {file_path}"
+    file_description_line = f"Content: {file_description}"
 
-    with open("user_documentation.txt", "r") as f:
+    with open(output_dir + "user_documentation.txt", "r") as f:
         lines = f.readlines()
 
     filefound = False
-    with open("user_documentation.txt", "r+") as f:
+    with open(output_dir + "user_documentation.txt", "r+") as f:
         for line in lines:
             if ((line.strip("\n") != file_path_line) and (filefound == False)):
                 f.write(line)
@@ -66,7 +77,7 @@ def fetcher(response):
         print('fetch: ' + fetch_filename)
         if(fetch_filename == 'user_documentation.tx'):
             fetch_filename = 'user_documentation.txt'
-        with open(fetch_filename, 'r') as fetch_file:
+        with open(output_dir + fetch_filename, 'r') as fetch_file:
             toreturn = fetch_file.read()
         return [fetch_filename, toreturn]
     else:
@@ -91,8 +102,17 @@ file_path = "postbox.json"
 postbox = read_json_file(file_path)
 
 iteration = 1
+overseer_initial = ['','']
+overseer_initial[0] = postbox["01 Overseer"]["systemcontent"]
+overseer_initial[1] = postbox["02 Overseer"]["systemcontent"]
 while True:
+    postbox["01 Overseer"]["systemcontent"] = overseer_initial[0]
+    postbox["02 Overseer"]["systemcontent"] = overseer_initial[1]
+
+    with open(file_path, 'w') as json_file:
+        json.dump(postbox, json_file, indent=3)
     instructions = request("00", postbox["00"]["usercontent"], 1)
+
     postbox_dict = postbox
 
     # Get the number of items in the dictionary (which represents the JSON object)
@@ -127,7 +147,7 @@ while True:
         while(finalpass == False):
             wizardresponse = request(id, overseer_instruction + header_docs, 1)
 
-            executor(wizardresponse)
+            [code, unnamed_code_flag] = executor(wizardresponse)
             fetchcontent = fetcher(wizardresponse)
             fetch_file_name = fetchcontent[0]
             fetch_file_content = fetchcontent[1]
@@ -137,10 +157,11 @@ while True:
             finalpass = (overseer_instruction.find('SEND CODE') != -1)
             to_do_end_index = overseer_instruction.find('Current instruction for you:\n')
             to_do = overseer_instruction[0:to_do_end_index]
+            postbox[id + ' Overseer']["systemcontent"] = overseer_initial[i-1] + to_do
             overseer_instruction += '\nContents of ' + fetch_file_name +'\n' + fetch_file_content
 
             # opening and printing docs
-            with open('user_documentation.txt', 'r') as docs_file:
+            with open(output_dir + 'user_documentation.txt', 'r') as docs_file:
                 docs = docs_file.read()
         
             # checking if docs is empty and appending it to wizard input string
@@ -156,12 +177,13 @@ while True:
             content_start = input_text.find("Content: ") + len("Content: ")
             content = input_text[content_start:]
 
-            with open('user_documentation.txt', 'a') as docs_file:
-                docs_file.write(input_text)
-                docs_file.close()
             update_documentation(file_name, content)
+
+            if(unnamed_code_flag == 1):
+                with open(output_dir + file_name, 'w') as wizardcode:
+                    wizardcode.write(code)
     
-    with open('user_documentation.txt', 'r') as docs_file:
+    with open(output_dir + 'user_documentation.txt', 'r') as docs_file:
         docs = docs_file.read()
     postbox["00"]["usercontent"] = postbox["00"]["usercontent"] + '\n' + 'An iteration has been finished. Here is the documentation for it:\n' + docs
     with open(file_path, 'w') as json_file:

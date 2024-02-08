@@ -1,39 +1,76 @@
 01 Overseer: Update the to-do list with each conversation with 01 and output it in your To-do field
-01 Overseer: Fetch: user_documentation.txt
-File name: read_voice_samples.py
+01 Overseer: Fetch: None
+File name: access_directory_script.py
 Code:
 ```python
 import os
 
-# Specify the directory path
-directory = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
+# Function to access a specific directory
+def access_directory(directory_path):
+    try:
+        os.chdir(directory_path)
+        print(f"Directory {directory_path} accessed successfully")
+    except FileNotFoundError:
+        print("The directory does not exist")
 
-# Get the list of file names in the directory
-voice_samples = os.listdir(directory)
+# Test accessing the specific directory
+access_directory("C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09")
+```To-do:
+1. Access the specified directory: C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09 - Status: Not started
+2. Enumerate all audio files within this directory, recording their filenames and metadata for further processing - Status: Not started
+3. For each audio file, apply an automatic speech recognition algorithm to transcribe the spoken text. Save the transcription paired with the filename - Status: Not started
+4. Extract the raw audio data from the sound files, preprocess this data as necessary for the text to speech library to interpret it - Status: Not started
+5. Save the preprocessed audio data and transcriptions in an easily readable format, such as .csv, for later use by the text to speech algorithm - Status: Not started
 
-# Print the file names
-print(voice_samples)
-```
-To-do:
-1. Read the list of voice samples available in the specified directory: C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. (Not started)
-2. Store the file names of the voice samples in a list. (Not started)
 
-
-01 Overseer: Fetch: user_documentation.txtCurrent instruction for you: Implement the code below.
-
+01 Overseer: Fetch: None
+File name: access_directory.py
+Code:
 ```python
 import os
 
-# Specify the directory path
-directory = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
+directory_path = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
 
-# Get the list of file names in the directory
-voice_samples = os.listdir(directory)
+def access_directory(directory_path):
+    try:
+        os.listdir(directory_path) 
+        print("Directory accessed successfully.")
+        task_status = "Completed"
+    except Exception as e:
+        print("Could not access the directory. Error - ", str(e))
+        task_status = "In Progress"
 
-# Print the file names
-print(voice_samples)
+access_directory(directory_path)
 ```
+01 Overseer: Fetch: None
+File name: enumerate_audio_files.py
+Code:
+```python
+import os
+import mutagen
 
-To-do:
-1. Read the list of voice samples available in the specified directory: C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. (In progress)
-2. Store the file names of the voice samples in a list. (In progress
+directory_path = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
+
+def enumerate_audio_files(directory_path):
+    audio_files_data = { "filenames": [], "metadata": [] } # To store filenames and metadata of audio files
+
+    for filename in os.listdir(directory_path):
+        if filename.endswith((".mp3", ".wav", ".flac")):
+            audio_files_data["filenames"].append(filename)
+
+            file_path = os.path.join(directory_path, filename)
+            file_metadata = mutagen.File(file_path, easy=True)
+
+            audio_files_data["metadata"].append(dict(file_metadata))
+
+    return audio_files_data
+
+enumerate_audio_files(directory_path)
+```To-do:
+1. Access the specified directory: C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09 - Completed
+2. Enumerate all audio files within this directory, recording their filenames and metadata for further processing - Not Started
+3. For each audio file, apply an automatic speech recognition algorithm to transcribe the spoken text. Save the transcription paired with the filename - Not Started
+4. Extract the raw audio data from the sound files, preprocess this data as necessary for the text to speech library to interpret it - Not Started
+5. Save the preprocessed audio data and transcriptions in an easily readable format, such as .csv, for later use by the text to speech algorithm - Not Started
+
+

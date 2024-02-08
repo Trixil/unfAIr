@@ -1,7 +1,0 @@
-02: Fetch: user_documentation.txt
-02: Fetch: user_documentation.txt
-02: Fetch: user_documentation.txt
-02: Fetch: user_documentation.txt
-02: Fetch: user_documentation.txt
-02: Fetch: None
-02: Fetch: read_voice_samples.py
