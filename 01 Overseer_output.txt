@@ -47,3 +47,28 @@ Please run the script provided and check if the "voice_samples.txt" file is crea
 
 Completed:
 YES
+01 Overseer: To-do:
+1. FileReader: NO
+2. File_Scanner: NO
+3. FileScanner: NO
+4. Speech Processing Role: NO
+5. FileLister: NO
+6. File Management Role: NO
+
+Current instruction for you, 01:
+Please implement the FileReader script.
+
+Completed:
+NO
+01 Overseer: To-do:
+- FileReader: Read all voice sample files located in "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" directory and store their content in a list. Save the list to "voice_samples.txt".
+- FileScanner: Scan the specified directory "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" and get the list of all files in that directory. Save the file names in a list named "file_names_list".
+- Speech Processing Role: Read the input text and convert it to speech using the character's voice. Access the voice samples in "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09". Generate an audio file with the speech output and save it to a specified location.
+- FileLister: Fetch the list of file names in "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" and store them in a list variable called "file_list".
+- File Management Role: Scan the directory "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" and list all the voice sample files. Create a text file named "voice_samples.txt" and write the names of all the voice sample files in the directory, with each file name on a new line.
+
+Current instruction for you:
+Implement `FileReader` by using the code provided above. Make sure to save the list of voice sample file contents to "voice_samples.txt" in the specified format.
+
+Completed:
+NO

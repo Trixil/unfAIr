@@ -1,0 +1,17 @@
+01: # file_reader.py
+
+Fetch: None
+Code:
+```python
+def read_file(file_name):
+    try:
+        with open(file_name, 'r') as file:
+            content = file.read()
+            return content
+    except FileNotFoundError:
+        return "File not found."
+
+file_name = input("Enter the name of the file to read: ")
+file_content = read_file(file_name)
+print(file_content)
+```

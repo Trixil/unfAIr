@@ -43,3 +43,21 @@ with open(output_filepath, "w") as output_file:
     for sample in voice_samples:
         output_file.write(sample + "\n")
 ```
+01 Overseer: Update the to-do list with each conversation with 01 and output it in your To-do field
+01 Overseer: # file_reader.py
+
+Fetch: None
+Code:
+```python
+def read_file(file_name):
+    try:
+        with open(file_name, 'r') as file:
+            content = file.read()
+            return content
+    except FileNotFoundError:
+        return "File not found."
+
+file_name = input("Enter the name of the file to read: ")
+file_content = read_file(file_name)
+print(file_content)
+```

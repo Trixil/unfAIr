@@ -25,3 +25,16 @@ Please complete task number 1: Create a script that reads all the voice sample f
 
 Completed:
 NO
+01: To-do:
+1. FileReader: NO
+2. File_Scanner: NO
+3. FileScanner: NO
+4. Speech Processing Role: NO
+5. FileLister: NO
+6. File Management Role: NO
+
+Current instruction for you, 01:
+Please implement the FileReader script.
+
+Completed:
+NO

@@ -24,7 +24,7 @@ def clear():
     open('01_output.txt', 'w').close()
     open('02_output.txt', 'w').close()
     open('scribe_output.txt', 'w').close()
-
+    '''
     # List of files and directories to keep
     keep_list = ['__pycache__', 'cachedrequests', 'misc', 'clear.py', 'sequencer.py', 'features.txt', 'messenger.py', 'postbox.json', 'user_documentation.txt']
 
@@ -54,4 +54,5 @@ def clear():
                 os.rmdir(item)
                 print(f"Deleted directory: {item}")
 
-clear()
+
+    '''

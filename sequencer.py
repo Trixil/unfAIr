@@ -5,11 +5,9 @@ import subprocess
 import os
 import textwrap
 
-clear()
 user_input = ""
 def executor(code):
     start_index = code.find('Code:\n')
-
     end_index = len(code)
     
     code = code[start_index:end_index]
@@ -21,6 +19,11 @@ def executor(code):
     start_quote = code.find('#') 
     end_quote = code.find('\n', start_quote + 1)
 
+    filename_start_index = code.find('File name:')
+        filename_end_index = code.find('\n', filename_start_index+1)
+        if (filename_start_index != -1):
+            filename = code[filename_start_index:filename_end_index]
+        start_index = code.find('Code:\n')
     if(start_quote != -1 & end_quote != -1):
         extracted_string = code[start_quote+2:end_quote]
         with open(extracted_string, 'w') as docs_file:
@@ -82,6 +85,7 @@ while True:
         if start_index != -1:
             selected_substring = instructions[start_index+3:end_index].strip()
             postbox[str(i).zfill(2) + ' Overseer']["usercontent"] = selected_substring
+            postbox[str(i).zfill(2) + ' Overseer']["systemcontent"] += selected_substring
             print(f"Substring for Wizard {i}:\n{selected_substring}\n")
         else:
             print(f"The string '{i:02d}:' was not found.")
@@ -91,7 +95,6 @@ while True:
 
     for i in range(1, 3):
         id = str(i).zfill(2)
-        postbox[id + ' Overseer']["systemcontent"] += postbox[id + ' Overseer']["usercontent"]
         with open(file_path, 'w') as json_file:
             json.dump(postbox, json_file, indent=3)
 
