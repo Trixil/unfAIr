@@ -27,7 +27,7 @@ def executor(response):
     code = response[code_start_index:code_end_index]
 
     with open(filename, 'w') as wizardcode:
-        wizadcode.write(code)
+        wizardcode.write(code)
 
     return code
 
@@ -65,7 +65,7 @@ def fetcher(response):
         with open(fetch_filename, 'r') as fetch_file:
             toreturn = fetch_file.read()
         return toreturn
-    else
+    else:
         return 'None'
 
 def read_json_file(file_path):

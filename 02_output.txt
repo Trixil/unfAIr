@@ -1,7 +1,0 @@
-02: File name: example_script.py
-Code:
-```python
-import gtts
-```
-
-Fetch: None

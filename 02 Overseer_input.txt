@@ -1,8 +1,0 @@
-02 Overseer: Update the to-do list with each conversation with 02 and output it in your To-do field
-02 Overseer: File name: example_script.py
-Code:
-```python
-import gtts
-```
-
-Fetch: None

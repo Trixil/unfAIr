@@ -1,13 +1,12 @@
 01 Overseer: Update the to-do list with each conversation with 01 and output it in your To-do field
 01 Overseer: Fetch: None
+File name: extract_character.py
 Code:
 ```python
-import os
+def extract_character(text):
+    character_name = ""
+    # logic to extract character name from text
+    # character_name = ...
 
-directory = 'C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09'
-
-if os.path.exists(directory):
-    print("The directory exists!")
-else:
-    print("The directory does not exist.")
+    return character_name
 ```

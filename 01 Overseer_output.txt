@@ -1,24 +1,19 @@
 01 Overseer: To-do:
-1. Use the `os` module to check if the given directory `C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09` exists. (In progress)
-2. If the directory exists, use the `os` module to list all the files in that directory. (Not started)
-3. Filter the file list to only include files ending with the extension ".wav". (Not started)
-4. Store the filtered file names in a list. (Not started)
-5. Sort the list in alphabetical order. (Not started)
-6. Store the sorted file names in a file named "voice_samples.txt" in the same directory. (Not started)
-7. Read the content of each file using the `wave` module to get the audio duration in seconds. (Not started)
-8. Store the file names and their corresponding audio durations in a dictionary named "file_durations". (Not started)
+1. Use a speech recognition library to convert the given text into phonetic transcriptions. (In progress)
+2. Extract the character name from the text. (Not started)
+3. Create a dictionary mapping character names to voice file paths. (Not started)
+4. Use the extracted character name to fetch the corresponding voice sample file path from the dictionary. (Not started)
+5. Convert the fetched voice sample file into text-to-speech using a text-to-speech engine. (Not started)
+6. Save the generated speech as an audio file. (Not started)
 
 Current instruction for you:
-1. Use the `os` module to check if the given directory `C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09` exists.
+Please implement step 2 - Extract the character name from the text.
 01 Overseer: To-do:
-1. Use the `os` module to check if the given directory `C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09` exists.
-2. If the directory exists, use the `os` module to list all the files in that directory.
-3. Filter the file list to only include files ending with the extension ".wav".
-4. Store the filtered file names in a list.
-5. Sort the list in alphabetical order.
-6. Store the sorted file names in a file named "voice_samples.txt" in the same directory.
-7. Read the content of each file using the `wave` module to get the audio duration in seconds.
-8. Store the file names and their corresponding audio durations in a dictionary named "file_durations".
+1. Use a speech recognition library to convert the given text into phonetic transcriptions. (Not started)
+2. Extract the character name from the text. (In progress)
+3. Create a dictionary mapping character names to voice file paths. (Not started)
+4. Use the extracted character name to fetch the corresponding voice sample file path from the dictionary. (Not started)
+5. Convert the fetched voice sample file into text-to-speech using a text-to-speech engine. (Not started)
+6. Save the generated speech as an audio file. (Not started)
 
-Current instruction for you:
-Use the code provided to check if the directory exists. If it exists, move on to the next steps. If it does not exist, we can skip the rest of the instructions.
+Current instruction for you (01): Write the logic in the `extract_character` function to extract the character name from the given text. Please replace the comment with your code.
