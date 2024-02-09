@@ -11,6 +11,7 @@ def request(id, usercontent, send):
 
     systemcontent = postbox[id]["systemcontent"]
     logmessages = postbox["logmessages"]
+    print(logmessages)
     firstmessage = {"role": "system", "content": f"{systemcontent}"}
     endmessage = {"role": "system", "content": f"{usercontent}"}
     pastmessages = [firstmessage]
@@ -20,7 +21,7 @@ def request(id, usercontent, send):
     pastmessages.append(endmessage)
     if(send == 1):
         completion = client.chat.completions.create(
-          model="gpt-3.5-turbo-0125",
+          model="gpt-4",
           messages=pastmessages
         )
 

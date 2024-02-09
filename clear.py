@@ -14,6 +14,7 @@ def clear():
     postbox["01 Overseer"]["usercontent"] = "";
     postbox["02 Overseer"]["usercontent"] = "";
     postbox["scribe"]["usercontent"] = "";
+    postbox["logmessages"] = [];
 
     postbox["00"]["cachedmessage"] = "";
     postbox["01 Overseer"]["cachedmessage"] = "";

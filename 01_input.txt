@@ -1,21 +1,93 @@
 01: To-do:
-1. Create a script that retrieves the text input to be converted to speech. (Completed)
-2. Implement a function that selects a random voice sample of the character from the specified directory (C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09).
-3. Use a text-to-speech library to convert the text input to a playable audio file.
-4. Save the generated audio file in a temporary location.
+1. Access the voice samples in the assigned directory. (Not Started)
+2. Convert these audio files into an easily parsed format. (Not Started)
+3. Analyze the frequency, pitch, and tempo of the sound files. (Not Started)
+4. Generate a statistics report on the pitch, frequency, and tempo variation of the voice samples. (Not Started)
 
 Current instruction for you:
-Create a function in the script that selects a random voice sample from the specified directory.Current documentation stored in user_documentation.txt:
+Begin by writing a script to open and read the files in the directory "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09". Use python's "os" module to list all the files in the directory. After this, initiate the process of accessing the voice samples. You don't need to process the files yet, just access them.Current documentation stored in user_documentation.txt:
 No documentation written yet.
 
 01: To-do:
-1. Create a script that retrieves the text input to be converted to speech. (Completed)
-2. Implement a function that selects a random voice sample of the character from the specified directory (C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09).
-3. Use a text-to-speech library to convert the text input to a playable audio file.
-4. Save the generated audio file in a temporary location.
+1. Access the voice samples in the assigned directory. (Completed)
+2. Convert these audio files into an easily parsed format. (Not Started)
+3. Analyze the frequency, pitch, and tempo of the sound files. (Not Started)
+4. Generate a statistics report on the pitch, frequency, and tempo variation of the voice samples. (Not Started)
 
 Current instruction for you:
-Implement a function in the script that uses a text-to-speech library to convert the text input to a playable audio file.
+Great! You have successfully accessed the voice samples. Now, write a Python function which uses the "soundfile" module to read the '.wav' files and convert them into numpy arrays for easy parsing. This is the beginning of task 2. Go ahead and implement that.
+Contents of None
+No file requestedCurrent documentation stored in user_documentation.txt:
+File name: user_documentation.txt
+Code:
+How to Use Text to Speech Program:
+
+1. Inputting Text:
+   - Open the text to speech program on your device.
+   - You will see a text input box where you can type or paste the text you want to convert to speech.
+   - Make sure to enter the text accurately without any errors.
+
+2. Triggering Speech Conversion:
+   - Once you have entered the desired text, look for the "Convert" or "Speak" button on the program's interface.
+   - Click on the button to initiate the conversion process.
+   - The program will start processing the text and converting it into speech.
+
+3. Accessing Generated Speech Audio:
+   - Upon successful conversion, you will be able to listen to the speech output.
+   - The generated speech audio can typically be played directly within the program interface.
+   - You may also have the option to download the speech audio file for future use.
+
+Additional Features and Functionalities:
+- Language Selection: Some text to speech programs allow users to choose the language and accent of the speech output.
+- Speech Speed Control: Certain programs provide the flexibility to adjust the speed of the generated speech.
+- Save or Export Options: Users may have the ability to save the speech audio as a file or export it to other platforms.
+
+These instructions will help you effectively utilize the text to speech program. If you encounter any issues or need further assistance, refer to the program's help section or contact technical support.
+
+
+01: Current instruction for you:
+Add a main function to the script that loops through all .wav files in a directory and uses the `wav_to_numpy` function to convert them into numpy arrays. The directory should be passed as a command-line argument. Save the numpy arrays in a separate directory also passed as a command-line argument.
+
+Code:
+```python
+import os
+import sys
+import numpy as np
+import soundfile as sf
+
+def wav_to_numpy(filepath):
+    '''
+    Reads a .wav file and converts it to a numpy array
+    Args: 
+        filepath (str) - The path to the .wav file
+    Returns:
+        ndarray: numpy array with the content of the .wav file
+    '''
+
+    data, samplerate = sf.read(filepath)
+    return data
+
+def main(audio_dir, numpy_dir):
+    '''
+    Loops through .wav files in a directory and converts them to numpy arrays
+    Args:
+        audio_dir (str) - The directory that contains the .wav files
+        numpy_dir (str) - The directory where the numpy arrays will be saved
+    '''
+    for filename in os.listdir(audio_dir):
+        if filename.endswith(".wav"):
+            data = wav_to_numpy(os.path.join(audio_dir, filename))
+            np.save(os.path.join(numpy_dir, filename), data)
+
+if __name__ == "__main__":
+    main(sys.argv[1], sys.argv[2])
+```
+
+To-do:
+1. Access the voice samples in the assigned directory. (Completed)
+2. Convert these audio files into an easily parsed format. (In Progress)
+3. Analyze the frequency, pitch, and tempo of the sound files. (Not Started)
+4. Generate a statistics report on the pitch, frequency, and tempo variation of the voice samples. (Not Started)
 Contents of None
 No file requestedCurrent documentation stored in user_documentation.txt:
 File name: user_documentation.txt
@@ -46,24 +118,18 @@ These instructions will help you effectively utilize the text to speech program.
 
 
 01: To-do:
-1. Write a script that reads the text input from the user and initiates the conversion process (In progress)
+1. Loop through all .wav files in a directory (Completed)
+2. Convert .wav files into numpy arrays (Completed)
+3. Save numpy arrays in a specified directory (Completed)
+
+The current code provides a function `wav_to_numpy` to convert a .wav file into a numpy array. It also includes a `main` function that leverages `wav_to_numpy` to loop through all .wav files in a given directory, convert them into numpy arrays, and saves these arrays in a specified directory.
 
 Current instruction for you:
-Please write a script that reads the text input from the user and initiates the conversion process.Current documentation stored in user_documentation.txt:
-No documentation written yet.
+Check the implementation of error handling. If a .wav file cannot be converted into a numpy array, the script should log an error message with the name of the problematic file and continue with the next one. Let's handle exceptions to ensure the program does not stop midway. 
 
-01: To-do:
-1. Write a script that reads the text input from the user and initiates the conversion process (Completed)
+Please create a function that handles the exceptions raised during the reading and conversion process in `wav_to_numpy` function. The function should return None when an error occurs and should print an error message along with the name of the problematic file. Afterwards, update the `main` function to ignore files returned as None by `wav_to_numpy` function and proceed to the next file.
 
-Current instruction for you:
-Ensure that the text-to-speech conversion script that takes user input, converts it into speech using voice samples located in the specified path, ensures clear and audible speech output, and saves the generated audio file is properly implemented.Current documentation stored in user_documentation.txt:
-No documentation written yet.
-
-01: To-do:
-1. Write a script that reads the text input from the user and initiates the conversion process (Completed)
-
-Current instruction for you:
-Ensure that the text-to-speech conversion script that takes user input, converts it into speech using voice samples located in the specified path, ensures clear and audible speech output, and saves the generated audio file is properly implemented.
+Include the new function in the current Python file `convert_wav_to_numpy.py`. Provide the updated Python code once the implementation is done.
 Contents of None
 No file requestedCurrent documentation stored in user_documentation.txt:
 File name: user_documentation.txt
@@ -93,112 +159,57 @@ Additional Features and Functionalities:
 These instructions will help you effectively utilize the text to speech program. If you encounter any issues or need further assistance, refer to the program's help section or contact technical support.
 
 
-01: To-do:
-1. Write a script that takes the text input, processes it, and converts it into speech using voice samples located in C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. Remember to handle any errors or exceptions that may arise during the conversion process. (In progress)
+01: Current instruction for you:
+Please check the `main` function implementation, specifically the line where the `.npy` file is saved. It seems there's a mistake in the variable name: `np.save(output_directory + '/' + file_name.replace('.wav', '.npy'), wav_array)`. The variable `wav_array` is not defined in the provided context. The correct variable should be `wav_data`, the one holding the result from `wav_to_numpy()`. Please amend this code and resend the corrected version.
 
-Current instruction for you:
-Continue working on writing the script for the conversion module.Current documentation stored in user_documentation.txt:
-No documentation written yet.
+To-do:
+1. Loop through all .wav files in a directory (Completed)
+2. Convert .wav files into numpy arrays (Completed)
+3. Save numpy arrays in a specified directory (In Progress)
+Contents of convert_wav_to_numpy.py
 
-01: To-do:
-1. Write a script that takes the text input, processes it, and converts it into speech using voice samples located in C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. Remember to handle any errors or exceptions that may arise during the conversion process. (In progress)
-
-Current instruction for you:
-Continue working on writing the script for the conversion module.
-Contents of None
-No file requestedCurrent documentation stored in user_documentation.txt:
-File name: user_documentation.txt
-Code:
-How to Use Text to Speech Program:
-
-1. Inputting Text:
-   - Open the text to speech program on your device.
-   - You will see a text input box where you can type or paste the text you want to convert to speech.
-   - Make sure to enter the text accurately without any errors.
-
-2. Triggering Speech Conversion:
-   - Once you have entered the desired text, look for the "Convert" or "Speak" button on the program's interface.
-   - Click on the button to initiate the conversion process.
-   - The program will start processing the text and converting it into speech.
-
-3. Accessing Generated Speech Audio:
-   - Upon successful conversion, you will be able to listen to the speech output.
-   - The generated speech audio can typically be played directly within the program interface.
-   - You may also have the option to download the speech audio file for future use.
-
-Additional Features and Functionalities:
-- Language Selection: Some text to speech programs allow users to choose the language and accent of the speech output.
-- Speech Speed Control: Certain programs provide the flexibility to adjust the speed of the generated speech.
-- Save or Export Options: Users may have the ability to save the speech audio as a file or export it to other platforms.
-
-These instructions will help you effectively utilize the text to speech program. If you encounter any issues or need further assistance, refer to the program's help section or contact technical support.
+import os
+import numpy as np
+from scipy.io import wavfile
 
 
-01: To-do:
-1. Write a script that takes the text input, processes it, and converts it into speech using voice samples located in C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. Remember to handle any errors or exceptions that may arise during the conversion process. (In progress)
-
-Current instruction for you:
-Continue working on the script to convert text input into speech using the provided voice samples directory.
-Contents of None
-No file requestedCurrent documentation stored in user_documentation.txt:
-File name: user_documentation.txt
-Code:
-How to Use Text to Speech Program:
-
-1. Inputting Text:
-   - Open the text to speech program on your device.
-   - You will see a text input box where you can type or paste the text you want to convert to speech.
-   - Make sure to enter the text accurately without any errors.
-
-2. Triggering Speech Conversion:
-   - Once you have entered the desired text, look for the "Convert" or "Speak" button on the program's interface.
-   - Click on the button to initiate the conversion process.
-   - The program will start processing the text and converting it into speech.
-
-3. Accessing Generated Speech Audio:
-   - Upon successful conversion, you will be able to listen to the speech output.
-   - The generated speech audio can typically be played directly within the program interface.
-   - You may also have the option to download the speech audio file for future use.
-
-Additional Features and Functionalities:
-- Language Selection: Some text to speech programs allow users to choose the language and accent of the speech output.
-- Speech Speed Control: Certain programs provide the flexibility to adjust the speed of the generated speech.
-- Save or Export Options: Users may have the ability to save the speech audio as a file or export it to other platforms.
-
-These instructions will help you effectively utilize the text to speech program. If you encounter any issues or need further assistance, refer to the program's help section or contact technical support.
+def wav_to_numpy(file_path):
+    '''
+    This function converts a .wav audio file into a numpy array
+    Input: file_path - string - path of the .wav file
+    Output: numpy_array - ndarray - numpy array representation of the audio file
+    '''
+    try:
+        _, numpy_array = wavfile.read(file_path)
+        return numpy_array
+    except Exception as e:
+        print(f"Error occurred while reading and converting {file_path}: {str(e)}")
+        return None
 
 
-01: To-do:
-1. Write a script that takes the text input, processes it, and converts it into speech using voice samples located in C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. Remember to handle any errors or exceptions that may arise during the conversion process. (In progress)
+def main(input_directory, output_directory):
+    '''
+    This function uses wav_to_numpy() to convert all .wav files in a directory into numpy arrays and saves them in a specified directory
+    Input: input_directory - string - path of the directory containing .wav files
+           output_directory - string - path of the directory where numpy arrays should be saved
+    Output: None
+    '''
+    # making sure that the output directory exists
+    if not os.path.exists(output_directory):
+        os.makedirs(output_directory)
+    
+    # converting all .wav files in the directory
+    for file_name in os.listdir(input_directory):
+        # only process .wav files
+        if file_name.endswith('.wav'):
+            wav_data = wav_to_numpy(input_directory + '/' + file_name)
+            if wav_data is not None:
+                # saving numpy array to the output directory
+                np.save(output_directory + '/' + file_name.replace('.wav', '.npy'), wav_array)
 
-Current instruction for you:
-Continue working on the script to convert text input into speech using the provided voice samples directory.
-Contents of user_documentation.txt
-File name: user_documentation.txt
-Code:
-How to Use Text to Speech Program:
 
-1. Inputting Text:
-   - Open the text to speech program on your device.
-   - You will see a text input box where you can type or paste the text you want to convert to speech.
-   - Make sure to enter the text accurately without any errors.
-
-2. Triggering Speech Conversion:
-   - Once you have entered the desired text, look for the "Convert" or "Speak" button on the program's interface.
-   - Click on the button to initiate the conversion process.
-   - The program will start processing the text and converting it into speech.
-
-3. Accessing Generated Speech Audio:
-   - Upon successful conversion, you will be able to listen to the speech output.
-   - The generated speech audio can typically be played directly within the program interface.
-   - You may also have the option to download the speech audio file for future use.
-
-Additional Features and Functionalities:
-- Language Selection: Some text to speech programs allow users to choose the language and accent of the speech output.
-- Speech Speed Control: Certain programs provide the flexibility to adjust the speed of the generated speech.
-- Save or Export Options: Users may have the ability to save the speech audio as a file or export it to other platforms.
-
-These instructions will help you effectively utilize the text to speech program. If you encounter any issues or need further assistance, refer to the program's help section or contact technical support.
+if __name__ == '__main__':
+    main(input_directory, output_directory)
 Current documentation stored in user_documentation.txt:
 File name: user_documentation.txt
 Code:
@@ -228,69 +239,54 @@ These instructions will help you effectively utilize the text to speech program.
 
 
 01: To-do:
-1. Write a script that takes the text input, processes it, and converts it into speech using voice samples located in C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. Remember to handle any errors or exceptions that may arise during the conversion process. (In progress)
+1. Correct and save the `convert_wav_to_numpy.py` script (In Progress)
 
 Current instruction for you:
-Please implement the code for processing text and converting it into speech using the voice samples directory.
-Contents of None
-No file requestedCurrent documentation stored in user_documentation.txt:
-File name: user_documentation.txt
-Code:
-How to Use Text to Speech Program:
+Replace `wav_array` with `wav_data` as the variable used when saving the numpy array in the `main` function of the `convert_wav_to_numpy.py` script. Confirm amendment by sending the revised code block of the `main` function.
+Contents of convert_wav_to_numpy.py
 
-1. Inputting Text:
-   - Open the text to speech program on your device.
-   - You will see a text input box where you can type or paste the text you want to convert to speech.
-   - Make sure to enter the text accurately without any errors.
-
-2. Triggering Speech Conversion:
-   - Once you have entered the desired text, look for the "Convert" or "Speak" button on the program's interface.
-   - Click on the button to initiate the conversion process.
-   - The program will start processing the text and converting it into speech.
-
-3. Accessing Generated Speech Audio:
-   - Upon successful conversion, you will be able to listen to the speech output.
-   - The generated speech audio can typically be played directly within the program interface.
-   - You may also have the option to download the speech audio file for future use.
-
-Additional Features and Functionalities:
-- Language Selection: Some text to speech programs allow users to choose the language and accent of the speech output.
-- Speech Speed Control: Certain programs provide the flexibility to adjust the speed of the generated speech.
-- Save or Export Options: Users may have the ability to save the speech audio as a file or export it to other platforms.
-
-These instructions will help you effectively utilize the text to speech program. If you encounter any issues or need further assistance, refer to the program's help section or contact technical support.
+import os
+import numpy as np
+from scipy.io import wavfile
 
 
-01: To-do:
-1. Write a script that takes the text input, processes it, and converts it into speech using voice samples located in C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. Remember to handle any errors or exceptions that may arise during the conversion process. (In progress)
+def wav_to_numpy(file_path):
+    '''
+    This function converts a .wav audio file into a numpy array
+    Input: file_path - string - path of the .wav file
+    Output: numpy_array - ndarray - numpy array representation of the audio file
+    '''
+    try:
+        _, numpy_array = wavfile.read(file_path)
+        return numpy_array
+    except Exception as e:
+        print(f"Error occurred while reading and converting {file_path}: {str(e)}")
+        return None
 
-Current instruction for you: Implement the processing and conversion of the text input into speech using the voice samples directory in the script `text_to_speech_converter.py`.
-Contents of user_documentation.txt
-File name: user_documentation.txt
-Code:
-How to Use Text to Speech Program:
 
-1. Inputting Text:
-   - Open the text to speech program on your device.
-   - You will see a text input box where you can type or paste the text you want to convert to speech.
-   - Make sure to enter the text accurately without any errors.
+def main(input_directory, output_directory):
+    '''
+    This function uses wav_to_numpy() to convert all .wav files in a directory into numpy arrays and saves them in a specified directory
+    Input: input_directory - string - path of the directory containing .wav files
+           output_directory - string - path of the directory where numpy arrays should be saved
+    Output: None
+    '''
+    # making sure that the output directory exists
+    if not os.path.exists(output_directory):
+        os.makedirs(output_directory)
+    
+    # converting all .wav files in the directory
+    for file_name in os.listdir(input_directory):
+        # only process .wav files
+        if file_name.endswith('.wav'):
+            wav_data = wav_to_numpy(input_directory + '/' + file_name)
+            if wav_data is not None:
+                # saving numpy array to the output directory
+                np.save(output_directory + '/' + file_name.replace('.wav', '.npy'), wav_array)
 
-2. Triggering Speech Conversion:
-   - Once you have entered the desired text, look for the "Convert" or "Speak" button on the program's interface.
-   - Click on the button to initiate the conversion process.
-   - The program will start processing the text and converting it into speech.
 
-3. Accessing Generated Speech Audio:
-   - Upon successful conversion, you will be able to listen to the speech output.
-   - The generated speech audio can typically be played directly within the program interface.
-   - You may also have the option to download the speech audio file for future use.
-
-Additional Features and Functionalities:
-- Language Selection: Some text to speech programs allow users to choose the language and accent of the speech output.
-- Speech Speed Control: Certain programs provide the flexibility to adjust the speed of the generated speech.
-- Save or Export Options: Users may have the ability to save the speech audio as a file or export it to other platforms.
-
-These instructions will help you effectively utilize the text to speech program. If you encounter any issues or need further assistance, refer to the program's help section or contact technical support.
+if __name__ == '__main__':
+    main(input_directory, output_directory)
 Current documentation stored in user_documentation.txt:
 File name: user_documentation.txt
 Code:
@@ -319,251 +315,31 @@ Additional Features and Functionalities:
 These instructions will help you effectively utilize the text to speech program. If you encounter any issues or need further assistance, refer to the program's help section or contact technical support.
 
 
-01: To-do:
-1. Write a script that takes the text input, processes it, and converts it into speech using voice samples located in C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. Remember to handle any errors or exceptions that may arise during the conversion process. (In progress)
+01: Current instruction for you: Confirm the following changes - 'wav_array' has been replaced by 'wav_data' in the numpy.save() function in the 'main' function, in the `convert_wav_to_numpy.py` script.
 
-Current instruction for you: Implement the processing and conversion of the text input into speech using the voice samples directory in the script `text_to_speech_converter.py`
-Contents of user_documentation.txt
-File name: user_documentation.txt
-Code:
-How to Use Text to Speech Program:
+To-do:
+1. Correct and save the `convert_wav_to_numpy.py` script (In Progress)
+Contents of convert_wav_to_numpy.py
 
-1. Inputting Text:
-   - Open the text to speech program on your device.
-   - You will see a text input box where you can type or paste the text you want to convert to speech.
-   - Make sure to enter the text accurately without any errors.
+def main(input_directory, output_directory):
+    '''
+    This function uses wav_to_numpy() to convert all .wav files in a directory into numpy arrays and saves them in a specified directory
+    Input: input_directory - string - path of the directory containing .wav files
+           output_directory - string - path of the directory where numpy arrays should be saved
+    Output: None
+    '''
+    # making sure that the output directory exists
+    if not os.path.exists(output_directory):
+        os.makedirs(output_directory)
 
-2. Triggering Speech Conversion:
-   - Once you have entered the desired text, look for the "Convert" or "Speak" button on the program's interface.
-   - Click on the button to initiate the conversion process.
-   - The program will start processing the text and converting it into speech.
-
-3. Accessing Generated Speech Audio:
-   - Upon successful conversion, you will be able to listen to the speech output.
-   - The generated speech audio can typically be played directly within the program interface.
-   - You may also have the option to download the speech audio file for future use.
-
-Additional Features and Functionalities:
-- Language Selection: Some text to speech programs allow users to choose the language and accent of the speech output.
-- Speech Speed Control: Certain programs provide the flexibility to adjust the speed of the generated speech.
-- Save or Export Options: Users may have the ability to save the speech audio as a file or export it to other platforms.
-
-These instructions will help you effectively utilize the text to speech program. If you encounter any issues or need further assistance, refer to the program's help section or contact technical support.
-Current documentation stored in user_documentation.txt:
-File name: user_documentation.txt
-Code:
-How to Use Text to Speech Program:
-
-1. Inputting Text:
-   - Open the text to speech program on your device.
-   - You will see a text input box where you can type or paste the text you want to convert to speech.
-   - Make sure to enter the text accurately without any errors.
-
-2. Triggering Speech Conversion:
-   - Once you have entered the desired text, look for the "Convert" or "Speak" button on the program's interface.
-   - Click on the button to initiate the conversion process.
-   - The program will start processing the text and converting it into speech.
-
-3. Accessing Generated Speech Audio:
-   - Upon successful conversion, you will be able to listen to the speech output.
-   - The generated speech audio can typically be played directly within the program interface.
-   - You may also have the option to download the speech audio file for future use.
-
-Additional Features and Functionalities:
-- Language Selection: Some text to speech programs allow users to choose the language and accent of the speech output.
-- Speech Speed Control: Certain programs provide the flexibility to adjust the speed of the generated speech.
-- Save or Export Options: Users may have the ability to save the speech audio as a file or export it to other platforms.
-
-These instructions will help you effectively utilize the text to speech program. If you encounter any issues or need further assistance, refer to the program's help section or contact technical support.
-
-
-01: To-do:
-1. Write a script that takes the text input, processes it, and converts it into speech using voice samples located in C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. Remember to handle any errors or exceptions that may arise during the conversion process. (In progress)
-
-Current instruction for you: Implement the processing and conversion of the text input into speech using the voice samples directory in the script `text_to_speech_converter.py`.
-Contents of None
-No file requestedCurrent documentation stored in user_documentation.txt:
-File name: user_documentation.txt
-Code:
-How to Use Text to Speech Program:
-
-1. Inputting Text:
-   - Open the text to speech program on your device.
-   - You will see a text input box where you can type or paste the text you want to convert to speech.
-   - Make sure to enter the text accurately without any errors.
-
-2. Triggering Speech Conversion:
-   - Once you have entered the desired text, look for the "Convert" or "Speak" button on the program's interface.
-   - Click on the button to initiate the conversion process.
-   - The program will start processing the text and converting it into speech.
-
-3. Accessing Generated Speech Audio:
-   - Upon successful conversion, you will be able to listen to the speech output.
-   - The generated speech audio can typically be played directly within the program interface.
-   - You may also have the option to download the speech audio file for future use.
-
-Additional Features and Functionalities:
-- Language Selection: Some text to speech programs allow users to choose the language and accent of the speech output.
-- Speech Speed Control: Certain programs provide the flexibility to adjust the speed of the generated speech.
-- Save or Export Options: Users may have the ability to save the speech audio as a file or export it to other platforms.
-
-These instructions will help you effectively utilize the text to speech program. If you encounter any issues or need further assistance, refer to the program's help section or contact technical support.
-
-
-01: To-do:
-1. Write a script that takes the text input, processes it, and converts it into speech using voice samples located in C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. Remember to handle any errors or exceptions that may arise during the conversion process. (In progress)
-
-Current instruction for you:
-I will proceed with implementing the processing and conversion of the text input into speech using the voice samples directory in the script `text_to_speech_converter.py`.
-Contents of None
-No file requestedCurrent documentation stored in user_documentation.txt:
-File name: user_documentation.txt
-Code:
-How to Use Text to Speech Program:
-
-1. Inputting Text:
-   - Open the text to speech program on your device.
-   - You will see a text input box where you can type or paste the text you want to convert to speech.
-   - Make sure to enter the text accurately without any errors.
-
-2. Triggering Speech Conversion:
-   - Once you have entered the desired text, look for the "Convert" or "Speak" button on the program's interface.
-   - Click on the button to initiate the conversion process.
-   - The program will start processing the text and converting it into speech.
-
-3. Accessing Generated Speech Audio:
-   - Upon successful conversion, you will be able to listen to the speech output.
-   - The generated speech audio can typically be played directly within the program interface.
-   - You may also have the option to download the speech audio file for future use.
-
-Additional Features and Functionalities:
-- Language Selection: Some text to speech programs allow users to choose the language and accent of the speech output.
-- Speech Speed Control: Certain programs provide the flexibility to adjust the speed of the generated speech.
-- Save or Export Options: Users may have the ability to save the speech audio as a file or export it to other platforms.
-
-These instructions will help you effectively utilize the text to speech program. If you encounter any issues or need further assistance, refer to the program's help section or contact technical support.
-
-
-01: Current instruction for you: Fetch the user_documentation.txt file.
-Contents of user_documentation.txt
-File name: user_documentation.txt
-Code:
-How to Use Text to Speech Program:
-
-1. Inputting Text:
-   - Open the text to speech program on your device.
-   - You will see a text input box where you can type or paste the text you want to convert to speech.
-   - Make sure to enter the text accurately without any errors.
-
-2. Triggering Speech Conversion:
-   - Once you have entered the desired text, look for the "Convert" or "Speak" button on the program's interface.
-   - Click on the button to initiate the conversion process.
-   - The program will start processing the text and converting it into speech.
-
-3. Accessing Generated Speech Audio:
-   - Upon successful conversion, you will be able to listen to the speech output.
-   - The generated speech audio can typically be played directly within the program interface.
-   - You may also have the option to download the speech audio file for future use.
-
-Additional Features and Functionalities:
-- Language Selection: Some text to speech programs allow users to choose the language and accent of the speech output.
-- Speech Speed Control: Certain programs provide the flexibility to adjust the speed of the generated speech.
-- Save or Export Options: Users may have the ability to save the speech audio as a file or export it to other platforms.
-
-These instructions will help you effectively utilize the text to speech program. If you encounter any issues or need further assistance, refer to the program's help section or contact technical support.
-Current documentation stored in user_documentation.txt:
-File name: user_documentation.txt
-Code:
-How to Use Text to Speech Program:
-
-1. Inputting Text:
-   - Open the text to speech program on your device.
-   - You will see a text input box where you can type or paste the text you want to convert to speech.
-   - Make sure to enter the text accurately without any errors.
-
-2. Triggering Speech Conversion:
-   - Once you have entered the desired text, look for the "Convert" or "Speak" button on the program's interface.
-   - Click on the button to initiate the conversion process.
-   - The program will start processing the text and converting it into speech.
-
-3. Accessing Generated Speech Audio:
-   - Upon successful conversion, you will be able to listen to the speech output.
-   - The generated speech audio can typically be played directly within the program interface.
-   - You may also have the option to download the speech audio file for future use.
-
-Additional Features and Functionalities:
-- Language Selection: Some text to speech programs allow users to choose the language and accent of the speech output.
-- Speech Speed Control: Certain programs provide the flexibility to adjust the speed of the generated speech.
-- Save or Export Options: Users may have the ability to save the speech audio as a file or export it to other platforms.
-
-These instructions will help you effectively utilize the text to speech program. If you encounter any issues or need further assistance, refer to the program's help section or contact technical support.
-
-
-01: To-do:
-1. Update the user_documentation.txt file with detailed instructions for new users (Not Started)
-2. Implement a feature to adjust the speech speed based on user input (Not Started)
-
-Current instruction for you: Review the existing user_documentation.txt file and confirm if any changes or additions are needed. Once confirmed, please provide detailed instructions on how to adjust the speech speed based on user input.
-Contents of None
-No file requestedCurrent documentation stored in user_documentation.txt:
-File name: user_documentation.txt
-Code:
-How to Use Text to Speech Program:
-
-1. Inputting Text:
-   - Open the text to speech program on your device.
-   - You will see a text input box where you can type or paste the text you want to convert to speech.
-   - Make sure to enter the text accurately without any errors.
-
-2. Triggering Speech Conversion:
-   - Once you have entered the desired text, look for the "Convert" or "Speak" button on the program's interface.
-   - Click on the button to initiate the conversion process.
-   - The program will start processing the text and converting it into speech.
-
-3. Accessing Generated Speech Audio:
-   - Upon successful conversion, you will be able to listen to the speech output.
-   - The generated speech audio can typically be played directly within the program interface.
-   - You may also have the option to download the speech audio file for future use.
-
-Additional Features and Functionalities:
-- Language Selection: Some text to speech programs allow users to choose the language and accent of the speech output.
-- Speech Speed Control: Certain programs provide the flexibility to adjust the speed of the generated speech.
-- Save or Export Options: Users may have the ability to save the speech audio as a file or export it to other platforms.
-
-These instructions will help you effectively utilize the text to speech program. If you encounter any issues or need further assistance, refer to the program's help section or contact technical support.
-
-
-01: To-do:
-1. Update the user_documentation.txt file with detailed instructions for new users (Not Started)
-2. Implement a feature to adjust the speech speed based on user input (Not Started)
-
-Current instruction for you: Provide detailed instructions on how to adjust the speech speed based on user input using the provided code in adjust_speed_feature.py.
-Contents of user_documentation.txt
-File name: user_documentation.txt
-Code:
-How to Use Text to Speech Program:
-
-1. Inputting Text:
-   - Open the text to speech program on your device.
-   - You will see a text input box where you can type or paste the text you want to convert to speech.
-   - Make sure to enter the text accurately without any errors.
-
-2. Triggering Speech Conversion:
-   - Once you have entered the desired text, look for the "Convert" or "Speak" button on the program's interface.
-   - Click on the button to initiate the conversion process.
-   - The program will start processing the text and converting it into speech.
-
-3. Accessing Generated Speech Audio:
-   - Upon successful conversion, you will be able to listen to the speech output.
-   - The generated speech audio can typically be played directly within the program interface.
-   - You may also have the option to download the speech audio file for future use.
-
-Additional Features and Functionalities:
-- Language Selection: Some text to speech programs allow users to choose the language and accent of the speech output.
-- Speech Speed Control: Certain programs provide the flexibility to adjust the speed of the generated speech.
-- Save or Export Options: Users may have the ability to save the speech audio as a file or export it to other platforms.
-
-These instructions will help you effectively utilize the text to speech program. If you encounter any issues or need further assistance, refer to the program's help section or contact technical support.
+    # converting all .wav files in the directory
+    for file_name in os.listdir(input_directory):
+        # only process .wav files
+        if file_name.endswith('.wav'):
+            wav_data = wav_to_numpy(input_directory + '/' + file_name)
+            if wav_data is not None:
+                # saving numpy array to the output directory
+                np.save(output_directory + '/' + file_name.replace('.wav', '.npy'), wav_data)
 Current documentation stored in user_documentation.txt:
 File name: user_documentation.txt
 Code:

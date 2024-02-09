@@ -1,174 +1,220 @@
 01: Fetch: None
-Message: I will create a function in the script to select a random voice sample from the specified directory.
+Message: I'll begin by writing a script that uses python's "os" module to list all the files in the directory "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09". This will access the voice samples as per the instructions.
+Code:
+```python
+import os
+
+def list_voice_samples(directory):
+    try:
+        files_in_directory = os.listdir(directory)
+        voice_samples = [file for file in files_in_directory if file.endswith('.wav')]
+        return voice_samples
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
+
+voice_samples_path = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
+voice_samples = list_voice_samples(voice_samples_path)
+```
+File name: access_voice_samples.py
+01: Fetch: None
+Message: I will start on this task now.
+File name: wav_to_numpy.py
 Code: 
 ```python
-File Name: random_voice.py
-```
-01: Fetch: user_documentation.txt
-Message: I will now create a script that converts text input to speech using a text-to-speech library.
-File name: text_to_speech_converter.py
-Code:
-01: Fetch: None
-Message: I will create a script that reads the text input from the user and initiates the conversion process.
-Code:
-```python
-File name: text_conversion.py
-Code:
-# Script to read text input from the user and initiate the conversion process
+import numpy as np
+import soundfile as sf
 
-# Read text input from the user
-text_input = input("Enter the text you want to convert: ")
+def wav_to_numpy(filepath):
+    '''Reads a .wav file and converts it to a numpy array
+    Args: 
+    filepath (str) - The path to the .wav file
+    Returns:
+    ndarray: numpy array with the content of the .wav file'''
 
-# Initiate the conversion process (Conversion process code to be implemented)
-print("Initiating conversion process for the text: ", text_input)
+    data, samplerate = sf.read(filepath)
+    return data
 ```
 01: Fetch: None
-Message: Understood. I will start by creating a text-to-speech conversion script based on the requirements provided.
-01: Fetch: user_documentation.txt
-Message: I will write a script that reads the text input from the user and initiates the text-to-speech conversion process.
-Fetch: None
-01: Fetch: None
-Message: Understood. I will continue working on the script for the conversion module.
-01: Fetch: None
-Message: I will start by writing a script that converts text input into speech using voice samples located in the specified directory. I will handle any errors or exceptions that may arise during the conversion process.
-File name: text_to_speech_converter.py
+Message: I have written the main function and included the `wav_to_numpy` function to complete the task of looping through all .wav files in a directory, converting them into numpy arrays, and saving them in the specified directory.
+File name: convert_wav_to_numpy.py
 Code: 
 ```python
 import os
-import subprocess
+import sys
+import numpy as np
+import soundfile as sf
 
-def convert_text_to_speech(text_input):
-    try:
-        # Specify the path to the voice samples directory
-        voice_samples_directory = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
+def wav_to_numpy(filepath):
+    '''
+    Reads a .wav file and converts it to a numpy array
+    Args:
+        filepath (str) - The path to the .wav file
+    Returns:
+        ndarray: numpy array with the content of the .wav file
+    '''
 
-        # Check if the directory exists
-        if os.path.exists(voice_samples_directory):
-            # Assuming a conversion process here using text_input
-            # This part needs to be implemented based on the actual conversion method
-            
-            # Example: Using subprocess to play a voice sample
-            subprocess.run(["cmd", "/c", "start", os.path.join(voice_samples_directory, "sample_voice.wav")])
-            print("Text converted to speech successfully.")
-        else:
-            print("Voice samples directory does not exist.")
-    except Exception as e:
-        print(f"An error occurred during text to speech conversion: {str(e)}")
+    data, samplerate = sf.read(filepath)
+    return data
 
-# Example usage
-text_input = "This is a test text to convert to speech."
-convert_text_to_speech(text_input)
+def main(audio_dir, numpy_dir):
+    '''
+    Loops through .wav files in a directory and converts them to numpy arrays
+    Args:
+        audio_dir (str) - The directory that contains the .wav files
+        numpy_dir (str) - The directory where the numpy arrays will be saved
+    '''
+    for filename in os.listdir(audio_dir):
+        if filename.endswith(".wav"):
+            data = wav_to_numpy(os.path.join(audio_dir, filename))
+            np.save(os.path.join(numpy_dir, filename.replace('.wav', '.npy')), data)
+
+if __name__ == "__main__":
+    main(sys.argv[1], sys.argv[2])
 ```
-01: Fetch: user_documentation.txt
-Message: I will continue working on the script to convert text input into speech using the provided voice samples directory.
-File name: text_to_speech_converter.py
-Code:
-01: Fetch: None
-Message: I will start by creating a script that processes text input and converts it into speech using the provided voice samples directory.
-
-File name: text_to_speech_converter.py
-Code:
-```python
-import os
-
-def convert_text_to_speech(text):
-    try:
-        voice_directory = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
-        # Code for processing text and converting it into speech using the voice samples directory
-        
-    except Exception as e:
-        print("An error occurred during the text to speech conversion process:", e)
-
-# Test the function with a sample text
-input_text = "Hello, how are you?"
-convert_text_to_speech(input_text)
-```
-01: Fetch: user_documentation.txt
-Message: I will start by creating a new script to convert text input into speech using voice samples located in the specified directory.
-Code:
-```python
-File name: text_to_speech_converter.py
-Code:
-import os
-
-def convert_text_to_speech(text_input):
-    try:
-        voice_samples_directory = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
-        
-        # Processing and converting text into speech using the voice samples directory
-        
-    except Exception as e:
-        print(f"Error occurred during text to speech conversion: {e}")
-
-# Example usage
-text_input = "Hello, how are you doing today?"
-convert_text_to_speech(text_input)
-```
-01: Fetch: user_documentation.txt
-Message: I have fetched the user documentation to understand the instructions for the text to speech program.
-File name: text_to_speech_converter.py
-Code:
-```python
-# Import necessary libraries
-import os
-
-# Define the function to convert text to speech
-def text_to_speech(text_input):
-    try:
-        # Process the text input (implementation pending)
-        
-        # Convert the processed text to speech using voice samples
-        
-        # Save or play the speech audio
-        
-        print("Text to speech conversion successful!")
-        
-    except Exception as e:
-        print(f"An error occurred during text to speech conversion: {str(e)}")
-
-# Sample text input for testing
-text_input = "This is a test text for conversion to speech."
-
-# Call the function with the sample text input
-text_to_speech(text_input)
-```
-01: Fetch: None
-Message: I will start by creating a new script called "text_to_speech_converter.py" to implement the text processing and speech conversion functionalities.
-Code:
-```python
-File name: text_to_speech_converter.py
-```
-01: Fetch: user_documentation.txt
-Message: I will start working on writing the script `text_to_speech_converter.py` to handle the conversion of text input into speech using voice samples from the specified directory.
-Fetch: None
-01: Fetch: user_documentation.txt
-01: Fetch: None
-Message: I have reviewed the user_documentation.txt file and understood the instructions for using the text to speech program. Please let me know what changes or additions you would like to make.
-
-01: Fetch: user_documentation.txt
-Message: I have reviewed the existing user documentation. I will now provide detailed instructions on how to adjust the speech speed based on user input.
-Code: None
-
-File name: adjust_speed_feature.py
+01: Fetch: convert_wav_to_numpy.py
+Message: I will review the current code and add error handling to the `wav_to_numpy` function. The updated function will return None and print an error message if there's an exception during reading and conversion of a .wav file. I will also modify the `main` function to ignore None results and proceed with converting the next .wav file. Below is the updated `convert_wav_to_numpy.py` file with the implemented changes.
+File name: convert_wav_to_numpy.py
 Code: 
 ```python
-def adjust_speed(speed_level):
-    if speed_level == "slow":
-        print("Speech speed set to slow.")
-        # Implement code to adjust speech speed to slow
-    elif speed_level == "normal":
-        print("Speech speed set to normal.")
-        # Implement code to adjust speech speed to normal
-    elif speed_level == "fast":
-        print("Speech speed set to fast.")
-        # Implement code to adjust speech speed to fast
-    else:
-        print("Invalid speed level. Please choose from 'slow', 'normal', or 'fast'.")
+import os
+import numpy as np
+from scipy.io import wavfile
 
-# Example usage:
-# adjust_speed("fast")
+
+def wav_to_numpy(file_path):
+    '''
+    This function converts a .wav audio file into a numpy array
+    Input: file_path - string - path of the .wav file
+    Output: numpy_array - ndarray - numpy array representation of the audio file
+    '''
+    try:
+        _, numpy_array = wavfile.read(file_path)
+        return numpy_array
+    except Exception as e:
+        print(f"Error occurred while reading and converting {file_path}: {str(e)}")
+        return None
+
+
+def main(input_directory, output_directory):
+    '''
+    This function uses wav_to_numpy() to convert all .wav files in a directory into numpy arrays and saves them in a specified directory
+    Input: input_directory - string - path of the directory containing .wav files
+           output_directory - string - path of the directory where numpy arrays should be saved
+    Output: None
+    '''
+    # making sure that the output directory exists
+    if not os.path.exists(output_directory):
+        os.makedirs(output_directory)
+    
+    # converting all .wav files in the directory
+    for file_name in os.listdir(input_directory):
+        # only process .wav files
+        if file_name.endswith('.wav'):
+            wav_data = wav_to_numpy(input_directory + '/' + file_name)
+            if wav_data is not None:
+                # saving numpy array to the output directory
+                np.save(output_directory + '/' + file_name.replace('.wav', '.npy'), wav_array)
+
+
+if __name__ == '__main__':
+    main(input_directory, output_directory)
 ```
-01: Fetch: user_documentation.txt
-Message: I will update the user documentation to include instructions on how to adjust the speech speed based on user input.
-File name: updated_user_documentation.txt
+01: Fetch: convert_wav_to_numpy.py
+Message: The defined variable in the line of code to save the numpy array as a .npy file is erroneous. The variable `wav_data` from the `wav_to_numpy()` function is the correct one to use instead of `wav_array`. I am rewriting this part of the code for you.
+File name: corrected_convert_wav_to_numpy.py
+Code: 
+```python
+import os
+import numpy as np
+from scipy.io import wavfile
+
+
+def wav_to_numpy(file_path):
+    '''
+    This function converts a .wav audio file into a numpy array
+    Input: file_path - string - path of the .wav file
+    Output: numpy_array - ndarray - numpy array representation of the audio file
+    '''
+    try:
+        _, numpy_array = wavfile.read(file_path)
+        return numpy_array
+    except Exception as e:
+        print(f"Error occurred while reading and converting {file_path}: {str(e)}")
+        return None
+
+
+def main(input_directory, output_directory):
+    '''
+    This function uses wav_to_numpy() to convert all .wav files in a directory into numpy arrays and saves them in a specified directory
+    Input: input_directory - string - path of the directory containing .wav files
+           output_directory - string - path of the directory where numpy arrays should be saved
+    Output: None
+    '''
+    # making sure that the output directory exists
+    if not os.path.exists(output_directory):
+        os.makedirs(output_directory)
+    
+    # converting all .wav files in the directory
+    for file_name in os.listdir(input_directory):
+        # only process .wav files
+        if file_name.endswith('.wav'):
+            wav_data = wav_to_numpy(input_directory + '/' + file_name)
+            if wav_data is not None:
+                # saving numpy array to the output directory
+                np.save(output_directory + '/' + file_name.replace('.wav', '.npy'), wav_data)
+
+
+if __name__ == '__main__':
+    main(input_directory, output_directory)
+```
+01: Fetch: convert_wav_to_numpy.py
+Message: I have made the instructed changes. The variable 'wav_array' has been replaced by 'wav_data' in the numpy.save() function in the 'main' function.
+File name: convert_wav_to_numpy.py
+Code: 
+```python
+def main(input_directory, output_directory):
+    '''
+    This function uses wav_to_numpy() to convert all .wav files in a directory into numpy arrays and saves them in a specified directory
+    Input: input_directory - string - path of the directory containing .wav files
+           output_directory - string - path of the directory where numpy arrays should be saved
+    Output: None
+    '''
+    # making sure that the output directory exists
+    if not os.path.exists(output_directory):
+        os.makedirs(output_directory)
+
+    # converting all .wav files in the directory
+    for file_name in os.listdir(input_directory):
+        # only process .wav files
+        if file_name.endswith('.wav'):
+            wav_data = wav_to_numpy(input_directory + '/' + file_name)
+            if wav_data is not None:
+                # saving numpy array to the output directory
+                np.save(output_directory + '/' + file_name.replace('.wav', '.npy'), wav_data)
+```
+01: Fetch: convert_wav_to_numpy.py
+Message: I have reviewed the changes to the 'main' function in the `convert_wav_to_numpy.py` file. The variable 'wav_array' has been successfully replaced by 'wav_data' in the numpy.save() function. No further changes are required.
+File name: convert_wav_to_numpy.py
 Code:
+```python
+def main(input_directory, output_directory):
+    '''
+    This function uses wav_to_numpy() to convert all .wav files in a directory into numpy arrays and saves them in a specified directory
+    Input: input_directory - string - path of the directory containing .wav files
+           output_directory - string - path of the directory where numpy arrays should be saved
+    Output: None
+    '''
+    # making sure that the output directory exists
+    if not os.path.exists(output_directory):
+        os.makedirs(output_directory)
+
+    # converting all .wav files in the directory
+    for file_name in os.listdir(input_directory):
+        # only process .wav files
+        if file_name.endswith('.wav'):
+            wav_data = wav_to_numpy(input_directory + '/' + file_name)
+            if wav_data is not None:
+                # saving numpy array to the output directory
+                np.save(output_directory + '/' + file_name.replace('.wav', '.npy'), wav_data)
+```

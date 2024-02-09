@@ -28,7 +28,7 @@ def executor(response):
     unnamed_code_flag = 0
     filename = filename_return(response)
 
-    code_start_index = response.find('Code:\n```python\n')+16
+    code_start_index = response.find('```python\n')+9
     code_end_index = response.find('```', code_start_index+1)
     if((code_start_index == -1) or (code_end_index == -1)):
         print('Error: Could not find code. Here is the response:\n' + response)
@@ -51,32 +51,9 @@ def update_documentation(file_path, file_description):
     file_description_line = f"Content: {file_description}"
     print(file_path_line, file_description_line)
 
-    skip = False
-    totalfound = False
+    with open('user_documentation.txt', 'a+') as f:
+        f.write(file_path_line + '\n' + file_description_line + '\n******\n')
 
-    with open('user_documentation.txt', 'r+') as f:
-        lines = f.readlines()
-        f.seek(0)
-
-        for line in lines:
-            print(str((line.find(file_path_line) == -1)))
-
-            if((line.find(file_path_line) == -1) and  (skip == False)):
-                f.write(line)
-                print('writing' + line)
-
-            if(line.find(file_path_line) != -1):
-                skip = True
-                totalfound = True
-
-            if((line.find('******') != -1) and (skip == True)):
-                print('finalwrite')
-                f.write(file_path_line + '\n' + file_description_line + '\n******\n')
-                skip = False
-
-        if(totalfound == False):
-            print('totalfound f alse')
-            f.write(file_path_line + '\n' + file_description_line + '\n******\n')
 
 def fetcher(response):
     if(response.find('Fetch: None') == -1):
@@ -169,7 +146,6 @@ while True:
             fetch_end_index = fetch_start_index + len('Fetch: ' + fetch_file_name) + 1
             clean_wizardresponse = wizardresponse[0:fetch_start_index] + wizardresponse[fetch_end_index:]
 
-            postbox[id + ' Overseer']["systemcontent"]
             overseer_instruction = request(id + ' Overseer', clean_wizardresponse + to_do, 1)
 
             finalpass = (overseer_instruction.find('SEND CODE') != -1)

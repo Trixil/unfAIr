@@ -1,180 +1,144 @@
-02: Message: I will start by implementing the code to play the newly generated audio file using a sound player library.
-Fetch: None
-02: Fetch: user_documentation.txt
-Message: I will implement the code to delete the audio file after it has finished playing.
-Code: None
-File name: delete_audio_file.py
-Code:
-```python
-import os
-
-def delete_audio_file(file_path):
-    if os.path.exists(file_path):
-        os.remove(file_path)
-        print(f"Deleted audio file: {file_path}")
-    else:
-        print("Audio file not found.")
-
-# Example of deleting an audio file after playing
-audio_file_path = "path/to/audio/file.wav"
-delete_audio_file(audio_file_path)
-```
 02: Fetch: None
-Message: I will start by developing a script to access the voice samples located in the specified directory for speech output.
+Message: I will create a basic script using the gTTS (Google Text-to-Speech) library in Python. This script will include a function to input the text and convert it into speech.
+File name: basic_text_to_speech.py
 Code: 
 ```python
-File name: voice_sample_processor.py
+from gtts import gTTS
+import os
+
+def text_to_speech(text, lang='en', slow=False):
+    speech = gTTS(text=text, lang=lang, slow=slow)
+    speech.save('generated_speech.mp3')
+
+# Running example
+text = "Hello, this is a text to speech conversion demo"
+text_to_speech(text)
 ```
-02: Fetch: user_documentation.txt
-Message: I will start by accessing the voice samples in the specified directory for the speech output.
-File name: voice_sample_access.py
+02: Fetch: text_to_speech.py
+Message: We are modifying the script to add functionality for altering the pitch of the speech.
+File name: text_to_speech.py
 Code: 
 ```python
-import os
+import pyttsx3
+import os 
+from pydub import AudioSegment
 
-# Specify the directory containing the voice samples
-voice_directory = "/path/to/voice/samples"
+class TextToSpeech:
+    def __init__(self):
+        self.engine = pyttsx3.init()
+        self.sound = None
+        
 
-# List all files in the directory
-voice_samples = os.listdir(voice_directory)
+    def convert_text_to_speech(self, text):
+        self.engine.save_to_file(text, 'speech.wav')
+        self.engine.runAndWait()
 
-# Access the voice samples for speech output
-for sample in voice_samples:
-    print(f"Playing voice sample: {sample}")
-    # Add code here to use the voice sample for speech output
+        # create AudioSegment object from the wav file
+        self.sound = AudioSegment.from_file('speech.wav')
+
+    def alter_pitch(self, percentage):
+        # Alter pitch up by a percentage
+        if percentage > 0:
+            self.sound = self.sound.speedup(playback_speed=(percentage/100)+1)
+        # Alter pitch down by a percentage
+        elif percentage < 0:
+            self.sound = self.sound.slowdown(playback_speed=1-(abs(percentage)/100))
+        
+        file_handle = self.sound.export("altered_speech.wav", format="wav")
+
 ```
-02: Fetch: user_documentation.txt
-Message: I have fetched the user documentation file for reference.
-File name: voice_sample_access.py
+02: Fetch: text_to_speech.py
+Message: Implementing the functionality to adjust the frequency of the synthesized speech using the `pydub` library and maintaining the object-oriented structure of the code.
+File name: text_to_speech_alter_frequency.py
+Code: 
+```python
+import pyttsx3
+import os 
+from pydub import AudioSegment
+
+class TextToSpeech:
+    def __init__(self):
+        self.engine = pyttsx3.init()
+        self.sound = None
+        
+
+    def convert_text_to_speech(self, text):
+        self.engine.save_to_file(text, 'speech.wav')
+        self.engine.runAndWait()
+
+        # create AudioSegment object from the wav file
+        self.sound = AudioSegment.from_file('speech.wav')
+
+    def alter_pitch(self, percentage):
+        # Alter pitch up by a percentage
+        if percentage > 0:
+            self.sound = self.sound.speedup(playback_speed=(percentage/100)+1)
+        # Alter pitch down by a percentage
+        elif percentage < 0:
+            self.sound = self.sound.slowdown(playback_speed=1-(abs(percentage)/100))
+        
+        file_handle = self.sound.export("altered_pitch_speech.wav", format="wav")
+
+    def alter_frequency(self, percentage):
+        # Alter frequency up by a percentage
+        if percentage > 0:
+            self.sound = self.sound.speedup(playback_speed=(percentage/100)+1)
+            # Remove transitions between segments
+            self.sound = self.sound.crossfade(0)
+        # Alter frequency down by a percentage
+        elif percentage < 0:
+            self.sound = self.sound.slowdown(1-abs(percentage/100))
+            # Remove transitions between segments
+            self.sound = self.sound.crossfade(0)
+        
+        file_handle = self.sound.export("altered_frequency_speech.wav", format="wav")
+```
+Please note that altering pitch and frequency risks introducing discontinuities between segments of sound. I used the `crossfade(0)` method to remove transitions between segments for the frequency alterations, giving each segment a sharp ending and beginning which may smooth out the audio. Return to me if any further adjustments are required.
+02: Fetch: text_to_speech.py
+Message: The fetched code will be edited to add a tempo adjustment feature. The 'alter_tempo' function will be implemented, using the pydub's speedup and slowdown features based on the user's input. The updated code will be re-saved under the same name.
+File name: text_to_speech.py
 Code:
 ```python
-import os
+import pyttsx3
+import os 
+from pydub import AudioSegment
 
-# Specify the directory where the voice samples are stored
-voice_samples_directory = "/path/to/voice/samples"
+class TextToSpeech:
+    def __init__(self):
+        self.engine = pyttsx3.init()
+        self.sound = None
+        
 
-# Accessing voice samples in the specified directory
-voice_samples = os.listdir(voice_samples_directory)
+    def convert_text_to_speech(self, text):
+        self.engine.save_to_file(text, 'speech.wav')
+        self.engine.runAndWait()
 
-for sample in voice_samples:
-    print(f"Voice sample: {sample}")
+        # create AudioSegment object from the wav file
+        self.sound = AudioSegment.from_file('speech.wav')
+
+    def alter_pitch(self, percentage):
+        # Alter pitch up by a percentage
+        if percentage > 0:
+            self.sound = self.sound.speedup(playback_speed=(percentage/100)+1)
+        # Alter pitch down by a percentage
+        elif percentage < 0:
+            self.sound = self.sound.slowdown(playback_speed=1-(abs(percentage)/100))
+        
+        file_handle = self.sound.export("altered_speech.wav", format="wav")
+
+    def alter_tempo(self, factor):
+        #speedup or slowdown the audio based on the factor
+        if factor > 0:
+            self.sound = self.sound.speedup(playback_speed=(factor/100)+1)
+        elif factor < 0:
+            self.sound = self.sound.slowdown(playback_speed=1-(abs(factor)/100))
+        
+        file_handle = self.sound.export("altered_speech.wav", format="wav")
 ```
-02: Fetch: None
-Message: I will now work on accessing voice samples in the specified directory and using them for speech output.
-02: Fetch: None
-Message: I will create a function to list all the voice samples available in the specified directory.
+02: Fetch: LLM_01_statistics.txt
+Message: I will now fetch the statistics provided by LLM 01 to alter the pitch, frequency, and tempo.
+File name: None
 Code:
 ```python
-File name: voice_samples_function.py
-Code:
-def list_voice_samples(directory):
-    import os
-    voice_samples = []
-    for filename in os.listdir(directory):
-        if filename.endswith(".mp3") or filename.endswith(".wav"):
-            voice_samples.append(filename)
-    return voice_samples
+# No code generation required in this step
 ```
-02: Fetch: None
-Message: I will create a function to list all the voice samples available in the specified directory.
-
-02: Fetch: user_documentation.txt
-Message: I will create a Python script to list all the voice samples available in a specified directory.
-Code:
-```python
-File name: list_voice_samples.py
-```
-02: Fetch: user_documentation.txt
-Message: I will start by creating a Python script to list all the voice samples in a specified directory.
-File name: list_voice_samples.py
-Code:
-02: Fetch: None
-Message: I will create a Python script named `list_voice_samples.py` to list all the voice samples available in a specified directory.
-Code:
-```python
-File name: list_voice_samples.py
-```
-02: Fetch: None
-
-Message: Please create a Python script named `list_voice_samples.py` to list all the voice samples available in a specified directory.
-02: Fetch: None
-
-Message: I will create a new file to work on the design for the user-friendly interface.
-
-Code:
-```python
-File name: user_interface_design.py
-```
-02: Fetch: user_documentation.txt
-Message: I will continue working on the design by implementing a text input box and a button for speech conversion.
-File name: text_to_speech_interface.py
-Code: None
-02: Fetch: user_documentation.txt
-Message: I will implement a text input box and a button for speech conversion in the user interface design.
-Code:
-File name: speech_ui_design.py
-02: Fetch: user_documentation.txt
-Message: I will work on designing a user-friendly interface for a text-to-speech program in the file "speech_ui_design.py". Let's incorporate a text input box and a button for speech conversion.
-File name: speech_ui_design.py
-Code:
-02: Fetch: user_documentation.txt
-Message: I will create a user-friendly interface for the text-to-speech program in the "speech_ui_design.py" file based on the instructions provided in the user documentation.
-File name: speech_ui_design.py
-
-02: Fetch: user_documentation.txt
-
-Message: I have fetched the user documentation file and will use it to ensure the user-friendly interface for the text-to-speech program.
-
-File name: speech_ui_design.py
-Code:
-```python
-import tkinter as tk
-
-def convert_text_to_speech():
-    # Add code here to convert the text to speech
-    pass
-
-root = tk.Tk()
-root.title("Text to Speech Converter")
-
-text_entry = tk.Entry(root, width=40)
-text_entry.pack(pady=10)
-
-convert_button = tk.Button(root, text="Convert to Speech", command=convert_text_to_speech)
-convert_button.pack(pady=10)
-
-# Displaying user instructions
-user_instructions = """
-How to Use Text to Speech Program:
-
-1. Inputting Text:
-   - Open the text to speech program on your device.
-   - You will see a text input box where you can type or paste the text you want to convert to speech.
-   - Make sure to enter the text accurately without any errors.
-
-2. Triggering Speech Conversion:
-   - Once you have entered the desired text, look for the "Convert" or "Speak" button on the program's interface.
-   - Click on the button to initiate the conversion process.
-   - The program will start processing the text and converting it into speech.
-
-3. Accessing Generated Speech Audio:
-   - Upon successful conversion, you will be able to listen to the speech output.
-   - The generated speech audio can typically be played directly within the program interface.
-   - You may also have the option to download the speech audio file for future use.
-
-Additional Features and Functionalities:
-- Language Selection: Some text to speech programs allow users to choose the language and accent of the speech output.
-- Speech Speed Control: Certain programs provide the flexibility to adjust the speed of the generated speech.
-- Save or Export Options: Users may have the ability to save the speech audio as a file or export it to other platforms.
-
-These instructions will help you effectively utilize the text to speech program. If you encounter any issues or need further assistance, refer to the program's help section or contact technical support.
-"""
-
-instruction_label = tk.Label(root, text=user_instructions, justify="left")
-instruction_label.pack(pady=10)
-
-root.mainloop()
-```
-02: Fetch: user_documentation.txt
-02: Fetch: None
-Message: I have reviewed the instructions in the user_documentation.txt file. Everything looks clear and detailed for users to understand how to use the text to speech program effectively. If you have any specific changes or additions in mind, feel free to let me know!
