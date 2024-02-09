@@ -1,117 +1,50 @@
 01: To-do:
-1. Read and process the files located in the directory C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. (Incomplete)
-2. Identify the voice samples available in the directory and extract their file names. (Incomplete)Current documentation stored in user_documentation.txt:
-No documentation written yet.
+1. Import necessary libraries - os and wave (Not started)
+2. Access the '09' directory (Not started)
+3. Loop through all the Åe.oggÅf files in the directory (Not started)
+4. Load the ogg files and convert them into a spectrogram (Not started)
+5. Clean and preprocess the audio files (Not started)
+6. Save the spectrogram as 'processed_spectrogram.npy' (Not started)
 
-01: Current instruction for you:
-Please provide the code you have written so far to read and process the files in the specified directory.
-Contents of user_documentation.txt
-Current documentation stored in user_documentation.txt:
-No documentation written yet.
+Current instruction for you: 
+Please initialize by importing the necessary libraries with the following Python code:
 
-
-01: To-do:
-1. Read and process the files located in the directory C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. (In progress)
-2. Identify the voice samples available in the directory and extract their file names.
-
-Current instruction for you:
-Please replace the value of the "directory" variable in the code with the correct directory path "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09". Once you have done that, run the code and check if it correctly prints the file names of the files in the directory. If everything works as expected, please provide the updated code along with the file names printed.
-Contents of user_documentation.txt
-Current documentation stored in user_documentation.txt:
-No documentation written yet.
-
-
-01: Current instruction for you:
-Please write a script to accomplish task 2. The script should retrieve the names of all files in the directory "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" and store them in a list. Please save the script as "file_processing.py" and provide it to me.
-
-To-do:
-1. Read and process the files located in the directory C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. (In progress)
-2. Identify the voice samples available in the directory and extract their file names. (Pending)
-Contents of user_documentation.txt
-Current documentation stored in user_documentation.txt:
-No documentation written yet.
-
-
-01: To-do:
-1. Read and process the files located in the directory C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. (Incomplete)
-2. Identify the voice samples available in the directory and extract their file names. (Incomplete)
-
-Current instruction for you:
-Please provide the code that you have written so far to read and process the files in the specified directory.
-Contents of user_documentation.txt
-Current documentation stored in user_documentation.txt:
-No documentation written yet.
-
-
-01: Current instruction for you:
-Please provide the code or script you have written so far to read and process the files in the specified directory.
-Contents of user_documentation.txt
-Current documentation stored in user_documentation.txt:
-No documentation written yet.
-
-
-01: Current instruction for you: Read and process the files located in the directory C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09.
-
-To-do:
-1. Read and process the files located in the directory C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09.
-2. Identify the voice samples available in the directory and extract their file names.
-Contents of user_documentation.txt
-Current documentation stored in user_documentation.txt:
-No documentation written yet.
-
-
-01: ```python
+```python
 import os
-
-directory = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
-file_names = []
-
-# iterate over all files and directories in the given directory
-for root, dirs, files in os.walk(directory):
-    for file in files:
-        file_names.append(file)
-
-print(file_names)
+import wave
 ```
+Once you have written this, please respond with the code for verification.Current documentation stored in user_documentation.txt:
+No documentation written yet.
 
-Current instruction for you: Identify the voice samples available in the directory and extract their file names.
+01: To-do:
+1. Import necessary libraries - os and wave (Started)
+2. Access the '09' directory (Not started)
+3. Loop through all the Åe.oggÅf files in the directory (Not started)
+4. Load the ogg files and convert them into a spectrogram (Not started)
+5. Clean and preprocess the audio files (Not started)
+6. Save the spectrogram as 'processed_spectrogram.npy' (Not started)
+
+Current instruction for you: 
+The code for the import of the necessary libraries is correct. Now, we need to access the directory '09'. Please write the Python code to access and list all `'.ogg'` files in the directory '09'. Use `os.listdir()` function for this. Respond with the code for verification.
+Contents of None
+No file requestedCurrent documentation stored in user_documentation.txt:
+No documentation written yet.
+
+
+01: The code you provided correctly lists all the 'ogg' files in the '09' directory.
 
 To-do:
-1. Read and process the files located in the directory C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. (Completed)
-2. Identify the voice samples available in the directory and extract their file names. (Completed)
+1. Import necessary libraries - os and wave (Completed)
+2. Access the '09' directory (Completed)
+3. Loop through all the Åe.oggÅf files in the directory (Not started)
+4. Load the ogg files and convert them into a spectrogram (Not started)
+5. Clean and preprocess the audio files (Not started)
+6. Save the spectrogram as 'processed_spectrogram.npy' (Not started)
+
+Current instruction for you: 
+Now, we need to iterate over each '.ogg' file in the directory. Please add a loop in the provided script to iterate over the '.ogg' files listed in the '09' directory. As this point, we just need to print out the file name on each iteration. Respond with the updated code for verification.
 Contents of None
 No file requestedCurrent documentation stored in user_documentation.txt:
-No documentation written yet.
-
-
-01: To-do:
-1. Read and process the files located in the directory C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. (Completed)
-2. Identify the voice samples available in the directory and extract their file names. (Completed)
-
-Current instruction for you:
- There is nothing more for you to do at the moment. Thank you for completing the task!
-Contents of None
-No file requestedCurrent documentation stored in user_documentation.txt:
-No documentation written yet.
-
-
-01: Current instruction for you:
-Create a script to read and process the files, and extract the file names of the voice samples.
-
-Please provide the code for the script.
-Contents of user_documentation.txt
-Current documentation stored in user_documentation.txt:
-No documentation written yet.
-
-
-01: To-do:
-1. Read and process the files located in the directory C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. (Incomplete)
-2. Identify the voice samples available in the directory and extract their file names. (Incomplete)
-
-Current instruction for you:
-Please provide the code for the getFileNames.py script.
-Contents of user_documentation.txt
-Current documentation stored in user_documentation.txt:
 No documentation written yet.
 
 

@@ -1,87 +1,50 @@
 01 Overseer: Update the to-do list with each conversation with 01 and output it in your To-do field
-01 Overseer: To-do:
-1. Read and process the files located in the directory C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. (Incomplete)
-2. Identify the voice samples available in the directory and extract their file names. (Incomplete
-01 Overseer: Message: I have fetched the user_documentation.txt file.
-File name: read_and_process_files.py
+01 Overseer: Message: I have written the code to import the necessary libraries.
+Code:
+```python
+import os
+import wave
+```
+File name: import_libraries.pyTo-do:
+1. Import necessary libraries - os and wave (Not started)
+2. Access the '09' directory (Not started)
+3. Loop through all the Åe.oggÅf files in the directory (Not started)
+4. Load the ogg files and convert them into a spectrogram (Not started)
+5. Clean and preprocess the audio files (Not started)
+6. Save the spectrogram as 'processed_spectrogram.npy' (Not started)
+
+Current instruction for you: 
+Please initialize by importing the necessary libraries with the following Python code:
+
+```python
+import os
+import wave
+```
+Once you have written this, please respond with the code for verificatio
+01 Overseer: Message: As no specific file was mentioned for the changes, so I am going to write a new Python file named directory_access.py that contains code to access and list all .ogg files from the directory '09'.
 Code:
 ```python
 import os
 
-# Specify the directory path
-directory = "/path/to/directory"
-
-# Read all the files in the directory
-files = os.listdir(directory)
-
-# Process each file in the directory
-for file in files:
-    file_path = os.path.join(directory, file)
+def list_ogg_files(directory):
+    # List all files in the directory
+    files_in_directory = os.listdir(directory)
     
-    # Customize your file processing logic here
-    # ...
+    # Filter out the '.ogg' files
+    ogg_files = [file for file in files_in_directory if file.endswith('.ogg')]
+    
+    return ogg_files
 
-    # Example: print the file name
-    print(file)
-
+# test the function
+print(list_ogg_files('09'))
 ```
-01 Overseer: To-do:
-1. Read and process the files located in the directory C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. (In progress)
-2. Identify the voice samples available in the directory and extract their file names.
+File name: directory_access.pyTo-do:
+1. Import necessary libraries - os and wave (Started)
+2. Access the '09' directory (Not started)
+3. Loop through all the Åe.oggÅf files in the directory (Not started)
+4. Load the ogg files and convert them into a spectrogram (Not started)
+5. Clean and preprocess the audio files (Not started)
+6. Save the spectrogram as 'processed_spectrogram.npy' (Not started)
 
-
-01 Overseer: 
-01 Overseer: To-do:
-1. Read and process the files located in the directory C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. (Incomplete)
-2. Identify the voice samples available in the directory and extract their file names. (Incomplete)
-
-
-01 Overseer: 
-01 Overseer: Message: I will fetch the files located in the directory C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09 and process them to extract the file names.
-Code: 
-```python
-import os
-
-directory = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
-file_names = []
-
-# iterate over all files and directories in the given directory
-for root, dirs, files in os.walk(directory):
-    for file in files:
-        file_names.append(file)
-
-print(file_names)
-```
-File name: file_processing.pyCurrent instruction for you: Read and process the files located in the directory C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09.
-
-To-do:
-1. Read and process the files located in the directory C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09.
-2. Identify the voice samples available in the directory and extract their file names
-01 Overseer: Message: I have completed the task of identifying the voice samples available in the given directory and extracting their file names. 
-I have appended the list of file names to the 'file_names' variable. You can find the list of file names in the 'file_names' variable.```python
-import os
-
-directory = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
-file_names = []
-
-# iterate over all files and directories in the given directory
-for root, dirs, files in os.walk(directory):
-    for file in files:
-        file_names.append(file)
-
-print(file_names)
-```
-
-Current instruction for you: Identify the voice samples available in the directory and extract their file names.
-
-To-do:
-1. Read and process the files located in the directory C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. (Completed)
-2. Identify the voice samples available in the directory and extract their file names. (Completed
-01 Overseer: To-do:
-1. Read and process the files located in the directory C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. (Completed)
-2. Identify the voice samples available in the directory and extract their file names. (Completed)
-
-
-01 Overseer: Message: The current documentation file is empty. 
-
-Code: getFileNames.py
+Current instruction for you: 
+The code for the import of the necessary libraries is correct. Now, we need to access the directory '09'. Please write the Python code to access and list all `'.ogg'` files in the directory '09'. Use `os.listdir()` function for this. Respond with the code for verification

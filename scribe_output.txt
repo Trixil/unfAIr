@@ -1,47 +1,9 @@
 scribe: ******
-File name: user_documentation.txt
-Content: Documentation file that stores documentation for each code file.
+File name: import_libraries.py
+Content: This file is meant to import standard Python libraries for operating system-related functionalities and for dealing with wave files. Located at ~(file_path/import_libraries.py).
 ******
-scribe: ******
-File name: read_and_process_files.py
-Content: This code reads all the files in a specified directory and processes each file. It prints the name of each file in the directory.
-scribe: ******
-File name: user_documentation.txt
-Content: This file contains the user documentation for each code file received. Each entry includes the file name and its description.
-******
-scribe: Content: (Empty)
 
-------
-File name: user_documentation.txt
-Content: This file will contain the documentation for each code file that is given to the assistant.
 scribe: ******
-File name: user_documentation.txt
-Content: The user_documentation.txt file contains the documentation for each code file that is given to the assistant. It serves as a record of the code files and their corresponding descriptions provided by the assistant.
-******
-scribe: File name: user_documentation.txt
-Content: This is the documentation file that stores all the documentation for each code file. It keeps track of the file name and its description.
-scribe: ******
-File name: file_processing.py
-Content: The `file_processing.py` script takes a directory path as input and iterates over all the files in that directory (including subdirectories). It extracts the file names and stores them in a list called `file_names`. Finally, it prints the list of file names.
-
-Use this script to fetch the files located in a specific directory and extract their names for further processing or analysis.
-******
-scribe: ******
-File name: voice_samples.py
-Content: This file contains code for identifying the voice samples available in a given directory and extracting their file names.
-
-The main purpose of this code is to provide a list of file names for the voice samples in the specified directory. 
-It uses the 'os' module to interact with the file system and the 'glob' module to search for voice sample files based on a specified pattern.
-
-The list of file names is stored in the 'file_names' variable, where you can access it for further processing or analysis.
-
-Please make sure to specify the correct directory path before running this code to get the desired file names.
-******
-scribe: ******
-File name: user_documentation.txt
-Content: This file contains the documentation for each code file that has been provided. It includes the file name and a brief description of its content.
-******
-scribe: ******
-File name: getFileNames.py
-Content: This code file retrieves the names of all the files in a specific directory and returns them as a list.
+File name: directory_access.py
+Content: This file is located at ~directory_access.py. It contains a program written in Python to access and list all the '.ogg' files present in a certain directory. The function 'list_ogg_files' takes a directory path as argument and returns a list of all '.ogg' files present in it.
 ******

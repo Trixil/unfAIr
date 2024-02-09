@@ -1,0 +1,9 @@
+File name: import_libraries.py
+Content: This file is meant to import standard Python libraries for operating system-related functionalities and for dealing with wave files. Located at ~(file_path/import_libraries.py).
+******
+
+******
+File name: directory_access.py
+Content: This file is located at ~directory_access.py. It contains a program written in Python to access and list all the '.ogg' files present in a certain directory. The function 'list_ogg_files' takes a directory path as argument and returns a list of all '.ogg' files present in it.
+******
+******
