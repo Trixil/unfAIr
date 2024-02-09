@@ -121,8 +121,6 @@ overseer_initial[0] = postbox["01 Overseer"]["systemcontent"]
 overseer_initial[1] = postbox["02 Overseer"]["systemcontent"]
 overseer_instruc_base = ['', '']
 while True:
-    postbox["01 Overseer"]["systemcontent"] = overseer_initial[0]
-    postbox["02 Overseer"]["systemcontent"] = overseer_initial[1]
 
     with open(file_path, 'w') as json_file:
         json.dump(postbox, json_file, indent=3)

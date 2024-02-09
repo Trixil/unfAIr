@@ -1,9 +1,157 @@
 scribe: ******
-File name: import_libraries.py
-Content: This file is meant to import standard Python libraries for operating system-related functionalities and for dealing with wave files. Located at ~(file_path/import_libraries.py).
+File name: random_voice.py
+Content: This script contains a function that selects a random voice sample from the specified directory.
 ******
-
 scribe: ******
-File name: directory_access.py
-Content: This file is located at ~directory_access.py. It contains a program written in Python to access and list all the '.ogg' files present in a certain directory. The function 'list_ogg_files' takes a directory path as argument and returns a list of all '.ogg' files present in it.
+File name: text_to_speech_converter.py
+Content: This script converts text input to speech using a text-to-speech library.
+******
+scribe: ******
+File name: play_audio_file.py
+Content: This script contains the code to play the newly generated audio file using a sound player library.
+******
+scribe: ******  
+File name: delete_audio_file.py  
+Content: Python script to delete an audio file after it has finished playing.  
+******
+scribe: ******
+File name: text_conversion.py
+Content: Script to read text input from the user and initiate the conversion process by taking user input and printing a message to initiate the conversion process.
+******
+scribe: ******
+File name: voice_sample_processor.py
+Content: Script to access the voice samples located in C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09 for speech output.
+******
+scribe: ******
+File name: voice_sample_access.py
+Content: This script accesses voice samples in a specified directory and prints each sample's name as part of the speech output process.
+******
+scribe: ******
+File name: voice_sample_access.py
+Content: This script accesses voice samples stored in a specified directory and prints out the names of the voice samples.
+******
+scribe: ******
+File name: fetch.py
+Content: This file will contain the function to access voice samples in the specified directory.
+******
+scribe: ******
+File name: voice_samples_function.py
+Content: A function to list all the voice samples available in the specified directory.
+******
+scribe: ******
+File name: fetch_voice_samples.py
+Content: This script contains a function that lists all the voice samples available in the specified directory.
+******
+scribe: ******
+File name: list_voice_samples.py
+Content: This Python script retrieves and lists all the voice samples present in a specified directory.
+******
+scribe: ******
+File name: list_voice_samples.py
+Content: This Python script will list all the voice samples available in a specified directory.
+******
+scribe: ******
+File name: list_voice_samples.py
+Content: This script lists all the voice samples available in a specified directory.
+******
+scribe: ******
+File name: list_voice_samples.py
+Content: Python script to list all voice samples in a specified directory.
+******
+scribe: ******
+File name: text_to_speech_conversion.py
+Content: This script reads input text from the user, converts it to speech using voice samples from a specified path, ensures clear and audible speech output, and saves the generated audio file.
+******
+scribe: ******
+File name: text_to_speech_script.py
+Content: Script for text-to-speech conversion
+******
+scribe: ******
+File name: user_interface_design.py
+Content: This file contains the code for designing a user-friendly interface for a text to speech program. It includes a text input box and a button for speech conversion.
+******
+scribe: ******
+File name: text_to_speech_interface.py
+Content: This file will contain the implementation of a user-friendly interface with a text input box and a button for speech conversion.
+******
+scribe: ******
+File name: speech_ui_design.py
+Content: Designing a user-friendly interface including a text input box and a button for speech conversion.
+******
+scribe: ******
+File name: speech_ui_design.py
+Content: Designed a user-friendly interface for a text-to-speech program with a text input box and a speech conversion button.
+******
+scribe: ******
+File name: speech_ui_design.py
+Content: The "speech_ui_design.py" file contains code to create a user-friendly interface for a text-to-speech program. It includes a text input box for entering text and a button to convert the text to speech.
+******
+scribe: ******
+File name: speech_ui_design.py
+Content: This file contains the design for a user-friendly interface for a text-to-speech program. It includes a text input box for the user to enter text and a button to trigger the text-to-speech conversion process. Additionally, user instructions for using the text-to-speech program are displayed on the interface to guide users on inputting text, triggering speech conversion, accessing generated speech audio, and utilizing additional features and functionalities.
+******
+scribe: ******
+File name: user_documentation.txt
+Content: Instructions on how to effectively use a text to speech program.
+******
+scribe: ******
+File name: SEND CODE
+Content: None
+******
+scribe: ******
+File name: conversion_module_script.py
+Content: Script for converting text input into speech using voice samples located in C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09 while handling errors and exceptions.
+******
+scribe: ******
+File name: text_to_speech_converter.py
+Content: This script converts text input into speech using voice samples located in a specified directory. It handles errors and exceptions that may occur during the conversion process.
+******
+scribe: ******
+File name: text_to_speech_converter.py
+Content: Script in progress to convert text input into speech using voice samples directory in C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. Error handling for exceptions during the conversion process will be implemented.
+******
+scribe: ******
+File name: text_to_speech_converter.py
+Content: This script defines a function to convert text input into speech using voice samples located in a specific directory. It includes error handling for the conversion process.
+******
+scribe: ******
+File name: text_to_speech_converter.py
+Content: This script converts text input into speech using voice samples located in the specified directory "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09". It includes a function `convert_text_to_speech` that processes and converts the provided text input into speech.
+******
+scribe: ******
+File name: text_to_speech_converter.py
+Content: This script defines a function to convert text input into speech. The script contains a placeholder for text processing and speech conversion using voice samples. It handles exceptions that may occur during the conversion process.
+******
+scribe: ******
+File name: text_to_speech_converter.py
+Content: This script will handle text processing and conversion into speech using voice samples located in a specific directory. Errors and exceptions during the conversion process will be managed within the script.
+******
+scribe: ******
+File name: text_to_speech_converter.py
+Content: Script for converting text input into speech using voice samples from a specified directory and handling conversion errors or exceptions.
+******
+scribe: ******
+File name: user_documentation.txt
+Content: How to Use Text to Speech Program
+******
+scribe: ******
+File name: user_documentation.txt
+Content: Detailed Instructions for Adjusting Speech Speed:
+
+Adjusting Speech Speed:
+1. Locate the "Settings" or "Options" menu in the text to speech program's interface.
+2. Look for a section specifically related to speech settings or preferences.
+3. Within the speech settings, you should find a control or slider for adjusting the speech speed.
+4. Use the control or slider to increase or decrease the speech speed according to your preference.
+5. After setting the desired speech speed, save or apply the changes to ensure the new speed settings take effect.
+6. Test the adjusted speech speed by converting text to speech and listening to the output.
+7. Repeat the process if you need to fine-tune the speech speed further.
+
+By following these steps, you can customize the speech speed in the text to speech program based on your preferences and listening comfort.
+
+This addition provides detailed instructions on how users can adjust the speech speed in the text to speech program to enhance their experience.
+******
+scribe: ******
+File name: adjust_speed_feature.py
+Content: This script contains a function to adjust the speech speed based on the user input provided as a speed level parameter. The function checks the input speed level ("slow", "normal", or "fast") and prints a message indicating the selected speech speed. It also includes placeholders for implementing the actual adjustment of the speech speed based on the chosen level.
 ******

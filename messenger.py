@@ -10,15 +10,22 @@ def request(id, usercontent, send):
         postbox = json.load(json_file)
 
     systemcontent = postbox[id]["systemcontent"]
+    logmessages = postbox["logmessages"]
+    firstmessage = {"role": "system", "content": f"{systemcontent}"}
+    endmessage = {"role": "system", "content": f"{usercontent}"}
+    pastmessages = [firstmessage]
+    if logmessages != []:
+        pastmessages.extend(logmessages)  # Extend instead of append
+
+    pastmessages.append(endmessage)
     if(send == 1):
         completion = client.chat.completions.create(
-          model="gpt-3.5-turbo",
-          messages=[
-            {"role": "system", "content": f"{systemcontent}"},
-            {"role": "user", "content": f"{usercontent}"}
-          ]
-          
+          model="gpt-3.5-turbo-0125",
+          messages=pastmessages
         )
+
+        user_message = {"role": "user", "content": completion.choices[0].message.content}
+        postbox["logmessages"] = logmessages + [user_message]  # Create a new list with the user message appended
         with open('conversation.txt', 'a') as conversation:
             conversation.write(id +': ' + completion.choices[0].message.content + '\n')
 
