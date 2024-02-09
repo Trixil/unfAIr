@@ -1,0 +1,33 @@
+input_text ='******\nFile name: user_documentation.txt\nContent: This is an alternate description.\n******'
+file_name_start = input_text.find("File name: ") + len("File name: ")
+file_name_end = input_text.find("\n", file_name_start)
+file_path = input_text[file_name_start:file_name_end]
+print(file_path)
+content_start = input_text.find("Content: ") + len("Content: ")
+file_description = input_text[content_start:]
+
+file_path_line = f"File name: {file_path}"
+file_description_line = f"Content: {file_description}"
+print(file_path_line, file_description_line)
+skip = False
+totalfound = False
+with open('user_documentation.txt', 'r+') as f:
+    lines = f.readlines()
+    f.seek(0)
+    for line in lines:
+        #print(lines)
+        print(str((line.find(file_path_line) == -1)))
+        if((line.find(file_path_line) == -1) and  (skip == False)):
+            f.write(line)
+            print('writing' + line)
+        if(line.find(file_path_line) != -1):
+            skip = True
+            totalfound = True
+        if((line.find('******') != -1) and (skip == True)):
+            print('finalwrite')
+            f.write(file_path_line + '\n' + file_description_line + '\n******\n')
+            skip = False
+    if(totalfound == False):
+        print('totalfound f alse')
+        f.write(file_path_line + '\n' + file_description_line + '\n******\n')
+    

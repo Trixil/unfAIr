@@ -54,7 +54,7 @@ def update_documentation(file_path, file_description):
         lines = f.readlines()
 
     filefound = False
-    with open(output_dir + "user_documentation.txt", "r+") as f:
+    with open(output_dir + "user_documentation.txt", "w") as f:
         for line in lines:
             if ((line.strip("\n") != file_path_line) and (filefound == False)):
                 f.write(line)
@@ -71,9 +71,12 @@ def fetcher(response):
     if(response.find('Fetch: None') == -1):
         fetch_start_index = response.find('Fetch:')+7
         fetch_end_index = response.find('\n', fetch_start_index)
-        if((fetch_start_index == -1) or (fetch_end_index == -1)):
+        if((fetch_start_index == -1) and (fetch_end_index == -1)):
             print('Error: Could not find fetch path. Here is the response:\n' + response)
+        
         fetch_filename = response[fetch_start_index:fetch_end_index]
+        if((fetch_start_index != -1) and (fetch_end_index == -1))
+            fetch_filename = response[fetch_start_index:]
         print('fetch: ' + fetch_filename)
         if(fetch_filename == 'user_documentation.tx'):
             fetch_filename = 'user_documentation.txt'
@@ -152,7 +155,10 @@ while True:
             fetch_file_name = fetchcontent[0]
             fetch_file_content = fetchcontent[1]
 
-            overseer_instruction = request(id + ' Overseer', wizardresponse + to_do, 1)
+            fetch_start_index = wizardresponse.find('Fetch: ' + fetch_file_name)
+            fetch_end_index = fetch_start_index + len('Fetch: ' + fetch_file_name) + 1
+            clean_wizardresponse = wizardresponse[0:fetch_start_index] + wizardresponse[fetch_end_index:]
+            overseer_instruction = request(id + ' Overseer', clean_wizardresponse + to_do, 1)
 
             finalpass = (overseer_instruction.find('SEND CODE') != -1)
             to_do_end_index = overseer_instruction.find('Current instruction for you:\n')
@@ -176,6 +182,7 @@ while True:
         
             content_start = input_text.find("Content: ") + len("Content: ")
             content = input_text[content_start:]
+
 
             update_documentation(file_name, content)
 

@@ -1,16 +1,12 @@
-00: 01: Sample Extraction and Pre-processing Module
+00: 01: File Processing Expert
 Instructions: 
-1. Access the specified directory: C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09.
-2. Enumerate all audio files within this directory, recording their filenames and metadata for further processing.
-3. For each audio file, apply an automatic speech recognition algorithm to transcribe the spoken text. Save the transcription paired with the filename.
-4. Extract the raw audio data from the sound files, preprocess this data as necessary for the text to speech library to interpret it.
-5. Save the preprocessed audio data and transcriptions in an easily readable format, such as .csv, for later use by the text to speech algorithm.
+1. Read and process the files located in the directory C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. 
+2. Identify the voice samples available in the directory and extract their file names.
 
-02: Text to Speech Synthesis and Character Modeling
+02: Text to Speech Conversion Specialist
 Instructions: 
-1. Use the preprocessed data provided by 01 to build a character voice model. This task involves using machine learning libraries to analyze the audio data and establish patterns in speech, intonation, cadence, etc.
-2. Implement the character voice model into a text to speech synthesis algorithm. Test the algorithm to ensure that it adequately reproduces the character's voice from the samples.
-3. Write a functional interface for users to input text that they wish to convert to speech. Ensure that the user interface is intuitive and easy to use.
-4. Integrate the text to speech algorithm and the user interface so that the text input by the user is articulated in the character's voice as closely as possible.
-5. Create clear and concise documentation detailing the functionality of the program and instructions for its use.
-6. Package the software into an executable file for ease of distribution and installation.
+1. Take the text input and convert it into audio using text-to-speech technology.
+2. Use the extracted voice samples from 01 to represent the character's voice for the text input.
+3. Save the generated audio as a playable file.
+
+Note: As 01 and 02 cannot communicate with each other, ensure that 01 provides the necessary voice sample file names to 02 for accurate conversion.
