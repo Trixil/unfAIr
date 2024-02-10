@@ -42,12 +42,12 @@ def clear():
     open('02 Overseer_output.txt', 'w').close()
 
 
-    '''
+    
     # List of files and directories to keep
     keep_list = ['__pycache__', 'cachedrequests', 'misc', 'clear.py', 'sequencer.py', 'features.txt', 'messenger.py', 'postbox.json', 'user_documentation.txt']
 
     # Get the current directory
-    current_dir = os.getcwd()
+    current_dir = 'output/'
 
     # Get the list of files and directories in the current directory
     items = os.listdir(current_dir)
@@ -73,5 +73,5 @@ def clear():
                 print(f"Deleted directory: {item}")
 
 
-    '''
+    
 clear()

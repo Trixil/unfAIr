@@ -51,7 +51,7 @@ def update_documentation(file_path, file_description):
     file_description_line = f"Content: {file_description}"
     print(file_path_line, file_description_line)
 
-    with open('user_documentation.txt', 'a+') as f:
+    with open(output_dir + 'user_documentation.txt', 'a+') as f:
         f.write(file_path_line + '\n' + file_description_line + '\n******\n')
 
 
@@ -148,7 +148,7 @@ while True:
 
             overseer_instruction = request(id + ' Overseer', clean_wizardresponse + to_do, 1)
 
-            finalpass = (overseer_instruction.find('SEND CODE') != -1)
+            finalpass = (overseer_instruction.find('SEND CODE\n') != -1)
             to_do_end_index = overseer_instruction.find('Current instruction for you:\n')
             to_do = overseer_instruction[0:to_do_end_index]
             postbox[id + ' Overseer']["systemcontent"] = overseer_initial[i-1] + to_do
@@ -157,11 +157,12 @@ while True:
             # opening and printing docs
             with open(output_dir + 'user_documentation.txt', 'r') as docs_file:
                 docs = docs_file.read()
-        
+            
             # checking if docs is empty and appending it to wizard input string
             if(docs == ''):
                 docs = 'No documentation written yet.\n'
             header_docs = 'Current documentation stored in user_documentation.txt:\n' + docs + '\n'
+
 
             input_text = request("scribe", header_docs + wizardresponse, 1)
             file_name_start = input_text.find("File name: ") + len("File name: ")

@@ -1,53 +1,27 @@
-02 Overseer: To-do: 
-1. Write a script that implements a text-to-speech algorithm - (Pending)
-2. Provide options in the script to alter the pitch, frequency, and tempo of the resulting speech - (pending)
-3. Use statistics provided by LLM 01 to alter pitch, frequency, and tempo - (Pending)
-4. Write an additional script applying the analyzed pitch, frequency, and tempo from 01Åfs output - (Pending)
-5. Use existing character-based text-to-speech libraries if needed - (Pending)
-
-Current instruction for you: 
-
-Start by writing the basic shell of the text-to-speech algorithm using common available libraries. This shell should include methods for inputting text that will be converted into speech.
-02 Overseer: To-do: 
-1. Write a script that implements a text-to-speech algorithm - (Completed)
-2. Provide options in the script to alter the pitch, frequency, and tempo of the resulting speech - (Pending)
-3. Use statistics provided by LLM 01 to alter pitch, frequency, and tempo - (Pending)
-4. Write an additional script applying the analyzed pitch, frequency, and tempo from 01Åfs output - (Pending)
-5. Use existing character-based text-to-speech libraries if needed - (Completed)
-
-Current instruction for you: 
-
-The basic text-to-speech functionality has been implemented. Now, implement a method within your script to alter the attributes of the speech audio such as pitch, frequency, and tempo. First, focus on adjusting the pitch of the speech generated from the input text. Make sure you create an object-oriented structure for future expansion of the program.
-02 Overseer: To-do: 
-1. Write a script that implements a text-to-speech algorithm - (Completed)
-2. Provide options in the script to alter the pitch, frequency, and tempo of the resulting speech - (Ongoing: Pitch Completed)
-3. Use statistics provided by LLM 01 to alter pitch, frequency, and tempo - (Pending)
-4. Write an additional script applying the analyzed pitch, frequency, and tempo from 01Åfs output - (Pending)
-5. Use existing character-based text-to-speech libraries if needed - (Completed)
-
-Current instruction for you: 
-
-Great, pitch modification has been implemented successfully. Let's proceed to the next feature - frequency adjustment. Implement a method to adjust the frequency of the synthesized speech audio using the `pydub` library. Remember to maintain the object-oriented structure.
-02 Overseer: To-do: 
-1. Write a script that implements a text-to-speech algorithm - (Completed)
-2. Provide options in the script to alter the pitch, frequency, and tempo of the resulting speech - (Ongoing: Pitch, Frequency Completed)
-3. Use statistics provided by LLM 01 to alter pitch, frequency, and tempo - (Pending)
-4. Write an additional script applying the analyzed pitch, frequency, and tempo from 01Åfs output - (Pending)
-5. Use existing character-based text-to-speech libraries if needed - (Completed)
+02 Overseer:
+To-do:
+1. Construct the text-to-speech processing engine that translates user's text inputs into synthesized vocal outputs - Not Started
+2. Write a script that can categorize words into phonetic components - Not Started
+3. Make use of voice samples from the voice directory to learn and mimic a particular character's voice - Not Started
+4. Combine the scripts provided with executable instructions given to the user - Not Started
 
 Current instruction for you:
-
-Excellent! Now that we have the pitch and frequency adjustments in place, let's proceed with the adjustment of the tempo. Implement the function `alter_tempo` in a similar manner as previous ones. Utilize the pydub's `speedup` or `slowdown` function to adjust the tempo. You may have to adjust the factor appropriately to make sure the tempo speeds up or slows down as specified by the user. Remember to keep the implementation in the same object-oriented style.
-02 Overseer: Code Review:
-
-Everything seems to be in place as instructed. The 'alter_tempo' function has been implemented correctly. It receives a factor as input and adjusts the tempo of the speech by either speeding it up or slowing it down, depending on whether the factor given is positive (speed up the tempo) or negative (slow down the tempo).
-
-To-do: 
-1. Write a script that implements a text-to-speech algorithm - (Completed)
-2. Provide options in the script to alter the pitch, frequency, and tempo of the resulting speech - (Completed)
-3. Use statistics provided by LLM 01 to alter pitch, frequency, and tempo - (Pending)
-4. Write an additional script applying the analyzed pitch, frequency, and tempo from 01Åfs output - (Pending)
-5. Use existing character-based text-to-speech libraries if needed - (Completed)
+Start the construction of the text-to-speech processing engine that will convert user's text inputs into synthesized vocal outputs. Make sure to include the necessary libraries and dependencies in the initial stage itself. Show the skeleton of the code with a comment about each step you include.
+02 Overseer:
+To-do:
+1. Construct the text-to-speech processing engine that translates user's text inputs into synthesized vocal outputs - In Progress
+2. Write a script that can categorize words into phonetic components - Not Started
+3. Make use of voice samples from the voice directory to learn and mimic a particular character's voice - Not Started
+4. Combine the scripts provided with executable instructions given to the user - Not Started
 
 Current instruction for you:
-Now that the 'alter_tempo' function is completed, let's proceed to task 3. Fetch the latest statistics provided by LLM 01 to alter pitch, frequency, and tempo. Also, prepare to integrate these statistics into the existing 'TextToSpeech' class as variables in the 'init' method. These values will then be utilized in the previously defined alter functions.
+Now, write a script that can break down words into their phonetic components. Include functionality where the script can identify individual phonemes in a given word. Our main target here is to be able to analyze individual sounds to later mimic them with the voice samples we have. Do remember to document each step with comments.
+02 Overseer:
+Current instruction for you:
+Begin writing the code related to task 2, the construction of the script for categorizing words into their phonetic components. Use the provided code as a basis for development, and then save the complete script as "phonetic_components_analyzer.py". The function within the script should be named "phonetic_components". Make sure to download the required NLTK resources (CMU Pronouncing Dictionary), initialize the dictionary, and then use it in the given function. If the word doesn't exist in the dictionary, the function should return "Word not found in CMU Pronunciation Dictionary." 
+
+To-do:
+1. Construct the text-to-speech processing engine that translates user's text inputs into synthesized vocal outputs - In Progress
+2. Write a script that can categorize words into phonetic components - Started
+3. Make use of voice samples from the voice directory to learn and mimic a particular character's voice - Not Started
+4. Combine the scripts provided with executable instructions given to the user - Not Started

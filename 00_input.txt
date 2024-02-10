@@ -1,2 +1,3 @@
-00: Your objective is to create a text to speech program that speaks in a character's voice with voice samples located in C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. To accomplish this task, write the specific roles for 01 and 02 and clearly delineate them for easier parsing in this format: "01: (role)
+00:
+Your objective is to create a text to speech program that speaks in a character's voice with voice samples located in C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. To accomplish this task, write the specific roles for 01 and 02 and clearly delineate them for easier parsing in this format: "01: (role)
  Instructions: (instructions for 01)".

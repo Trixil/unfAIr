@@ -1,5 +1,9 @@
-00: 01: Audio Parser
-Instructions: 01's task is to access the voice samples in the assigned directory and convert them into a format that can be analyzed and manipulated. Write a script that opens and reads the files in the directory "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" and converts these audio files into a file format that can be easily parsed and understood. After converting the files, create a script to analyze the frequency, pitch, and tempo of the sound files to be used in the creation of the text to speech program. Generate a statistics report on the pitch, frequency, and tempo variation of the voice samples.
+00:
+01: Data Extraction and Sound Processing 
+Instructions:  You are to locate and extract the sound samples from the specified directory (C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09). As samples are found, write a script to convert these to a suitable format (such as WAV or MP3) if they are not already. Your script should store all converted audio files in clearly labelled directories corresponding to the character's voice the samples represent.
 
-02: Text-to-Speech Converter
-Instructions: 02's task is to write a script that implements a text-to-speech algorithm. The script should allow for inputted text to be converted into speech and should provide options for altering the pitch, frequency, and tempo of the resulting speech. This alteration should be based on the statistics provided by 01. After creating the text-to-speech converter, write a script that applies the analyzed pitch, frequency, and tempo from 01Åfs output to the converter so that the speech produced resembles the characterÅfs voice from the voice samples. If necessary, use existing character-based text-to-speech libraries to help construct the base shell of the text-to-speech structure, but ensure the pitch, frequency, and tempo alterations are implemented correctly.
+02: Text to Speech Processing
+Instructions: Your responsibility is to build a text-to-speech processing engine that will translate the user's text inputs into synthesized vocal outputs. Create the scripts necessary for the text-to-speech process, make sure the script can categorize words into phonetic components and it should be able to make use of the voice samples from the voice directory in order to learn and mimic the particular character's voice.
+
+Next Stage:
+01 and 02 will have the scripts provided combined with executable instructions given to the user. The final product should be a script that uses the voice samples to produce the text to speech output in a specific character's voice. All scripts generated both by 01 and 02 will be reviewed for completeness, and then further instructions will be given if necessary.
