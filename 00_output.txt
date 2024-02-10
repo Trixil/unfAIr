@@ -1,19 +1,6 @@
 00:
-01: Digital Signal Processing, Voice Sampling & Analysis
-Instructions: Your task revolves around the creation of a voice sampling module. Start by writing a Python script that can process all of the character's voice files located in C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. Your code should be able to:
+01: Programmer Role
+Instructions: First, you will need to write a script to access the directory that houses the voice samples. Develop a code to extract the audio files located in C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. You must make sure that the code takes into account all potential error cases, such as the path not existing or there being no files in the directory. 
 
-1. Open and read the audio files in the provided folder.
-2. Break down each audio file into smaller segments and assign a phonetic transcription to each segment using an existing library (like CMU Sphinx).
-3. Analyze and store the pitch, inflection, and speed of the sample speech for each phonetic segment.
-4. Output the results of your analysis in a structured text or binary file (such as CSV, JSON, or Pickle) for easy retrieval and use by 02.
-
-02: Text to Speech Synthesis
-Instructions: Your role involves creating a text to speech module that can synthesize speech in the character's voice. Write a Python script that:
-
-1. Takes input text from the user.
-2. Breaks down the user text into phonetic segments using a library such as CMU Sphinx or NLTK.
-3. Matches each phonetic segment from the user's text to the closest matching segment in 01's analysis file.
-4. Pieces together the appropriate voice samples to create a full speech snippet in the character's voice and style.
-5. Outputs the resulting synthesized speech to an audio file, maintaining the correct timing, pitch, and inflection as much as possible.
-
-Please note that without a specific AI or Machine Learning model tasked to learn the nuances of the character's voice, results may vary and may not completely mimic the character's voice.
+02: Machine Learning Developer
+Instructions: Once 01 has successfully written and tested a script that can extract the voice files, your role involves creating a Machine Learning model. Utilize the extracted voice files to input into the model. You should focus on generating a model that can convert the text into speech using the voice samples provided. Remember to put the program into a loop so it can continuously convert text to speech until the user terminates the program. Ensure you include comments in your code for clarity and easier understanding.

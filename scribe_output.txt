@@ -1,5 +1,43 @@
 scribe:
-******
-File name: read_audio_files.py
-Content: This Python script (~read_audio_files.py) reads audio files from a specific directory, which is "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09". The script uses libraries such as os, glob, and soundfile to open and read the audio files. A function 'read_audio_files' is defined that reads all the .wav files in the provided directory and for each file, the data and the sample rate is extracted.
-******
+Fetch: None
+Message: I am now making the necessary adjustments to the script. 
+Code:
+```python
+import os, glob
+
+def check_directory_and_list_files(path):
+    files = []
+    if os.path.exists(path):
+        if os.listdir(path): # if directory is not empty
+            for root, dirs, filenames in os.walk(path):
+                for filename in filenames:
+                    if filename.endswith('.ogg'): 
+                        files.append(os.path.join(root, filename))
+            return files
+        else:
+            return 'Directory exists but is empty.'
+    else:
+        return 'Path does not exist.'
+
+path = 'C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09'
+check_directory_and_list_files(path)
+```
+File name: list_audio_files.py
+scribe:
+File name: access_directory_script.py
+Syntax: get_ogg_files(directory_path: str) -> Union[List[str], None]
+Description: The Python script (~access_directory_script.py) introduces a function 'get_ogg_files'. This function checks the existence of a specified directory. If the directory exists, it checks for files with the extension '.ogg', records their absolute paths, and returns a list of these paths. If the specified directory does not exist, it returns 'None'.
+scribe:
+File name: updated_access_directory_script.py
+Syntax: get_ogg_file_count(directory_path: str) -> Union[int, None]
+Description: The Python script (~updated_access_directory_script.py) introduces the function 'get_ogg_file_count'. It checks if a specified directory exists. If the directory does exist, it determines the number of '.ogg' files in the directory and returns this count. In case the directory does not exist, the function returns 'None'.
+scribe:
+Fetch: None
+Message: I understand the responsibilities. I'll provide code following the given instructions and provide every response with the 'Fetch', 'Message', 'File name', and 'Code' details in this order. I've kept note that the final paths are not yet confirmed, hence, I'm withholding from executing the code.
+File name: None
+Code: 
+```python
+# There is no code to provide at this time.
+```
+scribe:
+Understood. I will maintain the 'user_documentation.txt' file and document each new code file by specifying the file name, syntax, and a concise description in the provided format. Will not execute the code and wait for confirmed paths.

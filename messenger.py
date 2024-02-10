@@ -1,3 +1,4 @@
+from ast import Assign
 from openai import OpenAI
 import json
 import subprocess
@@ -10,23 +11,24 @@ def request(id, usercontent, send):
         postbox = json.load(json_file)
 
     systemcontent = postbox[id]["systemcontent"]
-    logmessages = postbox["logmessages"]
+    logmessages = postbox.get("logmessages", [])  # Initialize as an empty list if logmessages not present
     print(logmessages)
-    firstmessage = {"role": "system", "content": f"{systemcontent}"}
+    systemmessage = {"role": "system", "content": f"{systemcontent}"}
     endmessage = {"role": "system", "content": f"{usercontent}"}
-    pastmessages = [firstmessage]
-    if logmessages != []:
-        pastmessages.extend(logmessages)  # Extend instead of append
 
-    pastmessages.append(endmessage)
-    if(send == 1):
+    message_request = logmessages[:]  # Copy logmessages to avoid modifying original list
+    message_request.append(endmessage)
+    message_request.append(systemmessage)  # Add systemmessage to request
+
+    if send == 1:
         completion = client.chat.completions.create(
-          model="gpt-4",
-          messages=pastmessages
+            model="gpt-4",
+            messages=message_request
         )
 
         user_message = {"role": "user", "content": completion.choices[0].message.content}
-        postbox["logmessages"] = logmessages + [user_message]  # Create a new list with the user message appended
+        # Update logmessages without including systemmessage
+        postbox["logmessages"] = logmessages + [user_message]
         with open('conversation.txt', 'a',encoding="utf-8") as conversation:
             conversation.write(id +':\n' + completion.choices[0].message.content + '\n')
 

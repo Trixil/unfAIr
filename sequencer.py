@@ -61,15 +61,22 @@ def fetcher(response):
         fetch_end_index = response.find('\n', fetch_start_index)
         if((fetch_start_index == -1) and (fetch_end_index == -1)):
             print('Error: Could not find fetch path. Here is the response:\n' + response)
+            return ['None','Could not read a fetch path.']
         
         fetch_filename = response[fetch_start_index:fetch_end_index]
+
         if((fetch_start_index != -1) and (fetch_end_index == -1)):
             fetch_filename = response[fetch_start_index:]
         print('fetch: ' + fetch_filename)
-        if(fetch_filename == 'user_documentation.tx'):
-            fetch_filename = 'user_documentation.txt'
-        with open(output_dir + fetch_filename, 'r') as fetch_file:
-            toreturn = fetch_file.read()
+
+        output_files = os.listdir('output')
+        if(not(fetch_filename in output_files)):
+            toreturn = '\nCould not find fetched file ' + fetch_filename + '. Please make sure the requested file was listed in user_documentation.txt\n'
+        else:
+            if(fetch_filename == 'user_documentation.tx'):
+                fetch_filename = 'user_documentation.txt'
+            with open(output_dir + fetch_filename, 'r') as fetch_file:
+                toreturn = fetch_file.read()
         return [fetch_filename, toreturn]
     else:
         return ['None', 'No file requested']
@@ -135,9 +142,11 @@ while True:
         header_docs = ''
         overseer_instruction += 'Current documentation stored in user_documentation.txt:\nNo documentation written yet.\n'
         while(finalpass == False):
+
             wizardresponse = request(id, overseer_instruction + header_docs, 1)
 
             [code, unnamed_code_flag] = executor(wizardresponse)
+            
             fetchcontent = fetcher(wizardresponse)
             fetch_file_name = fetchcontent[0]
             fetch_file_content = fetchcontent[1]
@@ -174,10 +183,8 @@ while True:
 
             output_files = os.listdir('output')
 
-            if(fetch_file_name in output_files):
-                update_documentation(file_name, content)
-            else:
-                overseer_instruction += '\nCould not find fetched file. Please make sure the requested file was listed in user_documentation.txt\n'
+            update_documentation(file_name, content)
+            
 
             if(unnamed_code_flag == 1):
                 with open(output_dir + file_name, 'w') as wizardcode:

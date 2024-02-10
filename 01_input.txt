@@ -1,26 +1,729 @@
 01:
 To-do:
-1. Write a Python script to open and read audio files in C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09 - Not started
-2. Break down each audio file into smaller segments and transcribe them using an existing library like CMU Sphinx - Not started
-3. Analyze and store the pitch, inflection, and speed of the sample speech for each phonetic segment - Not started
-4. Output the results of analysis in a structured text or binary file - Not started
+1. Develop a script to access the directory C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09 (In Progress).
 
 Current instruction for you:
-To begin with, please write a Python script that opens and reads the audio files in the provided directory (C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09). Make sure that your script is capable of reading these audio files and ensure file path compatibility. You can use libraries such as os, glob and soundfile for this task.Current documentation stored in user_documentation.txt:
+Please begin developing the script using Python. Use the os module to ensure the path exists before trying to access it. If the path does not exist, the code should return an appropriate error message. Likewise, if the directory exists but is empty, an error message should be returned. This code should also list all audio files in said directory.Current documentation stored in user_documentation.txt:
 No documentation written yet.
 
 01:
 To-do:
-1. Write a Python script to open and read audio files in C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09 - Completed
-2. Break down each audio file into smaller segments and transcribe them using an existing library like CMU Sphinx - Not started
-3. Analyze and store the pitch, inflection, and speed of the sample speech for each phonetic segment - Not started
-4. Output the results of analysis to a structured text or binary file - Not started
+1. Develop a script to access the directory C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09 (Completed)
 
 Current instruction for you:
-Moving on to the next task, I'd like you to amend the above code to break down each audio file into smaller segments and then transcribe these segments using an existing library such as CMU Sphinx. For simplicity, you can start with breaking down the audio into 5 second segments. Please use the pocketsphinx library for the task of transcription. 
+The code you have written seems to correctly implement my requests and it appears to handle the possible error cases correctly. Let's move to the next step. If the directory exists and is not empty -- meaning it contains at least one .ogg file -- the code should return the absolute path of each .ogg file in a list format. Adjust the function to meet these requirements.
 Contents of None
-No file requested
-Could not find fetched file. Please make sure the requested file was listed in user_documentation.txt
+No file requestedCurrent documentation stored in user_documentation.txt:
+File name: extract_phonetic_data.py
+Content: This script includes a placeholder function named "extract_phonetic_data" intended for phonetic data extraction from .wav files. It takes a file path as its argument, but currently it only returns a dummy phonetic symbol as the actual extraction has not been implemented yet.
+******
+
+******
+File name: access_directory_script.py
+Content: This is a Python script (~access_directory_script.py) for accessing the directory located at "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09". When run, it checks if the specified directory exists and returns a confirmation message.
+******
+******
+File name: extract_phonetic_data.py
+Content: This Python script (~extract_phonetic_data.py) houses the 'extract_sound_samples' function, to isolate phonetic data from the provided .wav file. Currently, the function only opens the file and the actual extraction process has not been implemented yet. The file opening process includes error handling and will raise a custom 'FileOpeningError' located in the "exceptions.py" script if any issues occur.
+******
+
+******
+File name: exceptions.py
+Content: This Python file (~exceptions.py) includes a custom exception class 'FileOpeningError'. This exception is thrown when there are errors opening files, such as the file not being found or other input-output problems.
+******
+
+******
+File name: extract_phonetic_data.py
+Content: The Python script (~extract_phonetic_data.py) now imports the defined exceptions and includes improved error handling. In the function 'extract_sound_samples' if the file does not exist or there are input-output issues while opening the file, a 'FileOpeningError' is raised. However, the function is yet to include the logic to process and extract sound samples.
+******
+******
+File name: extract_phonetic_data.py
+Content: The script (~extract_phonetic_data.py) features an updated extract_sound_samples() function, now able to process and isolate phonetic sounds from files using the 'librosa' library. This includes processing the audio file, converting to mono, and splitting it into frames. A spectral centroid value is calculated for each frame, and any frames with a higher value are stored as 'phonetic_sounds'. The function raises a 'FileOpeningError' for error related to file opening and a 'SoundProcessingError' if any other exceptions occur during sound processing.
+******
+******
+File name: user_input_setup.py
+Content: The Python script (~user_input_setup.py) enables user input for a text-to-speech conversion program. Users can enter any text they want to convert to speech. Currently, it does not handle punctuation and special characters in input text. It uses a simple input() function to get the input from the user.
+******
+******
+File name: user_input_setup.py
+Content: This Python script (~user_input_setup.py) introduces a function named "get_user_input", which prompts users to enter the text they wish to convert to speech. It returns the text as is, without sanitizing any punctuation or special characters.
+******
+******
+File name: user_input_setup.py
+Content: This code encompasses the user-input portion of a text-to-speech conversion system. Located at ~user_input_setup.py, it incorporates the get_user_input function that prompts users for text input, which will be utilized subsequently for conversion to speech in the main script. This function currently does not handle input sanitization of punctuation or special characters. Moreover, it is intended for future improvement to integrate validation and cleaning of input text.
+******
+******
+File name: user_input_setup.py
+Content: This Python script (~user_input_setup.py) includes a function 'get_user_input' that prompts the user for a text input which is intended to be converted into speech. Currently, it does not sanitize punctuation and special characters from the user's input. The file is intended to be updated with a 'clean_input' function for cleaning user inputs from any punctuation and special characters using the 'sub' function from Python's 're' module.
+******
+******
+File name: sanitized_user_input.py
+Content: This Python script (~sanitized_user_input.py) includes the 'get_user_input' function that prompts the user to enter text to be converted into speech. The user input is then sanitized of punctuation and special characters by the 'clean_input' helper function using the 'sub' function from Python's 're' module. As a result, the function returns cleaned and sanitized text.
+******
+******
+File name: user_input_setup.py
+Content: This Python script (~user_input_setup.py) presents an updated version of the 'get_user_input' function. It prompts the users to enter some text and returns it after verifying that it is neither empty nor null. It keeps on soliciting input from the user until a valid text input is provided.
+******
+******
+File name: modified_user_input_setup.py
+Content: This Python script (~modified_user_input_setup.py) introduces a modified 'get_user_input' function. The function continues to prompt users for input until they provide a valid, non-empty string. The string is then checked for whitespace, and an error message "Invalid input. Please enter a non-empty text." is displayed if the input is either empty or consists only of whitespace. 
+******
+******
+File name: user_input_setup.py
+Content: This Python script (~user_input_setup.py) includes an updated 'get_user_input' function. The function prompts users to enter text to be converted to speech. It now includes a check for non-empty and non-null inputs, displaying an error message instructing them to enter non-empty and non-null text if such inputs are provided until it receives valid inputs.
+******
+******
+File name: updated_user_input_setup.py
+Content: This Python script (~updated_user_input_setup.py) includes the revised 'get_user_input' function. The function prompts the user to enter text for text-to-speech conversion. The function now checks for non-null and non-empty inputs by stripping whitespace from the user input. If the input is null or empty after stripping whitespaces, the function displays an error message asking the user to provide a non-empty and non-null text. This input solicitation lasts until the function receives a valid input.
+******
+******
+File name: updated_user_input_setup.py
+Content: This Python script (~updated_user_input_setup.py) contains the function 'get_user_input' which prompts the user to enter text for the text-to-speech conversion. It ensures that user input is non-null and non-empty by removing leading and trailing whitespaces from the user input. If the input is null or only contained whitespaces, the function asks the user to provide a valid, non-empty text. This process continues until the function receives a valid input.
+******
+******
+File name: updated_user_input_setup.py
+Content: This Python script (~updated_user_input_setup.py) consists of a 'get_user_input' function. The function prompts the user to input the text for the text-to-speech conversion. It ensures that the user input is non-null and non-empty by removing leading and trailing whitespaces from the user input. If the input is null or only contains whitespaces, the function requests the user to input a valid, non-empty text. This process will keep repeating until a valid input is received.
+******
+******
+File name: updated_user_input_setup.py
+Content: The Python script (~updated_user_input_setup.py) confirms the implementation of the 'get_user_input' function. This function endlessly prompts the user to input text for the text-to-speech conversion process. The user's text input should not be null and should not contain only whitespace. If the text input does not meet these requirements, the function will print an error message requesting valid, non-empty and non-null input, and ask for the user's text input again.
+******
+******
+File name: None
+Content: No new code file provided, no additional documentation to generate.
+******
+******
+File name: None
+Content: No new code file has been provided. As such, no additional documentation has been generated at this time.
+******
+******
+File name: None
+Content: There is no code to document at this instance because the file name and content are not provided.
+******
+******
+File name: None
+Content: No task was given to produce or develop new software or a piece of code. The task requires information gathering about the software to be developed. There is no new piece of code or software, hence, no documentation produced.
+******
+******
+File name: None
+Content: No documentation available as there's no change in the code base.
+******
+******
+File name: None
+Content: No new code file provided, no additional documentation to generate.
+******
+******
+File name: import_lib.py
+Content: This Python script (~import_lib.py) imports the gTTS (Google Text-to-Speech) library which will be used to develop our text-to-speech software. This library enables text to be converted into speech and saved as audio files.
+******
+******
+File name: text_to_speech.py
+Content: The Python file (~text_to_speech.py) sets the foundation for a function named 'text_to_speech' that is meant to convert an input text into speech. The function is currently empty as its functionality is yet to be implemented.
+******
+******
+File name: text_to_speech.py
+Content: The Python script (~text_to_speech.py) now includes a completed 'text_to_speech' function that can convert a given input text into speech using the Google Text-to-Speech (gTTS) library. This function saves the converted speech as an mp3 file and plays the file using the MPG123 unix-based system command. The function currently assumes that the operating system is unix-based.
+******
+******
+File name: voice_modulation_script.py
+Content: This Python script (~voice_modulation_script.py) includes a function 'modulate_voice(audio_file)' that accepts an audio file as input and adjusts its pitch and speed using the pydub library. This function is currently equipped with placeholder values for pitch and speed change, the modification of which will make the input audio file sound like the voice samples at a predetermined path. The modulated audio file is saved in the 'output' directory and the path to this new audio file is returned by the function.
+******
+******
+File name: fetch_audio_files.py
+Content: ile name: fetch_audio_files.py
+Syntax: fetch_audio_files(folder)
+Description: This is a Python function that reads file data to ensure that files are indeed audio files and returns a list of valid audio file paths from a specified directory. The 'os' and 'wave' Python libraries are utilized to access the directory and fetch valid '.wav' audio files.
+******
+******
+File name: extract_features.py
+Content: ile name: extract_features.py
+Syntax: extract_features(audio_files)
+Description: This is a Python function designed to extract MFCC (Mel-frequency cepstral coefficients) features from audio files. It uses the librosa library to load audio files and calculate their MFCCs, storing these in a dictionary keyed by file path, which it then returns.
+******
+******
+File name: dataset_splitter.py
+Content: ile name: dataset_splitter.py
+Syntax: split_data(features, labels, test_size=0.2, random_state=42)
+Description: This is a Python function that divides a given dataset into training and validation sets. It accepts features and labels along with optional test size and random state as inputs. It uses sklearn's train_test_split function to split data based on the provided or default test size and random state. The function returns four arrays - training data, validation data, training labels, and validation labels.
+******
+******
+File name: None
+Content: ile name: None
+Syntax: None
+Description: No new code file was provided for documentation.
+******
+File name: dataset_splitter.py
+Content: ile name: dataset_splitter.py
+Syntax: split_data(features, labels, test_size=0.2, random_state=42)
+Description: This Python script contains a function named split_data, that uses the input parameters 'features', 'labels', an optional parameter 'test_size' with a default value of 0.2, and 'random_state' with a default value of 42. The function uses these inputs to split a given dataset into a training set and a validation set by leveraging sklearn's train_test_split function. The function returns four arrays - training data (X_train), validation data (X_test), training labels (y_train), and validation labels (y_test).
+******
+******
+File name: None
+Content: ile name: None
+Syntax: None
+Description: No new code file was provided for documentation. The implementation of 'split_data' function as per the 'dataset_splitter.py' file was found to be correct as per the given requirements. Currently, there are no updates or changes needed for this function.
+******
+******
+File name: None
+Content: ile name: None
+Syntax: None
+Description: No new code file was provided for this documentation.
+******
+******
+File name: fetch_html_element.py
+Content: ile name: fetch_html_element.py
+Syntax: fetch_html_element(url: str, tag: str, attribute: str, value: str)
+Description: This Python script uses BeautifulSoup and Requests libraries to fetch an HTML webpage specified by a URL. It prints out the contents (tag name, attributes, and text) of an HTML element specified by its tag name and an attribute-value pair. The parameters include a placeholder URL, an HTML element (tag), and an attribute-value pair.
+******
+******
+File name: fetch_html_details.py
+Content: ile name: fetch_html_details.py
+Syntax: fetch_and_print_element_details(url: str, tag_name: str, attr_value: dict)
+Description: This Python script fetches a webpage using Requests library, parses the HTML using BeautifulSoup, and prints out the contents (tag name, attributes, and text) of an HTML element that matches the provided tag name and attribute-value pair. If no such element is found, it prints a message stating that. All tasks are performed within a try-except block to handle potential errors such as network issues or invalid inputs. 
+******
+******
+File name: fetch_html_element.py
+Content: ile name: fetch_html_element.py
+Syntax: (Not applicable. File contents not provided)
+Description: (Not applicable. File contents not provided)
+******
+******
+File name: fetch_html_element.py
+Content: ile name: fetch_html_element.py
+Syntax: fetch_html_element(url: str, tag: str, attribute: str, value: str)
+Description: This Python function fetches a webpage from a provided URL, then parses the page using BeautifulSoup. It locates an HTML element matching the given tag name and attribute-value pair. When such an element is found, the function prints its tag name, attributes, and text. If there is no such element, a corresponding message is printed. In the event of a failure, such as a network request error, the function also outputs the encountered error.
+******
+******
+File name: process_input_text.py
+Content: ile name: process_input_text.py
+Syntax: process_text(user_input)
+Description: This Python file contains a function 'process_text' that accepts a user input of string type. It removes unnecessary characters and punctuation, converts the text to lowercase, and splits words into smaller chunks. The function returns a list of these chunks.
+******
+******
+File name: tts_model_setup.py
+Content: ile name: tts_model_setup.py
+Syntax: create_tts_model(input_shape)
+Description: This Python script defines a TensorFlow model suitable for text-to-speech conversion. The "create_tts_model" function generates a Keras Sequential model with multiple Conv1D, LSTM, and Dense layers. The model is then compiled with Mean Squared Error (MSE) as the loss function and the Adam optimization algorithm. This code does not yet include model training.
+******
+******
+File name: add_numbers.py
+Content: ile name: add_numbers.py
+Syntax: add_numbers(a: int, b: int) -> int
+Description: A Python function that accepts two integers as input and returns their sum.
+******
+******
+File name: arithmetic_operations.py
+Content: ile name: arithmetic_operations.py
+Syntax: add_numbers(a: int, b: int) -> int
+Description: The function 'add_numbers' in this script takes two integers as arguments and returns their sum.
+******
+******
+File name: arithmetic_operations.py
+Content: ile name: arithmetic_operations.py
+Syntax: add_numbers(a: int, b: int) -> int
+Description: A function that takes in two integers, 'a' and 'b', and returns their sum.
+******
+******
+File name: arithmetic_operations.py
+Content: ile name: arithmetic_operations.py
+Syntax: add_numbers(num1, num2)
+Description: This Python file contains the function 'add_numbers'. It takes two numeric inputs, 'num1' and 'num2', and returns the sum of these two numbers.
+******
+******
+File name: data_processing_script.py
+Content: ile name: data_processing_script.py
+Syntax: 
+```python
+def data_extraction_processing(data):
+def extract_data(data):
+def process_data(data):
+```
+Description: This Python script contains three functions: 'data_extraction_processing', 'extract_data', and 'process_data'. The 'data_extraction_processing' function serves to extract necessary data and process it. The 'extract_data' function, intended for data extraction, and 'process_data' function, designed for data processing, are currently placeholders as the specific logic is yet to be implemented.
+******
+******
+File name: access_directory.py
+Content: ile name: access_directory.py
+Syntax: Not applicable as there are no explicit functions in this code.
+Description: This Python script accesses the directory located at "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" and lists all files within this directory, particularly the voice samples. In case the directory does not exist, it handles the 'FileNotFoundError' exception by assigning an empty list to 'voice_samples'.
+******
+******
+File name: recognize_samples_script.py
+Content: ile name: recognize_samples_script.py
+Syntax: 
+```python
+def check_voice_directory():
+def fetch_voice_samples():
+def list_samples():
+```
+Description: This Python script checks if a specific voice directory exists, lists all voice samples in the directory if it does exist, and prints all voice samples. If the directory does not exist, it prints "Voice directory doesn't exist.". If no voice samples are found, it prints "No voice samples found.".
+******
+******
+File name: arrange_samples_script.py
+Content: ile name: arrange_samples_script.py
+Syntax: 
+```python
+def check_voice_directory():
+def fetch_voice_samples():
+def arrange_samples():
+```
+Description: This Python script checks if a specific directory exists and fetches all voice samples from it. These samples are then arranged in a list for easier processing. If the voice directory doesn't exist, it prints an appropriate error message. If no voice samples are found, an additional error message is provided.
+******
+******
+File name: arrange_samples_script.py
+Content: ile name: arrange_samples_script.py
+Syntax: arrange_samples(sample_dict: dict) -> dict
+Description: The Python script (~arrange_samples_script.py) includes a function named 'arrange_samples', which takes a dictionary as input. The dictionary should contain string keys (labels) and a list of integers being sample IDs. The function arranges the samples based on these labels in ascending order and returns a new dictionary with the same labels and sorted lists.
+******
+******
+File name: arrange_samples_script.py
+Content: ile name: arrange_samples_script.py
+Syntax: arrange_samples(dict_input: dict) -> dict
+Description: The script includes one function, 'arrange_samples', which accepts a dictionary as an input. It processes each key-value pair of the dictionary and rearranges the elements of the 'values' list in ascending order. It then returns a new dictionary with sorted lists.
+******
+******
+File name: arrange_samples_script.py
+Content: ile name: arrange_samples_script.py
+Syntax: pull_additional_samples(db_names: list, label: str) -> dict
+Description: This additional function in the script (arrange_samples_script.py) named 'pull_additional_samples' takes a list of database names and a label. It returns a dictionary wherein each database name is a key associated with a list of five range values as a placeholder for sample data.
+******
+******
+File name:  read_data.py
+Content: e: read_data.py
+******
+Syntax: read_file(file_path: str, file_extension: str) -> pandas.DataFrame
+Description: Function 'read_file' in this file accepts two parameters - the path to the file and the extension of the file (.csv, .xls, .xlsx, .txt). Based on the file extension, it reads the data from the file into a pandas DataFrame and returns it. If the file extension is not supported, it prints an error and returns None.
+******
+******
+File name: None
+Content: one
+Message: I understand your instructions, and I will follow accordingly. As per the current task, we will create a function 'treat_data' that accepts a dataframe and handles missing values, outliers, and typos. However, before that, there is no fetched file. Post the task, the documentation will be managed as per the given format containing file name, syntax, and the file's function.
+File name: None
+Code: 
+```python
+# Code will be written according to the given task
+```
+******
+File name: url_input_script.py
+Content: ser_documentation.txt
+Message: Adding the documentation for the new code file.
+
+******
+
+File name: url_input_script.py
+Syntax: 
+- url_input() - syntax: url_input(); output: list of URLs; inputs: none (but expects user to input URLs when prompted).
+- main() - syntax: main(); input: none; output: none (but will print URLs entered by user for confirmation).
+
+Description: This script accepts multiple URLs from the user and stores them. It can be run independently to check its functionality. It will keep accepting URLs until the user enters 'q' to quit. When run, it will prompt the user for URLs, store them, and then print all the entered URLs for confirmation.
+
+******
+******
+File name: user_documentation.txt
+Content: one
+Message: Got it. I'm now going to generate a user_documentation.txt file to include all necessary details.
+File name: user_documentation.txt
+Documentation: 
+```
+******
+File name: get_user_input.py
+Syntax: get_name()
+Description: This Python function prompts a user for their name as input and returns the entered name.
+******
+```
+******
+
+
+01:
+Current instruction for you:
+You are requested to develop functionality to return the number of .ogg files present in the specified directory. Include it in the function you have developed earlier. Make sure to return None if the directory does not exist. You should update the 'access_directory_script.py' file with the new function.
+Contents of None
+No file requestedCurrent documentation stored in user_documentation.txt:
+File name: extract_phonetic_data.py
+Content: This script includes a placeholder function named "extract_phonetic_data" intended for phonetic data extraction from .wav files. It takes a file path as its argument, but currently it only returns a dummy phonetic symbol as the actual extraction has not been implemented yet.
+******
+
+******
+File name: access_directory_script.py
+Content: This is a Python script (~access_directory_script.py) for accessing the directory located at "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09". When run, it checks if the specified directory exists and returns a confirmation message.
+******
+******
+File name: extract_phonetic_data.py
+Content: This Python script (~extract_phonetic_data.py) houses the 'extract_sound_samples' function, to isolate phonetic data from the provided .wav file. Currently, the function only opens the file and the actual extraction process has not been implemented yet. The file opening process includes error handling and will raise a custom 'FileOpeningError' located in the "exceptions.py" script if any issues occur.
+******
+
+******
+File name: exceptions.py
+Content: This Python file (~exceptions.py) includes a custom exception class 'FileOpeningError'. This exception is thrown when there are errors opening files, such as the file not being found or other input-output problems.
+******
+
+******
+File name: extract_phonetic_data.py
+Content: The Python script (~extract_phonetic_data.py) now imports the defined exceptions and includes improved error handling. In the function 'extract_sound_samples' if the file does not exist or there are input-output issues while opening the file, a 'FileOpeningError' is raised. However, the function is yet to include the logic to process and extract sound samples.
+******
+******
+File name: extract_phonetic_data.py
+Content: The script (~extract_phonetic_data.py) features an updated extract_sound_samples() function, now able to process and isolate phonetic sounds from files using the 'librosa' library. This includes processing the audio file, converting to mono, and splitting it into frames. A spectral centroid value is calculated for each frame, and any frames with a higher value are stored as 'phonetic_sounds'. The function raises a 'FileOpeningError' for error related to file opening and a 'SoundProcessingError' if any other exceptions occur during sound processing.
+******
+******
+File name: user_input_setup.py
+Content: The Python script (~user_input_setup.py) enables user input for a text-to-speech conversion program. Users can enter any text they want to convert to speech. Currently, it does not handle punctuation and special characters in input text. It uses a simple input() function to get the input from the user.
+******
+******
+File name: user_input_setup.py
+Content: This Python script (~user_input_setup.py) introduces a function named "get_user_input", which prompts users to enter the text they wish to convert to speech. It returns the text as is, without sanitizing any punctuation or special characters.
+******
+******
+File name: user_input_setup.py
+Content: This code encompasses the user-input portion of a text-to-speech conversion system. Located at ~user_input_setup.py, it incorporates the get_user_input function that prompts users for text input, which will be utilized subsequently for conversion to speech in the main script. This function currently does not handle input sanitization of punctuation or special characters. Moreover, it is intended for future improvement to integrate validation and cleaning of input text.
+******
+******
+File name: user_input_setup.py
+Content: This Python script (~user_input_setup.py) includes a function 'get_user_input' that prompts the user for a text input which is intended to be converted into speech. Currently, it does not sanitize punctuation and special characters from the user's input. The file is intended to be updated with a 'clean_input' function for cleaning user inputs from any punctuation and special characters using the 'sub' function from Python's 're' module.
+******
+******
+File name: sanitized_user_input.py
+Content: This Python script (~sanitized_user_input.py) includes the 'get_user_input' function that prompts the user to enter text to be converted into speech. The user input is then sanitized of punctuation and special characters by the 'clean_input' helper function using the 'sub' function from Python's 're' module. As a result, the function returns cleaned and sanitized text.
+******
+******
+File name: user_input_setup.py
+Content: This Python script (~user_input_setup.py) presents an updated version of the 'get_user_input' function. It prompts the users to enter some text and returns it after verifying that it is neither empty nor null. It keeps on soliciting input from the user until a valid text input is provided.
+******
+******
+File name: modified_user_input_setup.py
+Content: This Python script (~modified_user_input_setup.py) introduces a modified 'get_user_input' function. The function continues to prompt users for input until they provide a valid, non-empty string. The string is then checked for whitespace, and an error message "Invalid input. Please enter a non-empty text." is displayed if the input is either empty or consists only of whitespace. 
+******
+******
+File name: user_input_setup.py
+Content: This Python script (~user_input_setup.py) includes an updated 'get_user_input' function. The function prompts users to enter text to be converted to speech. It now includes a check for non-empty and non-null inputs, displaying an error message instructing them to enter non-empty and non-null text if such inputs are provided until it receives valid inputs.
+******
+******
+File name: updated_user_input_setup.py
+Content: This Python script (~updated_user_input_setup.py) includes the revised 'get_user_input' function. The function prompts the user to enter text for text-to-speech conversion. The function now checks for non-null and non-empty inputs by stripping whitespace from the user input. If the input is null or empty after stripping whitespaces, the function displays an error message asking the user to provide a non-empty and non-null text. This input solicitation lasts until the function receives a valid input.
+******
+******
+File name: updated_user_input_setup.py
+Content: This Python script (~updated_user_input_setup.py) contains the function 'get_user_input' which prompts the user to enter text for the text-to-speech conversion. It ensures that user input is non-null and non-empty by removing leading and trailing whitespaces from the user input. If the input is null or only contained whitespaces, the function asks the user to provide a valid, non-empty text. This process continues until the function receives a valid input.
+******
+******
+File name: updated_user_input_setup.py
+Content: This Python script (~updated_user_input_setup.py) consists of a 'get_user_input' function. The function prompts the user to input the text for the text-to-speech conversion. It ensures that the user input is non-null and non-empty by removing leading and trailing whitespaces from the user input. If the input is null or only contains whitespaces, the function requests the user to input a valid, non-empty text. This process will keep repeating until a valid input is received.
+******
+******
+File name: updated_user_input_setup.py
+Content: The Python script (~updated_user_input_setup.py) confirms the implementation of the 'get_user_input' function. This function endlessly prompts the user to input text for the text-to-speech conversion process. The user's text input should not be null and should not contain only whitespace. If the text input does not meet these requirements, the function will print an error message requesting valid, non-empty and non-null input, and ask for the user's text input again.
+******
+******
+File name: None
+Content: No new code file provided, no additional documentation to generate.
+******
+******
+File name: None
+Content: No new code file has been provided. As such, no additional documentation has been generated at this time.
+******
+******
+File name: None
+Content: There is no code to document at this instance because the file name and content are not provided.
+******
+******
+File name: None
+Content: No task was given to produce or develop new software or a piece of code. The task requires information gathering about the software to be developed. There is no new piece of code or software, hence, no documentation produced.
+******
+******
+File name: None
+Content: No documentation available as there's no change in the code base.
+******
+******
+File name: None
+Content: No new code file provided, no additional documentation to generate.
+******
+******
+File name: import_lib.py
+Content: This Python script (~import_lib.py) imports the gTTS (Google Text-to-Speech) library which will be used to develop our text-to-speech software. This library enables text to be converted into speech and saved as audio files.
+******
+******
+File name: text_to_speech.py
+Content: The Python file (~text_to_speech.py) sets the foundation for a function named 'text_to_speech' that is meant to convert an input text into speech. The function is currently empty as its functionality is yet to be implemented.
+******
+******
+File name: text_to_speech.py
+Content: The Python script (~text_to_speech.py) now includes a completed 'text_to_speech' function that can convert a given input text into speech using the Google Text-to-Speech (gTTS) library. This function saves the converted speech as an mp3 file and plays the file using the MPG123 unix-based system command. The function currently assumes that the operating system is unix-based.
+******
+******
+File name: voice_modulation_script.py
+Content: This Python script (~voice_modulation_script.py) includes a function 'modulate_voice(audio_file)' that accepts an audio file as input and adjusts its pitch and speed using the pydub library. This function is currently equipped with placeholder values for pitch and speed change, the modification of which will make the input audio file sound like the voice samples at a predetermined path. The modulated audio file is saved in the 'output' directory and the path to this new audio file is returned by the function.
+******
+******
+File name: fetch_audio_files.py
+Content: ile name: fetch_audio_files.py
+Syntax: fetch_audio_files(folder)
+Description: This is a Python function that reads file data to ensure that files are indeed audio files and returns a list of valid audio file paths from a specified directory. The 'os' and 'wave' Python libraries are utilized to access the directory and fetch valid '.wav' audio files.
+******
+******
+File name: extract_features.py
+Content: ile name: extract_features.py
+Syntax: extract_features(audio_files)
+Description: This is a Python function designed to extract MFCC (Mel-frequency cepstral coefficients) features from audio files. It uses the librosa library to load audio files and calculate their MFCCs, storing these in a dictionary keyed by file path, which it then returns.
+******
+******
+File name: dataset_splitter.py
+Content: ile name: dataset_splitter.py
+Syntax: split_data(features, labels, test_size=0.2, random_state=42)
+Description: This is a Python function that divides a given dataset into training and validation sets. It accepts features and labels along with optional test size and random state as inputs. It uses sklearn's train_test_split function to split data based on the provided or default test size and random state. The function returns four arrays - training data, validation data, training labels, and validation labels.
+******
+******
+File name: None
+Content: ile name: None
+Syntax: None
+Description: No new code file was provided for documentation.
+******
+File name: dataset_splitter.py
+Content: ile name: dataset_splitter.py
+Syntax: split_data(features, labels, test_size=0.2, random_state=42)
+Description: This Python script contains a function named split_data, that uses the input parameters 'features', 'labels', an optional parameter 'test_size' with a default value of 0.2, and 'random_state' with a default value of 42. The function uses these inputs to split a given dataset into a training set and a validation set by leveraging sklearn's train_test_split function. The function returns four arrays - training data (X_train), validation data (X_test), training labels (y_train), and validation labels (y_test).
+******
+******
+File name: None
+Content: ile name: None
+Syntax: None
+Description: No new code file was provided for documentation. The implementation of 'split_data' function as per the 'dataset_splitter.py' file was found to be correct as per the given requirements. Currently, there are no updates or changes needed for this function.
+******
+******
+File name: None
+Content: ile name: None
+Syntax: None
+Description: No new code file was provided for this documentation.
+******
+******
+File name: fetch_html_element.py
+Content: ile name: fetch_html_element.py
+Syntax: fetch_html_element(url: str, tag: str, attribute: str, value: str)
+Description: This Python script uses BeautifulSoup and Requests libraries to fetch an HTML webpage specified by a URL. It prints out the contents (tag name, attributes, and text) of an HTML element specified by its tag name and an attribute-value pair. The parameters include a placeholder URL, an HTML element (tag), and an attribute-value pair.
+******
+******
+File name: fetch_html_details.py
+Content: ile name: fetch_html_details.py
+Syntax: fetch_and_print_element_details(url: str, tag_name: str, attr_value: dict)
+Description: This Python script fetches a webpage using Requests library, parses the HTML using BeautifulSoup, and prints out the contents (tag name, attributes, and text) of an HTML element that matches the provided tag name and attribute-value pair. If no such element is found, it prints a message stating that. All tasks are performed within a try-except block to handle potential errors such as network issues or invalid inputs. 
+******
+******
+File name: fetch_html_element.py
+Content: ile name: fetch_html_element.py
+Syntax: (Not applicable. File contents not provided)
+Description: (Not applicable. File contents not provided)
+******
+******
+File name: fetch_html_element.py
+Content: ile name: fetch_html_element.py
+Syntax: fetch_html_element(url: str, tag: str, attribute: str, value: str)
+Description: This Python function fetches a webpage from a provided URL, then parses the page using BeautifulSoup. It locates an HTML element matching the given tag name and attribute-value pair. When such an element is found, the function prints its tag name, attributes, and text. If there is no such element, a corresponding message is printed. In the event of a failure, such as a network request error, the function also outputs the encountered error.
+******
+******
+File name: process_input_text.py
+Content: ile name: process_input_text.py
+Syntax: process_text(user_input)
+Description: This Python file contains a function 'process_text' that accepts a user input of string type. It removes unnecessary characters and punctuation, converts the text to lowercase, and splits words into smaller chunks. The function returns a list of these chunks.
+******
+******
+File name: tts_model_setup.py
+Content: ile name: tts_model_setup.py
+Syntax: create_tts_model(input_shape)
+Description: This Python script defines a TensorFlow model suitable for text-to-speech conversion. The "create_tts_model" function generates a Keras Sequential model with multiple Conv1D, LSTM, and Dense layers. The model is then compiled with Mean Squared Error (MSE) as the loss function and the Adam optimization algorithm. This code does not yet include model training.
+******
+******
+File name: add_numbers.py
+Content: ile name: add_numbers.py
+Syntax: add_numbers(a: int, b: int) -> int
+Description: A Python function that accepts two integers as input and returns their sum.
+******
+******
+File name: arithmetic_operations.py
+Content: ile name: arithmetic_operations.py
+Syntax: add_numbers(a: int, b: int) -> int
+Description: The function 'add_numbers' in this script takes two integers as arguments and returns their sum.
+******
+******
+File name: arithmetic_operations.py
+Content: ile name: arithmetic_operations.py
+Syntax: add_numbers(a: int, b: int) -> int
+Description: A function that takes in two integers, 'a' and 'b', and returns their sum.
+******
+******
+File name: arithmetic_operations.py
+Content: ile name: arithmetic_operations.py
+Syntax: add_numbers(num1, num2)
+Description: This Python file contains the function 'add_numbers'. It takes two numeric inputs, 'num1' and 'num2', and returns the sum of these two numbers.
+******
+******
+File name: data_processing_script.py
+Content: ile name: data_processing_script.py
+Syntax: 
+```python
+def data_extraction_processing(data):
+def extract_data(data):
+def process_data(data):
+```
+Description: This Python script contains three functions: 'data_extraction_processing', 'extract_data', and 'process_data'. The 'data_extraction_processing' function serves to extract necessary data and process it. The 'extract_data' function, intended for data extraction, and 'process_data' function, designed for data processing, are currently placeholders as the specific logic is yet to be implemented.
+******
+******
+File name: access_directory.py
+Content: ile name: access_directory.py
+Syntax: Not applicable as there are no explicit functions in this code.
+Description: This Python script accesses the directory located at "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" and lists all files within this directory, particularly the voice samples. In case the directory does not exist, it handles the 'FileNotFoundError' exception by assigning an empty list to 'voice_samples'.
+******
+******
+File name: recognize_samples_script.py
+Content: ile name: recognize_samples_script.py
+Syntax: 
+```python
+def check_voice_directory():
+def fetch_voice_samples():
+def list_samples():
+```
+Description: This Python script checks if a specific voice directory exists, lists all voice samples in the directory if it does exist, and prints all voice samples. If the directory does not exist, it prints "Voice directory doesn't exist.". If no voice samples are found, it prints "No voice samples found.".
+******
+******
+File name: arrange_samples_script.py
+Content: ile name: arrange_samples_script.py
+Syntax: 
+```python
+def check_voice_directory():
+def fetch_voice_samples():
+def arrange_samples():
+```
+Description: This Python script checks if a specific directory exists and fetches all voice samples from it. These samples are then arranged in a list for easier processing. If the voice directory doesn't exist, it prints an appropriate error message. If no voice samples are found, an additional error message is provided.
+******
+******
+File name: arrange_samples_script.py
+Content: ile name: arrange_samples_script.py
+Syntax: arrange_samples(sample_dict: dict) -> dict
+Description: The Python script (~arrange_samples_script.py) includes a function named 'arrange_samples', which takes a dictionary as input. The dictionary should contain string keys (labels) and a list of integers being sample IDs. The function arranges the samples based on these labels in ascending order and returns a new dictionary with the same labels and sorted lists.
+******
+******
+File name: arrange_samples_script.py
+Content: ile name: arrange_samples_script.py
+Syntax: arrange_samples(dict_input: dict) -> dict
+Description: The script includes one function, 'arrange_samples', which accepts a dictionary as an input. It processes each key-value pair of the dictionary and rearranges the elements of the 'values' list in ascending order. It then returns a new dictionary with sorted lists.
+******
+******
+File name: arrange_samples_script.py
+Content: ile name: arrange_samples_script.py
+Syntax: pull_additional_samples(db_names: list, label: str) -> dict
+Description: This additional function in the script (arrange_samples_script.py) named 'pull_additional_samples' takes a list of database names and a label. It returns a dictionary wherein each database name is a key associated with a list of five range values as a placeholder for sample data.
+******
+******
+File name:  read_data.py
+Content: e: read_data.py
+******
+Syntax: read_file(file_path: str, file_extension: str) -> pandas.DataFrame
+Description: Function 'read_file' in this file accepts two parameters - the path to the file and the extension of the file (.csv, .xls, .xlsx, .txt). Based on the file extension, it reads the data from the file into a pandas DataFrame and returns it. If the file extension is not supported, it prints an error and returns None.
+******
+******
+File name: None
+Content: one
+Message: I understand your instructions, and I will follow accordingly. As per the current task, we will create a function 'treat_data' that accepts a dataframe and handles missing values, outliers, and typos. However, before that, there is no fetched file. Post the task, the documentation will be managed as per the given format containing file name, syntax, and the file's function.
+File name: None
+Code: 
+```python
+# Code will be written according to the given task
+```
+******
+File name: url_input_script.py
+Content: ser_documentation.txt
+Message: Adding the documentation for the new code file.
+
+******
+
+File name: url_input_script.py
+Syntax: 
+- url_input() - syntax: url_input(); output: list of URLs; inputs: none (but expects user to input URLs when prompted).
+- main() - syntax: main(); input: none; output: none (but will print URLs entered by user for confirmation).
+
+Description: This script accepts multiple URLs from the user and stores them. It can be run independently to check its functionality. It will keep accepting URLs until the user enters 'q' to quit. When run, it will prompt the user for URLs, store them, and then print all the entered URLs for confirmation.
+
+******
+******
+File name: user_documentation.txt
+Content: one
+Message: Got it. I'm now going to generate a user_documentation.txt file to include all necessary details.
+File name: user_documentation.txt
+Documentation: 
+```
+******
+File name: get_user_input.py
+Syntax: get_name()
+Description: This Python function prompts a user for their name as input and returns the entered name.
+******
+```
+******
+File name: list_audio_files.p
+Content: one
+Message: I am now making the necessary adjustments to the script. 
+Code:
+```python
+import os, glob
+
+def check_directory_and_list_files(path):
+    files = []
+    if os.path.exists(path):
+        if os.listdir(path): # if directory is not empty
+            for root, dirs, filenames in os.walk(path):
+                for filename in filenames:
+                    if filename.endswith('.ogg'): 
+                        files.append(os.path.join(root, filename))
+            return files
+        else:
+            return 'Directory exists but is empty.'
+    else:
+        return 'Path does not exist.'
+
+path = 'C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09'
+check_directory_and_list_files(path)
+```
+File name: list_audio_files.py
+******
+
+
+01:
+The current to-do list is:
+
+1. Enhance the script 'access_directory_script.py' with code to get the count of '.ogg' files (In progress)
+2. Incorporate code to check if a directory exists and if it's not empty (In progress)
+
+The code provided by LLM seems to align with the current instruction. It includes a function `get_ogg_file_count()` which takes a directory path as an argument and returns the count of '.ogg' files in that directory. The function correctly checks if the given directory exists with `os.path.exists()`. The ‘glob’ module is used to find all the pathnames matching '*.ogg' pattern given in the argument. Therefore, tasks 1&2 can be marked as completed. 
+
+To-do:
+1. Enhance the script 'access_directory_script.py' with code to get the count of '.ogg' files (Completed)
+2. Incorporate code to check if a directory exists and if it's not empty (Completed)
+
+The current instruction for you:
+You’ve successfully created the function 'get_ogg_file_count', but the final paths and directories to be checked are yet to be confirmed. For now, hold off on executing the code.
+
+SEND CODE
+Contents of access_directory_script.py
+
+import os
+
+def get_ogg_files(directory_path):
+    """
+    Check if a directory exists and if any .ogg files are present in the directory.
+    If there are .ogg files, the function returns a list of their absolute paths.
+    """
+    # Check if the directory exists.
+    if not os.path.exists(directory_path):
+        return None
+    
+    # Initialize an empty list to hold the .ogg files.
+    ogg_files = []
+    
+    # Loop through every file in the directory.
+    for file in os.listdir(directory_path):
+        # Check if the file ends with .ogg.
+        if file.endswith('.ogg'):
+            # If it does, get the absolute path of the file and append it to the ogg_files list.
+            ogg_files.append(os.path.abspath(os.path.join(directory_path, file)))
+            
+    # Return the list of .ogg files.
+    return ogg_files
 Current documentation stored in user_documentation.txt:
 File name: extract_phonetic_data.py
 Content: This script includes a placeholder function named "extract_phonetic_data" intended for phonetic data extraction from .wav files. It takes a file path as its argument, but currently it only returns a dummy phonetic symbol as the actual extraction has not been implemented yet.
@@ -48,6 +751,692 @@ Content: The Python script (~extract_phonetic_data.py) now imports the defined e
 File name: extract_phonetic_data.py
 Content: The script (~extract_phonetic_data.py) features an updated extract_sound_samples() function, now able to process and isolate phonetic sounds from files using the 'librosa' library. This includes processing the audio file, converting to mono, and splitting it into frames. A spectral centroid value is calculated for each frame, and any frames with a higher value are stored as 'phonetic_sounds'. The function raises a 'FileOpeningError' for error related to file opening and a 'SoundProcessingError' if any other exceptions occur during sound processing.
 ******
+******
+File name: user_input_setup.py
+Content: The Python script (~user_input_setup.py) enables user input for a text-to-speech conversion program. Users can enter any text they want to convert to speech. Currently, it does not handle punctuation and special characters in input text. It uses a simple input() function to get the input from the user.
+******
+******
+File name: user_input_setup.py
+Content: This Python script (~user_input_setup.py) introduces a function named "get_user_input", which prompts users to enter the text they wish to convert to speech. It returns the text as is, without sanitizing any punctuation or special characters.
+******
+******
+File name: user_input_setup.py
+Content: This code encompasses the user-input portion of a text-to-speech conversion system. Located at ~user_input_setup.py, it incorporates the get_user_input function that prompts users for text input, which will be utilized subsequently for conversion to speech in the main script. This function currently does not handle input sanitization of punctuation or special characters. Moreover, it is intended for future improvement to integrate validation and cleaning of input text.
+******
+******
+File name: user_input_setup.py
+Content: This Python script (~user_input_setup.py) includes a function 'get_user_input' that prompts the user for a text input which is intended to be converted into speech. Currently, it does not sanitize punctuation and special characters from the user's input. The file is intended to be updated with a 'clean_input' function for cleaning user inputs from any punctuation and special characters using the 'sub' function from Python's 're' module.
+******
+******
+File name: sanitized_user_input.py
+Content: This Python script (~sanitized_user_input.py) includes the 'get_user_input' function that prompts the user to enter text to be converted into speech. The user input is then sanitized of punctuation and special characters by the 'clean_input' helper function using the 'sub' function from Python's 're' module. As a result, the function returns cleaned and sanitized text.
+******
+******
+File name: user_input_setup.py
+Content: This Python script (~user_input_setup.py) presents an updated version of the 'get_user_input' function. It prompts the users to enter some text and returns it after verifying that it is neither empty nor null. It keeps on soliciting input from the user until a valid text input is provided.
+******
+******
+File name: modified_user_input_setup.py
+Content: This Python script (~modified_user_input_setup.py) introduces a modified 'get_user_input' function. The function continues to prompt users for input until they provide a valid, non-empty string. The string is then checked for whitespace, and an error message "Invalid input. Please enter a non-empty text." is displayed if the input is either empty or consists only of whitespace. 
+******
+******
+File name: user_input_setup.py
+Content: This Python script (~user_input_setup.py) includes an updated 'get_user_input' function. The function prompts users to enter text to be converted to speech. It now includes a check for non-empty and non-null inputs, displaying an error message instructing them to enter non-empty and non-null text if such inputs are provided until it receives valid inputs.
+******
+******
+File name: updated_user_input_setup.py
+Content: This Python script (~updated_user_input_setup.py) includes the revised 'get_user_input' function. The function prompts the user to enter text for text-to-speech conversion. The function now checks for non-null and non-empty inputs by stripping whitespace from the user input. If the input is null or empty after stripping whitespaces, the function displays an error message asking the user to provide a non-empty and non-null text. This input solicitation lasts until the function receives a valid input.
+******
+******
+File name: updated_user_input_setup.py
+Content: This Python script (~updated_user_input_setup.py) contains the function 'get_user_input' which prompts the user to enter text for the text-to-speech conversion. It ensures that user input is non-null and non-empty by removing leading and trailing whitespaces from the user input. If the input is null or only contained whitespaces, the function asks the user to provide a valid, non-empty text. This process continues until the function receives a valid input.
+******
+******
+File name: updated_user_input_setup.py
+Content: This Python script (~updated_user_input_setup.py) consists of a 'get_user_input' function. The function prompts the user to input the text for the text-to-speech conversion. It ensures that the user input is non-null and non-empty by removing leading and trailing whitespaces from the user input. If the input is null or only contains whitespaces, the function requests the user to input a valid, non-empty text. This process will keep repeating until a valid input is received.
+******
+******
+File name: updated_user_input_setup.py
+Content: The Python script (~updated_user_input_setup.py) confirms the implementation of the 'get_user_input' function. This function endlessly prompts the user to input text for the text-to-speech conversion process. The user's text input should not be null and should not contain only whitespace. If the text input does not meet these requirements, the function will print an error message requesting valid, non-empty and non-null input, and ask for the user's text input again.
+******
+******
+File name: None
+Content: No new code file provided, no additional documentation to generate.
+******
+******
+File name: None
+Content: No new code file has been provided. As such, no additional documentation has been generated at this time.
+******
+******
+File name: None
+Content: There is no code to document at this instance because the file name and content are not provided.
+******
+******
+File name: None
+Content: No task was given to produce or develop new software or a piece of code. The task requires information gathering about the software to be developed. There is no new piece of code or software, hence, no documentation produced.
+******
+******
+File name: None
+Content: No documentation available as there's no change in the code base.
+******
+******
+File name: None
+Content: No new code file provided, no additional documentation to generate.
+******
+******
+File name: import_lib.py
+Content: This Python script (~import_lib.py) imports the gTTS (Google Text-to-Speech) library which will be used to develop our text-to-speech software. This library enables text to be converted into speech and saved as audio files.
+******
+******
+File name: text_to_speech.py
+Content: The Python file (~text_to_speech.py) sets the foundation for a function named 'text_to_speech' that is meant to convert an input text into speech. The function is currently empty as its functionality is yet to be implemented.
+******
+******
+File name: text_to_speech.py
+Content: The Python script (~text_to_speech.py) now includes a completed 'text_to_speech' function that can convert a given input text into speech using the Google Text-to-Speech (gTTS) library. This function saves the converted speech as an mp3 file and plays the file using the MPG123 unix-based system command. The function currently assumes that the operating system is unix-based.
+******
+******
+File name: voice_modulation_script.py
+Content: This Python script (~voice_modulation_script.py) includes a function 'modulate_voice(audio_file)' that accepts an audio file as input and adjusts its pitch and speed using the pydub library. This function is currently equipped with placeholder values for pitch and speed change, the modification of which will make the input audio file sound like the voice samples at a predetermined path. The modulated audio file is saved in the 'output' directory and the path to this new audio file is returned by the function.
+******
+******
+File name: fetch_audio_files.py
+Content: ile name: fetch_audio_files.py
+Syntax: fetch_audio_files(folder)
+Description: This is a Python function that reads file data to ensure that files are indeed audio files and returns a list of valid audio file paths from a specified directory. The 'os' and 'wave' Python libraries are utilized to access the directory and fetch valid '.wav' audio files.
+******
+******
+File name: extract_features.py
+Content: ile name: extract_features.py
+Syntax: extract_features(audio_files)
+Description: This is a Python function designed to extract MFCC (Mel-frequency cepstral coefficients) features from audio files. It uses the librosa library to load audio files and calculate their MFCCs, storing these in a dictionary keyed by file path, which it then returns.
+******
+******
+File name: dataset_splitter.py
+Content: ile name: dataset_splitter.py
+Syntax: split_data(features, labels, test_size=0.2, random_state=42)
+Description: This is a Python function that divides a given dataset into training and validation sets. It accepts features and labels along with optional test size and random state as inputs. It uses sklearn's train_test_split function to split data based on the provided or default test size and random state. The function returns four arrays - training data, validation data, training labels, and validation labels.
+******
+******
+File name: None
+Content: ile name: None
+Syntax: None
+Description: No new code file was provided for documentation.
+******
+File name: dataset_splitter.py
+Content: ile name: dataset_splitter.py
+Syntax: split_data(features, labels, test_size=0.2, random_state=42)
+Description: This Python script contains a function named split_data, that uses the input parameters 'features', 'labels', an optional parameter 'test_size' with a default value of 0.2, and 'random_state' with a default value of 42. The function uses these inputs to split a given dataset into a training set and a validation set by leveraging sklearn's train_test_split function. The function returns four arrays - training data (X_train), validation data (X_test), training labels (y_train), and validation labels (y_test).
+******
+******
+File name: None
+Content: ile name: None
+Syntax: None
+Description: No new code file was provided for documentation. The implementation of 'split_data' function as per the 'dataset_splitter.py' file was found to be correct as per the given requirements. Currently, there are no updates or changes needed for this function.
+******
+******
+File name: None
+Content: ile name: None
+Syntax: None
+Description: No new code file was provided for this documentation.
+******
+******
+File name: fetch_html_element.py
+Content: ile name: fetch_html_element.py
+Syntax: fetch_html_element(url: str, tag: str, attribute: str, value: str)
+Description: This Python script uses BeautifulSoup and Requests libraries to fetch an HTML webpage specified by a URL. It prints out the contents (tag name, attributes, and text) of an HTML element specified by its tag name and an attribute-value pair. The parameters include a placeholder URL, an HTML element (tag), and an attribute-value pair.
+******
+******
+File name: fetch_html_details.py
+Content: ile name: fetch_html_details.py
+Syntax: fetch_and_print_element_details(url: str, tag_name: str, attr_value: dict)
+Description: This Python script fetches a webpage using Requests library, parses the HTML using BeautifulSoup, and prints out the contents (tag name, attributes, and text) of an HTML element that matches the provided tag name and attribute-value pair. If no such element is found, it prints a message stating that. All tasks are performed within a try-except block to handle potential errors such as network issues or invalid inputs. 
+******
+******
+File name: fetch_html_element.py
+Content: ile name: fetch_html_element.py
+Syntax: (Not applicable. File contents not provided)
+Description: (Not applicable. File contents not provided)
+******
+******
+File name: fetch_html_element.py
+Content: ile name: fetch_html_element.py
+Syntax: fetch_html_element(url: str, tag: str, attribute: str, value: str)
+Description: This Python function fetches a webpage from a provided URL, then parses the page using BeautifulSoup. It locates an HTML element matching the given tag name and attribute-value pair. When such an element is found, the function prints its tag name, attributes, and text. If there is no such element, a corresponding message is printed. In the event of a failure, such as a network request error, the function also outputs the encountered error.
+******
+******
+File name: process_input_text.py
+Content: ile name: process_input_text.py
+Syntax: process_text(user_input)
+Description: This Python file contains a function 'process_text' that accepts a user input of string type. It removes unnecessary characters and punctuation, converts the text to lowercase, and splits words into smaller chunks. The function returns a list of these chunks.
+******
+******
+File name: tts_model_setup.py
+Content: ile name: tts_model_setup.py
+Syntax: create_tts_model(input_shape)
+Description: This Python script defines a TensorFlow model suitable for text-to-speech conversion. The "create_tts_model" function generates a Keras Sequential model with multiple Conv1D, LSTM, and Dense layers. The model is then compiled with Mean Squared Error (MSE) as the loss function and the Adam optimization algorithm. This code does not yet include model training.
+******
+******
+File name: add_numbers.py
+Content: ile name: add_numbers.py
+Syntax: add_numbers(a: int, b: int) -> int
+Description: A Python function that accepts two integers as input and returns their sum.
+******
+******
+File name: arithmetic_operations.py
+Content: ile name: arithmetic_operations.py
+Syntax: add_numbers(a: int, b: int) -> int
+Description: The function 'add_numbers' in this script takes two integers as arguments and returns their sum.
+******
+******
+File name: arithmetic_operations.py
+Content: ile name: arithmetic_operations.py
+Syntax: add_numbers(a: int, b: int) -> int
+Description: A function that takes in two integers, 'a' and 'b', and returns their sum.
+******
+******
+File name: arithmetic_operations.py
+Content: ile name: arithmetic_operations.py
+Syntax: add_numbers(num1, num2)
+Description: This Python file contains the function 'add_numbers'. It takes two numeric inputs, 'num1' and 'num2', and returns the sum of these two numbers.
+******
+******
+File name: data_processing_script.py
+Content: ile name: data_processing_script.py
+Syntax: 
+```python
+def data_extraction_processing(data):
+def extract_data(data):
+def process_data(data):
+```
+Description: This Python script contains three functions: 'data_extraction_processing', 'extract_data', and 'process_data'. The 'data_extraction_processing' function serves to extract necessary data and process it. The 'extract_data' function, intended for data extraction, and 'process_data' function, designed for data processing, are currently placeholders as the specific logic is yet to be implemented.
+******
+******
+File name: access_directory.py
+Content: ile name: access_directory.py
+Syntax: Not applicable as there are no explicit functions in this code.
+Description: This Python script accesses the directory located at "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" and lists all files within this directory, particularly the voice samples. In case the directory does not exist, it handles the 'FileNotFoundError' exception by assigning an empty list to 'voice_samples'.
+******
+******
+File name: recognize_samples_script.py
+Content: ile name: recognize_samples_script.py
+Syntax: 
+```python
+def check_voice_directory():
+def fetch_voice_samples():
+def list_samples():
+```
+Description: This Python script checks if a specific voice directory exists, lists all voice samples in the directory if it does exist, and prints all voice samples. If the directory does not exist, it prints "Voice directory doesn't exist.". If no voice samples are found, it prints "No voice samples found.".
+******
+******
+File name: arrange_samples_script.py
+Content: ile name: arrange_samples_script.py
+Syntax: 
+```python
+def check_voice_directory():
+def fetch_voice_samples():
+def arrange_samples():
+```
+Description: This Python script checks if a specific directory exists and fetches all voice samples from it. These samples are then arranged in a list for easier processing. If the voice directory doesn't exist, it prints an appropriate error message. If no voice samples are found, an additional error message is provided.
+******
+******
+File name: arrange_samples_script.py
+Content: ile name: arrange_samples_script.py
+Syntax: arrange_samples(sample_dict: dict) -> dict
+Description: The Python script (~arrange_samples_script.py) includes a function named 'arrange_samples', which takes a dictionary as input. The dictionary should contain string keys (labels) and a list of integers being sample IDs. The function arranges the samples based on these labels in ascending order and returns a new dictionary with the same labels and sorted lists.
+******
+******
+File name: arrange_samples_script.py
+Content: ile name: arrange_samples_script.py
+Syntax: arrange_samples(dict_input: dict) -> dict
+Description: The script includes one function, 'arrange_samples', which accepts a dictionary as an input. It processes each key-value pair of the dictionary and rearranges the elements of the 'values' list in ascending order. It then returns a new dictionary with sorted lists.
+******
+******
+File name: arrange_samples_script.py
+Content: ile name: arrange_samples_script.py
+Syntax: pull_additional_samples(db_names: list, label: str) -> dict
+Description: This additional function in the script (arrange_samples_script.py) named 'pull_additional_samples' takes a list of database names and a label. It returns a dictionary wherein each database name is a key associated with a list of five range values as a placeholder for sample data.
+******
+******
+File name:  read_data.py
+Content: e: read_data.py
+******
+Syntax: read_file(file_path: str, file_extension: str) -> pandas.DataFrame
+Description: Function 'read_file' in this file accepts two parameters - the path to the file and the extension of the file (.csv, .xls, .xlsx, .txt). Based on the file extension, it reads the data from the file into a pandas DataFrame and returns it. If the file extension is not supported, it prints an error and returns None.
+******
+******
+File name: None
+Content: one
+Message: I understand your instructions, and I will follow accordingly. As per the current task, we will create a function 'treat_data' that accepts a dataframe and handles missing values, outliers, and typos. However, before that, there is no fetched file. Post the task, the documentation will be managed as per the given format containing file name, syntax, and the file's function.
+File name: None
+Code: 
+```python
+# Code will be written according to the given task
+```
+******
+File name: url_input_script.py
+Content: ser_documentation.txt
+Message: Adding the documentation for the new code file.
+
+******
+
+File name: url_input_script.py
+Syntax: 
+- url_input() - syntax: url_input(); output: list of URLs; inputs: none (but expects user to input URLs when prompted).
+- main() - syntax: main(); input: none; output: none (but will print URLs entered by user for confirmation).
+
+Description: This script accepts multiple URLs from the user and stores them. It can be run independently to check its functionality. It will keep accepting URLs until the user enters 'q' to quit. When run, it will prompt the user for URLs, store them, and then print all the entered URLs for confirmation.
+
+******
+******
+File name: user_documentation.txt
+Content: one
+Message: Got it. I'm now going to generate a user_documentation.txt file to include all necessary details.
+File name: user_documentation.txt
+Documentation: 
+```
+******
+File name: get_user_input.py
+Syntax: get_name()
+Description: This Python function prompts a user for their name as input and returns the entered name.
+******
+```
+******
+File name: list_audio_files.p
+Content: one
+Message: I am now making the necessary adjustments to the script. 
+Code:
+```python
+import os, glob
+
+def check_directory_and_list_files(path):
+    files = []
+    if os.path.exists(path):
+        if os.listdir(path): # if directory is not empty
+            for root, dirs, filenames in os.walk(path):
+                for filename in filenames:
+                    if filename.endswith('.ogg'): 
+                        files.append(os.path.join(root, filename))
+            return files
+        else:
+            return 'Directory exists but is empty.'
+    else:
+        return 'Path does not exist.'
+
+path = 'C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09'
+check_directory_and_list_files(path)
+```
+File name: list_audio_files.py
+******
+File name: access_directory_script.py
+Content: e: access_directory_script.py
+Syntax: get_ogg_files(directory_path: str) -> Union[List[str], None]
+Description: The Python script (~access_directory_script.py) introduces a function 'get_ogg_files'. This function checks the existence of a specified directory. If the directory exists, it checks for files with the extension '.ogg', records their absolute paths, and returns a list of these paths. If the specified directory does not exist, it returns 'None'.
+******
+
+
+01:
+Fetch: None
+Message: I understand the responsibilities. I'll provide code following the given instructions and provide every response with the 'Fetch', 'Message', 'File name', and 'Code' details in this order. I've kept note that the final paths are not yet confirmed, hence, I'm withholding from executing the code.
+File name: None
+Code: 
+```python
+# There is no code to provide at this time.
+```
+Contents of None
+No file requestedCurrent documentation stored in user_documentation.txt:
+File name: extract_phonetic_data.py
+Content: This script includes a placeholder function named "extract_phonetic_data" intended for phonetic data extraction from .wav files. It takes a file path as its argument, but currently it only returns a dummy phonetic symbol as the actual extraction has not been implemented yet.
+******
+
+******
+File name: access_directory_script.py
+Content: This is a Python script (~access_directory_script.py) for accessing the directory located at "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09". When run, it checks if the specified directory exists and returns a confirmation message.
+******
+******
+File name: extract_phonetic_data.py
+Content: This Python script (~extract_phonetic_data.py) houses the 'extract_sound_samples' function, to isolate phonetic data from the provided .wav file. Currently, the function only opens the file and the actual extraction process has not been implemented yet. The file opening process includes error handling and will raise a custom 'FileOpeningError' located in the "exceptions.py" script if any issues occur.
+******
+
+******
+File name: exceptions.py
+Content: This Python file (~exceptions.py) includes a custom exception class 'FileOpeningError'. This exception is thrown when there are errors opening files, such as the file not being found or other input-output problems.
+******
+
+******
+File name: extract_phonetic_data.py
+Content: The Python script (~extract_phonetic_data.py) now imports the defined exceptions and includes improved error handling. In the function 'extract_sound_samples' if the file does not exist or there are input-output issues while opening the file, a 'FileOpeningError' is raised. However, the function is yet to include the logic to process and extract sound samples.
+******
+******
+File name: extract_phonetic_data.py
+Content: The script (~extract_phonetic_data.py) features an updated extract_sound_samples() function, now able to process and isolate phonetic sounds from files using the 'librosa' library. This includes processing the audio file, converting to mono, and splitting it into frames. A spectral centroid value is calculated for each frame, and any frames with a higher value are stored as 'phonetic_sounds'. The function raises a 'FileOpeningError' for error related to file opening and a 'SoundProcessingError' if any other exceptions occur during sound processing.
+******
+******
+File name: user_input_setup.py
+Content: The Python script (~user_input_setup.py) enables user input for a text-to-speech conversion program. Users can enter any text they want to convert to speech. Currently, it does not handle punctuation and special characters in input text. It uses a simple input() function to get the input from the user.
+******
+******
+File name: user_input_setup.py
+Content: This Python script (~user_input_setup.py) introduces a function named "get_user_input", which prompts users to enter the text they wish to convert to speech. It returns the text as is, without sanitizing any punctuation or special characters.
+******
+******
+File name: user_input_setup.py
+Content: This code encompasses the user-input portion of a text-to-speech conversion system. Located at ~user_input_setup.py, it incorporates the get_user_input function that prompts users for text input, which will be utilized subsequently for conversion to speech in the main script. This function currently does not handle input sanitization of punctuation or special characters. Moreover, it is intended for future improvement to integrate validation and cleaning of input text.
+******
+******
+File name: user_input_setup.py
+Content: This Python script (~user_input_setup.py) includes a function 'get_user_input' that prompts the user for a text input which is intended to be converted into speech. Currently, it does not sanitize punctuation and special characters from the user's input. The file is intended to be updated with a 'clean_input' function for cleaning user inputs from any punctuation and special characters using the 'sub' function from Python's 're' module.
+******
+******
+File name: sanitized_user_input.py
+Content: This Python script (~sanitized_user_input.py) includes the 'get_user_input' function that prompts the user to enter text to be converted into speech. The user input is then sanitized of punctuation and special characters by the 'clean_input' helper function using the 'sub' function from Python's 're' module. As a result, the function returns cleaned and sanitized text.
+******
+******
+File name: user_input_setup.py
+Content: This Python script (~user_input_setup.py) presents an updated version of the 'get_user_input' function. It prompts the users to enter some text and returns it after verifying that it is neither empty nor null. It keeps on soliciting input from the user until a valid text input is provided.
+******
+******
+File name: modified_user_input_setup.py
+Content: This Python script (~modified_user_input_setup.py) introduces a modified 'get_user_input' function. The function continues to prompt users for input until they provide a valid, non-empty string. The string is then checked for whitespace, and an error message "Invalid input. Please enter a non-empty text." is displayed if the input is either empty or consists only of whitespace. 
+******
+******
+File name: user_input_setup.py
+Content: This Python script (~user_input_setup.py) includes an updated 'get_user_input' function. The function prompts users to enter text to be converted to speech. It now includes a check for non-empty and non-null inputs, displaying an error message instructing them to enter non-empty and non-null text if such inputs are provided until it receives valid inputs.
+******
+******
+File name: updated_user_input_setup.py
+Content: This Python script (~updated_user_input_setup.py) includes the revised 'get_user_input' function. The function prompts the user to enter text for text-to-speech conversion. The function now checks for non-null and non-empty inputs by stripping whitespace from the user input. If the input is null or empty after stripping whitespaces, the function displays an error message asking the user to provide a non-empty and non-null text. This input solicitation lasts until the function receives a valid input.
+******
+******
+File name: updated_user_input_setup.py
+Content: This Python script (~updated_user_input_setup.py) contains the function 'get_user_input' which prompts the user to enter text for the text-to-speech conversion. It ensures that user input is non-null and non-empty by removing leading and trailing whitespaces from the user input. If the input is null or only contained whitespaces, the function asks the user to provide a valid, non-empty text. This process continues until the function receives a valid input.
+******
+******
+File name: updated_user_input_setup.py
+Content: This Python script (~updated_user_input_setup.py) consists of a 'get_user_input' function. The function prompts the user to input the text for the text-to-speech conversion. It ensures that the user input is non-null and non-empty by removing leading and trailing whitespaces from the user input. If the input is null or only contains whitespaces, the function requests the user to input a valid, non-empty text. This process will keep repeating until a valid input is received.
+******
+******
+File name: updated_user_input_setup.py
+Content: The Python script (~updated_user_input_setup.py) confirms the implementation of the 'get_user_input' function. This function endlessly prompts the user to input text for the text-to-speech conversion process. The user's text input should not be null and should not contain only whitespace. If the text input does not meet these requirements, the function will print an error message requesting valid, non-empty and non-null input, and ask for the user's text input again.
+******
+******
+File name: None
+Content: No new code file provided, no additional documentation to generate.
+******
+******
+File name: None
+Content: No new code file has been provided. As such, no additional documentation has been generated at this time.
+******
+******
+File name: None
+Content: There is no code to document at this instance because the file name and content are not provided.
+******
+******
+File name: None
+Content: No task was given to produce or develop new software or a piece of code. The task requires information gathering about the software to be developed. There is no new piece of code or software, hence, no documentation produced.
+******
+******
+File name: None
+Content: No documentation available as there's no change in the code base.
+******
+******
+File name: None
+Content: No new code file provided, no additional documentation to generate.
+******
+******
+File name: import_lib.py
+Content: This Python script (~import_lib.py) imports the gTTS (Google Text-to-Speech) library which will be used to develop our text-to-speech software. This library enables text to be converted into speech and saved as audio files.
+******
+******
+File name: text_to_speech.py
+Content: The Python file (~text_to_speech.py) sets the foundation for a function named 'text_to_speech' that is meant to convert an input text into speech. The function is currently empty as its functionality is yet to be implemented.
+******
+******
+File name: text_to_speech.py
+Content: The Python script (~text_to_speech.py) now includes a completed 'text_to_speech' function that can convert a given input text into speech using the Google Text-to-Speech (gTTS) library. This function saves the converted speech as an mp3 file and plays the file using the MPG123 unix-based system command. The function currently assumes that the operating system is unix-based.
+******
+******
+File name: voice_modulation_script.py
+Content: This Python script (~voice_modulation_script.py) includes a function 'modulate_voice(audio_file)' that accepts an audio file as input and adjusts its pitch and speed using the pydub library. This function is currently equipped with placeholder values for pitch and speed change, the modification of which will make the input audio file sound like the voice samples at a predetermined path. The modulated audio file is saved in the 'output' directory and the path to this new audio file is returned by the function.
+******
+******
+File name: fetch_audio_files.py
+Content: ile name: fetch_audio_files.py
+Syntax: fetch_audio_files(folder)
+Description: This is a Python function that reads file data to ensure that files are indeed audio files and returns a list of valid audio file paths from a specified directory. The 'os' and 'wave' Python libraries are utilized to access the directory and fetch valid '.wav' audio files.
+******
+******
+File name: extract_features.py
+Content: ile name: extract_features.py
+Syntax: extract_features(audio_files)
+Description: This is a Python function designed to extract MFCC (Mel-frequency cepstral coefficients) features from audio files. It uses the librosa library to load audio files and calculate their MFCCs, storing these in a dictionary keyed by file path, which it then returns.
+******
+******
+File name: dataset_splitter.py
+Content: ile name: dataset_splitter.py
+Syntax: split_data(features, labels, test_size=0.2, random_state=42)
+Description: This is a Python function that divides a given dataset into training and validation sets. It accepts features and labels along with optional test size and random state as inputs. It uses sklearn's train_test_split function to split data based on the provided or default test size and random state. The function returns four arrays - training data, validation data, training labels, and validation labels.
+******
+******
+File name: None
+Content: ile name: None
+Syntax: None
+Description: No new code file was provided for documentation.
+******
+File name: dataset_splitter.py
+Content: ile name: dataset_splitter.py
+Syntax: split_data(features, labels, test_size=0.2, random_state=42)
+Description: This Python script contains a function named split_data, that uses the input parameters 'features', 'labels', an optional parameter 'test_size' with a default value of 0.2, and 'random_state' with a default value of 42. The function uses these inputs to split a given dataset into a training set and a validation set by leveraging sklearn's train_test_split function. The function returns four arrays - training data (X_train), validation data (X_test), training labels (y_train), and validation labels (y_test).
+******
+******
+File name: None
+Content: ile name: None
+Syntax: None
+Description: No new code file was provided for documentation. The implementation of 'split_data' function as per the 'dataset_splitter.py' file was found to be correct as per the given requirements. Currently, there are no updates or changes needed for this function.
+******
+******
+File name: None
+Content: ile name: None
+Syntax: None
+Description: No new code file was provided for this documentation.
+******
+******
+File name: fetch_html_element.py
+Content: ile name: fetch_html_element.py
+Syntax: fetch_html_element(url: str, tag: str, attribute: str, value: str)
+Description: This Python script uses BeautifulSoup and Requests libraries to fetch an HTML webpage specified by a URL. It prints out the contents (tag name, attributes, and text) of an HTML element specified by its tag name and an attribute-value pair. The parameters include a placeholder URL, an HTML element (tag), and an attribute-value pair.
+******
+******
+File name: fetch_html_details.py
+Content: ile name: fetch_html_details.py
+Syntax: fetch_and_print_element_details(url: str, tag_name: str, attr_value: dict)
+Description: This Python script fetches a webpage using Requests library, parses the HTML using BeautifulSoup, and prints out the contents (tag name, attributes, and text) of an HTML element that matches the provided tag name and attribute-value pair. If no such element is found, it prints a message stating that. All tasks are performed within a try-except block to handle potential errors such as network issues or invalid inputs. 
+******
+******
+File name: fetch_html_element.py
+Content: ile name: fetch_html_element.py
+Syntax: (Not applicable. File contents not provided)
+Description: (Not applicable. File contents not provided)
+******
+******
+File name: fetch_html_element.py
+Content: ile name: fetch_html_element.py
+Syntax: fetch_html_element(url: str, tag: str, attribute: str, value: str)
+Description: This Python function fetches a webpage from a provided URL, then parses the page using BeautifulSoup. It locates an HTML element matching the given tag name and attribute-value pair. When such an element is found, the function prints its tag name, attributes, and text. If there is no such element, a corresponding message is printed. In the event of a failure, such as a network request error, the function also outputs the encountered error.
+******
+******
+File name: process_input_text.py
+Content: ile name: process_input_text.py
+Syntax: process_text(user_input)
+Description: This Python file contains a function 'process_text' that accepts a user input of string type. It removes unnecessary characters and punctuation, converts the text to lowercase, and splits words into smaller chunks. The function returns a list of these chunks.
+******
+******
+File name: tts_model_setup.py
+Content: ile name: tts_model_setup.py
+Syntax: create_tts_model(input_shape)
+Description: This Python script defines a TensorFlow model suitable for text-to-speech conversion. The "create_tts_model" function generates a Keras Sequential model with multiple Conv1D, LSTM, and Dense layers. The model is then compiled with Mean Squared Error (MSE) as the loss function and the Adam optimization algorithm. This code does not yet include model training.
+******
+******
+File name: add_numbers.py
+Content: ile name: add_numbers.py
+Syntax: add_numbers(a: int, b: int) -> int
+Description: A Python function that accepts two integers as input and returns their sum.
+******
+******
+File name: arithmetic_operations.py
+Content: ile name: arithmetic_operations.py
+Syntax: add_numbers(a: int, b: int) -> int
+Description: The function 'add_numbers' in this script takes two integers as arguments and returns their sum.
+******
+******
+File name: arithmetic_operations.py
+Content: ile name: arithmetic_operations.py
+Syntax: add_numbers(a: int, b: int) -> int
+Description: A function that takes in two integers, 'a' and 'b', and returns their sum.
+******
+******
+File name: arithmetic_operations.py
+Content: ile name: arithmetic_operations.py
+Syntax: add_numbers(num1, num2)
+Description: This Python file contains the function 'add_numbers'. It takes two numeric inputs, 'num1' and 'num2', and returns the sum of these two numbers.
+******
+******
+File name: data_processing_script.py
+Content: ile name: data_processing_script.py
+Syntax: 
+```python
+def data_extraction_processing(data):
+def extract_data(data):
+def process_data(data):
+```
+Description: This Python script contains three functions: 'data_extraction_processing', 'extract_data', and 'process_data'. The 'data_extraction_processing' function serves to extract necessary data and process it. The 'extract_data' function, intended for data extraction, and 'process_data' function, designed for data processing, are currently placeholders as the specific logic is yet to be implemented.
+******
+******
+File name: access_directory.py
+Content: ile name: access_directory.py
+Syntax: Not applicable as there are no explicit functions in this code.
+Description: This Python script accesses the directory located at "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" and lists all files within this directory, particularly the voice samples. In case the directory does not exist, it handles the 'FileNotFoundError' exception by assigning an empty list to 'voice_samples'.
+******
+******
+File name: recognize_samples_script.py
+Content: ile name: recognize_samples_script.py
+Syntax: 
+```python
+def check_voice_directory():
+def fetch_voice_samples():
+def list_samples():
+```
+Description: This Python script checks if a specific voice directory exists, lists all voice samples in the directory if it does exist, and prints all voice samples. If the directory does not exist, it prints "Voice directory doesn't exist.". If no voice samples are found, it prints "No voice samples found.".
+******
+******
+File name: arrange_samples_script.py
+Content: ile name: arrange_samples_script.py
+Syntax: 
+```python
+def check_voice_directory():
+def fetch_voice_samples():
+def arrange_samples():
+```
+Description: This Python script checks if a specific directory exists and fetches all voice samples from it. These samples are then arranged in a list for easier processing. If the voice directory doesn't exist, it prints an appropriate error message. If no voice samples are found, an additional error message is provided.
+******
+******
+File name: arrange_samples_script.py
+Content: ile name: arrange_samples_script.py
+Syntax: arrange_samples(sample_dict: dict) -> dict
+Description: The Python script (~arrange_samples_script.py) includes a function named 'arrange_samples', which takes a dictionary as input. The dictionary should contain string keys (labels) and a list of integers being sample IDs. The function arranges the samples based on these labels in ascending order and returns a new dictionary with the same labels and sorted lists.
+******
+******
+File name: arrange_samples_script.py
+Content: ile name: arrange_samples_script.py
+Syntax: arrange_samples(dict_input: dict) -> dict
+Description: The script includes one function, 'arrange_samples', which accepts a dictionary as an input. It processes each key-value pair of the dictionary and rearranges the elements of the 'values' list in ascending order. It then returns a new dictionary with sorted lists.
+******
+******
+File name: arrange_samples_script.py
+Content: ile name: arrange_samples_script.py
+Syntax: pull_additional_samples(db_names: list, label: str) -> dict
+Description: This additional function in the script (arrange_samples_script.py) named 'pull_additional_samples' takes a list of database names and a label. It returns a dictionary wherein each database name is a key associated with a list of five range values as a placeholder for sample data.
+******
+******
+File name:  read_data.py
+Content: e: read_data.py
+******
+Syntax: read_file(file_path: str, file_extension: str) -> pandas.DataFrame
+Description: Function 'read_file' in this file accepts two parameters - the path to the file and the extension of the file (.csv, .xls, .xlsx, .txt). Based on the file extension, it reads the data from the file into a pandas DataFrame and returns it. If the file extension is not supported, it prints an error and returns None.
+******
+******
+File name: None
+Content: one
+Message: I understand your instructions, and I will follow accordingly. As per the current task, we will create a function 'treat_data' that accepts a dataframe and handles missing values, outliers, and typos. However, before that, there is no fetched file. Post the task, the documentation will be managed as per the given format containing file name, syntax, and the file's function.
+File name: None
+Code: 
+```python
+# Code will be written according to the given task
+```
+******
+File name: url_input_script.py
+Content: ser_documentation.txt
+Message: Adding the documentation for the new code file.
+
+******
+
+File name: url_input_script.py
+Syntax: 
+- url_input() - syntax: url_input(); output: list of URLs; inputs: none (but expects user to input URLs when prompted).
+- main() - syntax: main(); input: none; output: none (but will print URLs entered by user for confirmation).
+
+Description: This script accepts multiple URLs from the user and stores them. It can be run independently to check its functionality. It will keep accepting URLs until the user enters 'q' to quit. When run, it will prompt the user for URLs, store them, and then print all the entered URLs for confirmation.
+
+******
+******
+File name: user_documentation.txt
+Content: one
+Message: Got it. I'm now going to generate a user_documentation.txt file to include all necessary details.
+File name: user_documentation.txt
+Documentation: 
+```
+******
+File name: get_user_input.py
+Syntax: get_name()
+Description: This Python function prompts a user for their name as input and returns the entered name.
+******
+```
+******
+File name: list_audio_files.p
+Content: one
+Message: I am now making the necessary adjustments to the script. 
+Code:
+```python
+import os, glob
+
+def check_directory_and_list_files(path):
+    files = []
+    if os.path.exists(path):
+        if os.listdir(path): # if directory is not empty
+            for root, dirs, filenames in os.walk(path):
+                for filename in filenames:
+                    if filename.endswith('.ogg'): 
+                        files.append(os.path.join(root, filename))
+            return files
+        else:
+            return 'Directory exists but is empty.'
+    else:
+        return 'Path does not exist.'
+
+path = 'C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09'
+check_directory_and_list_files(path)
+```
+File name: list_audio_files.py
+******
+File name: access_directory_script.py
+Content: e: access_directory_script.py
+Syntax: get_ogg_files(directory_path: str) -> Union[List[str], None]
+Description: The Python script (~access_directory_script.py) introduces a function 'get_ogg_files'. This function checks the existence of a specified directory. If the directory exists, it checks for files with the extension '.ogg', records their absolute paths, and returns a list of these paths. If the specified directory does not exist, it returns 'None'.
+******
+File name: updated_access_directory_script.py
+Content: e: updated_access_directory_script.py
+Syntax: get_ogg_file_count(directory_path: str) -> Union[int, None]
+Description: The Python script (~updated_access_directory_script.py) introduces the function 'get_ogg_file_count'. It checks if a specified directory exists. If the directory does exist, it determines the number of '.ogg' files in the directory and returns this count. In case the directory does not exist, the function returns 'None'.
 ******
 
 
