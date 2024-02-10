@@ -27,18 +27,18 @@ def request(id, usercontent, send):
 
         user_message = {"role": "user", "content": completion.choices[0].message.content}
         postbox["logmessages"] = logmessages + [user_message]  # Create a new list with the user message appended
-        with open('conversation.txt', 'a') as conversation:
+        with open('conversation.txt', 'a',encoding="utf-8") as conversation:
             conversation.write(id +':\n' + completion.choices[0].message.content + '\n')
 
-        with open(f'{id}_output.txt', 'a') as id_conversation:
+        with open(f'{id}_output.txt', 'a',encoding="utf-8") as id_conversation:
             id_conversation.write(id +':\n' + completion.choices[0].message.content + '\n')
             id_conversation.close()
-        with open(f'{id}_input.txt', 'a') as id_conversation:
+        with open(f'{id}_input.txt', 'a',encoding="utf-8") as id_conversation:
             id_conversation.write(id +':\n' + usercontent + '\n')
             id_conversation.close()
         postbox[id]["cachedmessage"] = completion.choices[0].message.content
 
-        with open(postbox_path, 'w') as json_file:
+        with open(postbox_path, 'w',encoding="utf-8") as json_file:
             json.dump(postbox, json_file, indent=3)
         
         return completion.choices[0].message.content

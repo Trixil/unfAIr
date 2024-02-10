@@ -172,8 +172,12 @@ while True:
             content_start = input_text.find("Content: ") + len("Content: ")
             content = input_text[content_start:]
 
+            output_files = os.listdir('output')
 
-            update_documentation(file_name, content)
+            if(fetch_file_name in output_files):
+                update_documentation(file_name, content)
+            else:
+                overseer_instruction += '\nCould not find fetched file. Please make sure the requested file was listed in user_documentation.txt\n'
 
             if(unnamed_code_flag == 1):
                 with open(output_dir + file_name, 'w') as wizardcode:

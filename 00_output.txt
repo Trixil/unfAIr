@@ -1,9 +1,19 @@
 00:
-01: Data Extraction and Sound Processing 
-Instructions:  You are to locate and extract the sound samples from the specified directory (C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09). As samples are found, write a script to convert these to a suitable format (such as WAV or MP3) if they are not already. Your script should store all converted audio files in clearly labelled directories corresponding to the character's voice the samples represent.
+01: Digital Signal Processing, Voice Sampling & Analysis
+Instructions: Your task revolves around the creation of a voice sampling module. Start by writing a Python script that can process all of the character's voice files located in C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. Your code should be able to:
 
-02: Text to Speech Processing
-Instructions: Your responsibility is to build a text-to-speech processing engine that will translate the user's text inputs into synthesized vocal outputs. Create the scripts necessary for the text-to-speech process, make sure the script can categorize words into phonetic components and it should be able to make use of the voice samples from the voice directory in order to learn and mimic the particular character's voice.
+1. Open and read the audio files in the provided folder.
+2. Break down each audio file into smaller segments and assign a phonetic transcription to each segment using an existing library (like CMU Sphinx).
+3. Analyze and store the pitch, inflection, and speed of the sample speech for each phonetic segment.
+4. Output the results of your analysis in a structured text or binary file (such as CSV, JSON, or Pickle) for easy retrieval and use by 02.
 
-Next Stage:
-01 and 02 will have the scripts provided combined with executable instructions given to the user. The final product should be a script that uses the voice samples to produce the text to speech output in a specific character's voice. All scripts generated both by 01 and 02 will be reviewed for completeness, and then further instructions will be given if necessary.
+02: Text to Speech Synthesis
+Instructions: Your role involves creating a text to speech module that can synthesize speech in the character's voice. Write a Python script that:
+
+1. Takes input text from the user.
+2. Breaks down the user text into phonetic segments using a library such as CMU Sphinx or NLTK.
+3. Matches each phonetic segment from the user's text to the closest matching segment in 01's analysis file.
+4. Pieces together the appropriate voice samples to create a full speech snippet in the character's voice and style.
+5. Outputs the resulting synthesized speech to an audio file, maintaining the correct timing, pitch, and inflection as much as possible.
+
+Please note that without a specific AI or Machine Learning model tasked to learn the nuances of the character's voice, results may vary and may not completely mimic the character's voice.

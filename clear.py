@@ -47,31 +47,14 @@ def clear():
     keep_list = ['__pycache__', 'cachedrequests', 'misc', 'clear.py', 'sequencer.py', 'features.txt', 'messenger.py', 'postbox.json', 'user_documentation.txt']
 
     # Get the current directory
-    current_dir = 'output/'
-
+    print(os.path)
     # Get the list of files and directories in the current directory
-    items = os.listdir(current_dir)
+    files = os.listdir('output')
 
-    # Iterate over the items in the directory
-    for item in items:
-        # Check if the item is not in the keep list
-        if item not in keep_list:
-            # If it's a file, delete it
-            if os.path.isfile(item):
-                os.remove(item)
-                print(f"Deleted file: {item}")
-            # If it's a directory, recursively delete it
-            elif os.path.isdir(item):
-                for root, dirs, files in os.walk(item, topdown=False):
-                    for name in files:
-                        os.remove(os.path.join(root, name))
-                        print(f"Deleted file: {os.path.join(root, name)}")
-                    for name in dirs:
-                        os.rmdir(os.path.join(root, name))
-                        print(f"Deleted directory: {os.path.join(root, name)}")
-                os.rmdir(item)
-                print(f"Deleted directory: {item}")
-
+    for file in files:
+        if(file != 'user_documentation.txt'):
+            file_path = os.path.join('output', file)
+            os.remove(file_path)
 
     
 clear()

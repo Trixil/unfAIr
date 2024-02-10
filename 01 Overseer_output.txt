@@ -1,143 +1,18 @@
 01 Overseer:
 To-do:
-1. Locate and extract sound samples from directory (C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09) - Not started.
-2. Write a script to convert these samples to a suitable format (WAV or MP3) if they are not already - Not started.
-3. Store all converted audio files in clearly labelled directories corresponding to the character's voice the samples represent - Not started.
+1. Write a Python script to open and read audio files in C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09 - Not started
+2. Break down each audio file into smaller segments and transcribe them using an existing library like CMU Sphinx - Not started
+3. Analyze and store the pitch, inflection, and speed of the sample speech for each phonetic segment - Not started
+4. Output the results of analysis in a structured text or binary file - Not started
 
 Current instruction for you:
-Please start by writing the necessary code to locate and extract all sound samples from the specified directory (C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09).
+To begin with, please write a Python script that opens and reads the audio files in the provided directory (C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09). Make sure that your script is capable of reading these audio files and ensure file path compatibility. You can use libraries such as os, glob and soundfile for this task.
 01 Overseer:
 To-do:
-1. Locate and extract sound samples from directory (C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09) - Completed.
-2. Write a script to convert these samples to a suitable format (WAV or MP3) if they are not already - Not started.
-3. Store all converted audio files in clearly labelled directories corresponding to the character's voice the samples represent - Not started.
+1. Write a Python script to open and read audio files in C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09 - Completed
+2. Break down each audio file into smaller segments and transcribe them using an existing library like CMU Sphinx - Not started
+3. Analyze and store the pitch, inflection, and speed of the sample speech for each phonetic segment - Not started
+4. Output the results of analysis to a structured text or binary file - Not started
 
 Current instruction for you:
-Please proceed to write the necessary code for the second task: to convert the sound samples to a suitable format (WAV or MP3) if they are not already in that format. Note that you should only write the code since you're unable to execute it. Remember to handle file types other than WAV and MP3 that might have been extracted with the previous script.
-01 Overseer:
-To-do:
-1. Locate and extract sound samples from directory (C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09) - Completed.
-2. Write a script to convert these samples to a suitable format (WAV or MP3) if they are not already - Completed.
-3. Store all converted audio files in clearly labelled directories corresponding to the character's voice the samples represent - Not started.
-
-Current instruction for you:
-You are to create a script that reads the sound samples that we have converted and then stores them in specific directories based on the character's voice the samples represent. Ensure the directories are clearly labelled. Use the os and shutil libraries for directory manipulation. Assumption: the initial part of the filename indicates the character's voice, for instance a sample for character X would be named "X_something.wav". Check if a directory for this character exists, if not, create it. Then move the file to the respective directory.
-01 Overseer:
-Current instruction for you:
-Please verify the code for the third instruction - creating a script to store all converted audio files in clearly labelled directories corresponding to the character's voice the samples represent - Awaiting verification.
-
-Expected Behavior:
-1. The script will change the current working directory to the provided directory path.
-2. It extracts all files in the directory.
-3. It iterates over each file:
-   - It splits the file name using the '_' delimiter and retrieves the first part, which is assumed to represent the character's voice that the audio sample belongs to.
-   - A directory path for the character is created.
-   - If the directory for the character does not exist, the script creates it.
-   - The audio file is moved into the respective character's folder.
-4. Once all files have been sorted, it should print a success message.
-   
-Please validate each of these steps and confirm if they have been implemented correctly.
-
-01 Overseer:
-To-do: 
-1. Fetch and analyze convert_sound_samples.py script (Not started)
-
-Current instruction for you:
-Fetch the 'convert_sound_samples.py' file and provide the code.
-01 Overseer:
-To-do: 
-1. Fetch and analyze convert_sound_samples.py script (In Progress)
-
-Current instruction for you: 
-Analyze the provided Python script and identify its purpose, functionality, and any dependencies it has. Also, check for any errors or issues within the script whether logical or syntax-wise.
-01 Overseer:
-Fetch: convert_sound_samples.py
-Message: I have fetched the convert_sound_samples.py file. Please find the Python script below to analyze its purpose, functionality, dependencies, and to check for any errors or issues within the script.
-
-File name: convert_sound_samples.py
-Code: 
-```python
-# Dependencies
-import numpy as np
-import soundfile as sf
-
-# Load sound file
-def load_sound_file(file):
-    data, samplerate = sf.read(file)
-    return data, samplerate
-
-# Convert sound file
-def convert_sound_file(data, samplerate, output_file):
-    data_2d = np.reshape(data, (-1, 2))
-    sf.write(output_file, data_2d, samplerate)
-```
-I will now proceed to analyze the script.
-01 Overseer:
-To-do:
-1. Analyze the fetched convert_sound_samples.py script (In Progress)
-2. Create a script to convert sound samples to a suitable format if they are not already (Not Started)
-
-Current instruction for you:
-Please evaluate the provided script convert_sound_samples.py and provide a comprehensive analysis of its functionality, dependencies, and possible errors. Make sure the script does the following checks: verify the integrity of input data, handle exceptions, and check for potential dependencies for proper execution.
-01 Overseer:
-Current instruction for you:
-Invalid entry, provide the 'convert_sound_samples.py' file for analysis and then completion of the first task.
-01 Overseer:
-To-do:
-1. Analyze 'convert_sound_samples.py' to ensure its code content uses the PyDub library to convert any audio file in a specific directory to .mp3 format if it's not already in .mp3 or .wav format - Completion status (Completed)
-2. Ensure the original audio file is removed after a successful conversion - Completion status (Completed)
-3. Check if an exception during conversion prints the error message to the console - Completion status (Completed)
-
-Current instruction for you: 
-All tasks have been completed based on the most recent information you provided. 
-
-Since all the tasks in the To-do list have been marked as (Completed), 
-
-**SEND CODE**
-01 Overseer:
-To-do:
-1. Analyze 'convert_sound_samples.py' to ensure its code content uses the PyDub library to convert any audio file in a specific directory to .mp3 format if it's not already in .mp3 or .wav format - Completion status (Completed)
-2. Ensure the original audio file is removed after a successful conversion - Completion status (Completed)
-3. Check if an exception during conversion prints the error message to the console - Completion status (Completed)
-
-Current instruction for you:
-All tasks are already marked as (Completed). You have verified that 'convert_sound_samples.py' uses the PyDub library to convert any audio file in a specific directory to .mp3 format if it's not already in .mp3 or .wav format, that the original audio file is removed after a successful conversion, and the occurrence of an exception during conversion leads to the printing of an error message to the console.
-
-**SEND CODE**
-01 Overseer:
-SEND CODE
-01 Overseer:
-To-do: 
-1. Analyze 'convert_sound_samples.py' - Not started
-2. Modify code if necessary - Not started
-
-Current instruction for you: 
-Fetch 'convert_sound_samples.py' and analyze it.
-01 Overseer:
-To-do: 
-1. Analyze 'convert_sound_samples.py' - Completed
-2. Modify code if necessary - Not started
-
-Current instruction for you: 
-Examine the code for 'convert_sound_samples.py' and determine if it can be improved. For example, should a function be more modular or precise? Should there be more error handling to prevent crashes? Make these improvements if necessary and possible.
-01 Overseer:
-To-do: 
-1. Analyze 'convert_sound_samples.py' - Completed
-2. Modify code if necessary - Completed
-
-Current instruction for you: 
-Verify the functionality of the improved 'convert_sound_samples.py' code. Review the implemented changes detailed earlier - adding function input parameters for directory and output format, and a return value that indicates success and lists error files. Confirm if all changes are correct. If there's an issue, describe the necessary adjustments. If all changes are correct, we will finalize these modifications.
-01 Overseer:
-To-do: 
-1. Analyze 'convert_sound_samples.py' - Completed
-2. Modify code if necessary - Completed
-
-Current instruction for you:
-The provided 'convert_sound_samples_improved.py' implements the desired changes correctly. It does not hardcode the directory path, takes directory path and output format as parameters, and correctly identifies and converts only the files not in .mp3 or .wav format to the desired output format. It also collects all errors during conversion and returns them at the end. You can mark these tasks as completed.
-01 Overseer:
-SEND CODE
-Your current instruction: Verify the functionality of 'convert_sound_samples_improved.py' and confirm the successful implementation of the requirements. 
-
-To-do: 
-1. Analyze 'convert_sound_samples.py' - (Completed)
-2. Modify code if necessary - (Completed)
+Moving on to the next task, I'd like you to amend the above code to break down each audio file into smaller segments and then transcribe these segments using an existing library such as CMU Sphinx. For simplicity, you can start with breaking down the audio into 5 second segments. Please use the pocketsphinx library for the task of transcription. 
