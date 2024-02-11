@@ -1,6 +1,8 @@
 00:
-01: Programmer Role
-Instructions: First, you will need to write a script to access the directory that houses the voice samples. Develop a code to extract the audio files located in C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. You must make sure that the code takes into account all potential error cases, such as the path not existing or there being no files in the directory. 
+01: Voice Conversion
+Instructions: Your task is to create a voice conversion algorithm that takes an input audio file and transforms it into the voice of a character. You should utilize the voice samples located in "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09". The voice conversion should aim to match the character's voice as closely as possible.
 
-02: Machine Learning Developer
-Instructions: Once 01 has successfully written and tested a script that can extract the voice files, your role involves creating a Machine Learning model. Utilize the extracted voice files to input into the model. You should focus on generating a model that can convert the text into speech using the voice samples provided. Remember to put the program into a loop so it can continuously convert text to speech until the user terminates the program. Ensure you include comments in your code for clarity and easier understanding.
+02: Text-to-Speech
+Instructions: Your task is to create a text-to-speech program that uses the voice conversion algorithm created by 01. The program should take input text and convert it into speech using the specified character's voice. The output speech should be saved as an audio file.
+
+Please note that the instructions given to these two LLMs are only a high-level overview of the tasks. Additional details and specific coding instructions will be provided in a separate document.

@@ -1,43 +1,11 @@
 scribe:
-Fetch: None
-Message: I am now making the necessary adjustments to the script. 
-Code:
-```python
-import os, glob
+To-do:
+- Create a voice conversion algorithm to transform audio files into the voice of a character. (In Progress)
+- Utilize voice samples located in "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09". (Not Started)
+- Maintain a documentation file user_documentation.txt with each new code file being given to you one at a time as well as the current contents of user_documentation.txt.
 
-def check_directory_and_list_files(path):
-    files = []
-    if os.path.exists(path):
-        if os.listdir(path): # if directory is not empty
-            for root, dirs, filenames in os.walk(path):
-                for filename in filenames:
-                    if filename.endswith('.ogg'): 
-                        files.append(os.path.join(root, filename))
-            return files
-        else:
-            return 'Directory exists but is empty.'
-    else:
-        return 'Path does not exist.'
+Current instruction for you:
+Continue working on the voice conversion algorithm. Implement a method to extract relevant features from the voice samples and a transformation method to convert the input audio file into the desired character's voice.
 
-path = 'C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09'
-check_directory_and_list_files(path)
-```
-File name: list_audio_files.py
-scribe:
-File name: access_directory_script.py
-Syntax: get_ogg_files(directory_path: str) -> Union[List[str], None]
-Description: The Python script (~access_directory_script.py) introduces a function 'get_ogg_files'. This function checks the existence of a specified directory. If the directory exists, it checks for files with the extension '.ogg', records their absolute paths, and returns a list of these paths. If the specified directory does not exist, it returns 'None'.
-scribe:
-File name: updated_access_directory_script.py
-Syntax: get_ogg_file_count(directory_path: str) -> Union[int, None]
-Description: The Python script (~updated_access_directory_script.py) introduces the function 'get_ogg_file_count'. It checks if a specified directory exists. If the directory does exist, it determines the number of '.ogg' files in the directory and returns this count. In case the directory does not exist, the function returns 'None'.
-scribe:
-Fetch: None
-Message: I understand the responsibilities. I'll provide code following the given instructions and provide every response with the 'Fetch', 'Message', 'File name', and 'Code' details in this order. I've kept note that the final paths are not yet confirmed, hence, I'm withholding from executing the code.
-File name: None
-Code: 
-```python
-# There is no code to provide at this time.
-```
-scribe:
-Understood. I will maintain the 'user_documentation.txt' file and document each new code file by specifying the file name, syntax, and a concise description in the provided format. Will not execute the code and wait for confirmed paths.
+Current documentation stored in user_documentation.txt:
+No documentation written yet.

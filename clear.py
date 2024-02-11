@@ -24,7 +24,7 @@ def clear():
     with open('postbox.json', 'w') as json_file:
         json.dump(postbox,json_file, indent=3)
 
-    open('user_documentation.txt', 'w').close()
+    open('output/user_documentation.txt', 'w').close()
 
     open('conversation.txt', 'w').close()
     open('00_input.txt', 'w').close()

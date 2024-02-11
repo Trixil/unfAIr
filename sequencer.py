@@ -20,7 +20,6 @@ def filename_return(response):
         print('Error: Could not find file name. Here is the response:\n' + response)
         return 'NULL'
     filename = response[filename_start_index:filename_end_index]
-    print('filename: ' + filename)
     return filename
 
 def executor(response):
@@ -35,7 +34,6 @@ def executor(response):
         code = ''
     else:
         code = response[code_start_index:code_end_index]
-        print('code\n' + code)
 
         if(filename == 'NULL'):
             unnamed_code_flag = 1
@@ -49,7 +47,6 @@ def update_documentation(file_path, file_description):
 
     file_path_line = f"File name: {file_path}"
     file_description_line = f"Content: {file_description}"
-    print(file_path_line, file_description_line)
 
     with open(output_dir + 'user_documentation.txt', 'a+') as f:
         f.write(file_path_line + '\n' + file_description_line + '\n******\n')
@@ -67,7 +64,6 @@ def fetcher(response):
 
         if((fetch_start_index != -1) and (fetch_end_index == -1)):
             fetch_filename = response[fetch_start_index:]
-        print('fetch: ' + fetch_filename)
 
         output_files = os.listdir('output')
         if(not(fetch_filename in output_files)):
@@ -108,7 +104,7 @@ while True:
 
     with open(file_path, 'w') as json_file:
         json.dump(postbox, json_file, indent=3)
-    instructions = request("00", postbox["00"]["usercontent"], 1)
+    instructions = request("00", postbox["00"]["usercontent"], 1, postbox)
 
     postbox_dict = postbox
 
@@ -135,7 +131,7 @@ while True:
         with open(file_path, 'w') as json_file:
             json.dump(postbox, json_file, indent=3)
 
-        overseer_instruction = request(id + ' Overseer', 'Update the to-do list with each conversation with ' + id + ' and output it in your To-do field', 1)
+        overseer_instruction = request(id + ' Overseer', 'Update the to-do list with each conversation with ' + id + ' and output it in your To-do field', 1, postbox)
         to_do_end_index = overseer_instruction.find('Current instruction for you:\n')
         to_do = overseer_instruction[0:to_do_end_index-1]
         finalpass = False
@@ -143,7 +139,7 @@ while True:
         overseer_instruction += 'Current documentation stored in user_documentation.txt:\nNo documentation written yet.\n'
         while(finalpass == False):
 
-            wizardresponse = request(id, overseer_instruction + header_docs, 1)
+            wizardresponse = request(id, overseer_instruction + header_docs, 1, postbox)
 
             [code, unnamed_code_flag] = executor(wizardresponse)
             
@@ -155,7 +151,7 @@ while True:
             fetch_end_index = fetch_start_index + len('Fetch: ' + fetch_file_name) + 1
             clean_wizardresponse = wizardresponse[0:fetch_start_index] + wizardresponse[fetch_end_index:]
 
-            overseer_instruction = request(id + ' Overseer', clean_wizardresponse + to_do, 1)
+            overseer_instruction = request(id + ' Overseer', clean_wizardresponse + to_do, 1, postbox)
 
             finalpass = (overseer_instruction.find('SEND CODE\n') != -1)
             to_do_end_index = overseer_instruction.find('Current instruction for you:\n')
@@ -173,7 +169,7 @@ while True:
             header_docs = 'Current documentation stored in user_documentation.txt:\n' + docs + '\n'
 
 
-            input_text = request("scribe", header_docs + wizardresponse, 1)
+            input_text = request("scribe", header_docs + wizardresponse, 1, postbox)
             file_name_start = input_text.find("File name: ") + len("File name: ")
             file_name_end = input_text.find("\n", file_name_start)
             file_name = input_text[file_name_start:file_name_end]
