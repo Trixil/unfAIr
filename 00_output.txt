@@ -1,8 +1,17 @@
 00:
-01: Voice Conversion
-Instructions: Your task is to create a voice conversion algorithm that takes an input audio file and transforms it into the voice of a character. You should utilize the voice samples located in "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09". The voice conversion should aim to match the character's voice as closely as possible.
+01: Audio File Extraction and Segmentation Expert
+Instructions: 
 
-02: Text-to-Speech
-Instructions: Your task is to create a text-to-speech program that uses the voice conversion algorithm created by 01. The program should take input text and convert it into speech using the specified character's voice. The output speech should be saved as an audio file.
+1. Extract all voice samples from the given path C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. 
+2. Transcribe all audio voice samples and timestamp each word. Pay careful attention to the distinct characteristics and frequency of the character's voice. 
+3. Segment and label each unique sound at a word level to allow for voice duplication. Store these in an ordered format easy for parsing.
+4. Save the transcriptions and segmented words in separate CSV files in an easily accessible location, documenting each step of the process for future reference.
 
-Please note that the instructions given to these two LLMs are only a high-level overview of the tasks. Additional details and specific coding instructions will be provided in a separate document.
+02: Voice Simulation Script Writer
+Instructions: 
+
+1. Using 01's transcription and segmented voice samples, build voice models for the character utilizing Text to Speech technology.
+2. Develop a script that allows users to input text to be spoken. The script should parse the text and look for matching voice samples for each word. 
+3. If there are multiple matching voice samples, select the most appropriate one based on context.
+4. Assemble all selected voice samples into the final speech and ensure the speech flows seamlessly.
+5. Document the code line by line with appropriate comments to aid in user understanding and potential modifications. Create a user manual detailing how to operate the finished program.

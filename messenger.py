@@ -10,8 +10,9 @@ def request(id, usercontent, send, postbox):
     logmessages = postbox.get("logmessages", [])  # Initialize as an empty list if logmessages not present
     print(logmessages)
     systemmessage = {"role": "system", "content": f"{systemcontent}"}
-    endmessage = {"role": "system", "content": f"{usercontent}"}
+    endmessage = {"role": "user", "content": f"{usercontent}"}
     if(len(logmessages) >= 6):
+        logmessages.pop(0)
         logmessages.pop(0)
     message_request = logmessages[:]  # Copy logmessages to avoid modifying original list
     message_request.append(endmessage)
@@ -19,7 +20,7 @@ def request(id, usercontent, send, postbox):
 
     if send == 1:
         completion = client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model="gpt-4",
             messages=message_request
         )
 
