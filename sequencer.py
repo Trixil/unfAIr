@@ -41,7 +41,7 @@ def executor(response):
             with open(output_dir + filename, 'w') as wizardcode:
                 wizardcode.write(code)
 
-    return [code, unnamed_code_flag]
+    return [filename, code, unnamed_code_flag]
 
 def update_documentation(file_path, file_description):
 
@@ -50,6 +50,9 @@ def update_documentation(file_path, file_description):
 
     with open(output_dir + 'user_documentation.txt', 'a+') as f:
         f.write(file_path_line + '\n' + file_description_line + '\n******\n')
+        docs = f.read()
+    
+    return docs
 
 
 def fetcher(response):
@@ -100,6 +103,129 @@ overseer_initial = ['','']
 overseer_initial[0] = postbox["01 Overseer"]["systemcontent"]
 overseer_initial[1] = postbox["02 Overseer"]["systemcontent"]
 overseer_instruc_base = ['', '']
+
+def director_io(usercontent, send, postbox):
+
+    if(usercontent != ''):
+        usercontent = postbox["00"]["usercontent"]
+    direc_response = request("00", usercontent, send, postbox)
+
+    # Get the number of items in the dictionary (which represents the JSON object)
+    maxChecks = 10
+    wizardcount = 0
+    for wizardcounter in range(1, maxChecks):
+        wizardname = str(wizardcounter+1).zfill(2)
+        current = direc_response.find(wizardname)
+        if(current == -1):
+            wizardcount = wizardcounter
+
+    wiz_specific_instruc = [''] * wizardcount
+    # Extract direc_response for each wizard and place it in the corresponding overseer's systemcontent
+    for i in range(1, wizardcount+1):
+        start_index = direc_response.find(str(i).zfill(2))
+        end_index = direc_response.find(str(i+1).zfill(2)) if (i < wizardcount + 1) else len(direc_response)
+    
+        # Extract the substring starting from the position of wizardcount
+        if start_index != -1:
+            selected_substring = direc_response[start_index+3:end_index].strip()
+            postbox[str(i).zfill(2) + ' Overseer']["usercontent"] = selected_substring
+            postbox[str(i).zfill(2) + ' Overseer']["systemcontent"] += selected_substring
+            wiz_specific_instruc[i] = selected_substring
+
+        else:
+            print(f"The string '{i:02d}:' was not found.")
+            wiz_specific_instruc[i] = '\nInstructions not found.\n'
+
+    with open('postbox.json', 'w') as json_file:
+        json.dump(postbox, json_file, indent=3)
+    
+    return [wiz_specific_instruc, direc_response]
+
+def overseer_io(wizard_str, usercontent, overseer_instruc_base, to_do, send, postbox):
+    if(to_do != ''):
+        postbox[id + ' Overseer']["systemcontent"] = overseer_instruc_base + to_do
+        with open('postbox.json', 'w') as json_file:
+            json.dump(postbox, json_file, indent=3)
+
+    overseer_response = request(wizard_str + ' Overseer', usercontent, send, postbox)
+    
+    to_do_end_index = overseer_response.find('Current instruction for you:\n')
+    to_do = overseer_response[0:to_do_end_index-1]
+    finalpass = (overseer_response.find('SEND CODE\n') != -1)
+    header_docs = ''
+    overseer_response += 'Current documentation stored in user_documentation.txt:\nNo documentation written yet.\n'
+    
+    return [finalpass, to_do, overseer_response]
+
+def wizard_io(wizard_str, usercontent, send, postbox):
+    wizardresponse = request(id, usercontent, 1, postbox)
+
+    [filename, code, unnamed_code_flag] = executor(wizardresponse)
+    
+    fetchcontent = fetcher(wizardresponse)
+    fetch_file_name = fetchcontent[0]
+    fetch_file_content = fetchcontent[1]
+
+    fetch_start_index = wizardresponse.find('Fetch: ' + fetch_file_name)
+    fetch_end_index = fetch_start_index + len('Fetch: ' + fetch_file_name) + 1
+    clean_wizardresponse = wizardresponse[0:fetch_start_index] + wizardresponse[fetch_end_index:]
+    return [filename, code, wizardresponse]
+
+def scribe_io(usercontent, send, postbox):
+    # opening and printing docs
+    with open(output_dir + 'user_documentation.txt', 'r') as docs_file:
+        docs = docs_file.read()
+    
+    # checking if docs is empty and appending it to wizard input string
+    if(docs == ''):
+        docs = 'No documentation written yet.\n'
+    header_docs = 'Current documentation stored in user_documentation.txt:\n' + docs + '\n'
+
+    input_text = request("scribe", header_docs + usercontent, 1, postbox)
+    file_name_start = input_text.find("File name: ") + len("File name: ")
+    file_name_end = input_text.find("\n", file_name_start)
+    file_name = input_text[file_name_start:file_name_end]
+
+    content_start = input_text.find("Content: ") + len("Content: ")
+    content = input_text[content_start:]
+
+    docs = update_documentation(file_name, content)
+    header_docs = 'Current documentation stored in user_documentation.txt:\n' + docs + '\n'
+    with open(file_path, 'w') as json_file:
+        json.dump(postbox, json_file, indent=3)
+
+    return header_docs
+
+header_docs = 'Current documentation stored in user_documentation.txt:\nNo documentation written yet.\n'
+while True:
+    with open('postbox.json', 'w') as postbox_file:
+        postbox = json.load(postbox_file)
+    
+    [wiz_specific_instruc, direc_response] = director_io('', 1, postbox)
+    wiz_count = len(wiz_specific_instruc)
+    for wiz in range(1, wiz_count + 1):
+        finalpass = False
+        docs = ''
+        wiz_str = str(wiz).zfill(2)
+
+        [finalpass, overseer_response] = overseer_io(wiz_str, wiz_specific_instruc[wiz], wiz_specific_instruc[wiz], '', 1, postbox)
+        while (finalpass == False):
+            
+            fetchcontent = fetcher(wiz_response)
+            fetch_file_name = fetchcontent[0]
+            fetch_file_code = fetchcontent[1]
+            fetch_file = '\nContents of ' + fetch_file_name +':\n' + fetch_file_code
+            
+            [filename, code, wiz_response] = wizard_io(wiz_str, overseer_response + fetch_file + header_docs, 1, postbox)
+            header_docs = scribe_io(wiz_response, 1, postbox)
+            [finalpass, to_do, overseer_response] = overseer_io(wiz_str, wiz_response + header_docs, to_do, 1, postbox)
+
+
+    with open(output_dir + 'user_documentation.txt', 'r') as docs_file:
+        docs = docs_file.read()
+    postbox["00"]["usercontent"] = postbox["00"]["usercontent"] + '\n' + 'An iteration has been finished. Here is the documentation for it:\n' + docs
+    with open(file_path, 'w') as json_file:
+        json.dump(postbox, json_file, indent=3)
 while True:
 
     with open(file_path, 'w') as json_file:
