@@ -102,11 +102,11 @@ iteration = 1
 overseer_initial = ['','']
 overseer_initial[0] = postbox["01 Overseer"]["systemcontent"]
 overseer_initial[1] = postbox["02 Overseer"]["systemcontent"]
-overseer_instruc_base = ['', '']
+overseer_system_base = ['', '']
 
 def director_io(usercontent, send, postbox):
 
-    if(usercontent != ''):
+    if(usercontent == ''):
         usercontent = postbox["00"]["usercontent"]
     direc_response = request("00", usercontent, send, postbox)
 
@@ -118,6 +118,7 @@ def director_io(usercontent, send, postbox):
         current = direc_response.find(wizardname)
         if(current == -1):
             wizardcount = wizardcounter
+            break
 
     wiz_specific_instruc = [''] * wizardcount
     # Extract direc_response for each wizard and place it in the corresponding overseer's systemcontent
@@ -130,20 +131,20 @@ def director_io(usercontent, send, postbox):
             selected_substring = direc_response[start_index+3:end_index].strip()
             postbox[str(i).zfill(2) + ' Overseer']["usercontent"] = selected_substring
             postbox[str(i).zfill(2) + ' Overseer']["systemcontent"] += selected_substring
-            wiz_specific_instruc[i] = selected_substring
+            wiz_specific_instruc[i-1] = selected_substring
 
         else:
             print(f"The string '{i:02d}:' was not found.")
-            wiz_specific_instruc[i] = '\nInstructions not found.\n'
+            wiz_specific_instruc[i-1] = '\nInstructions not found.\n'
 
     with open('postbox.json', 'w') as json_file:
         json.dump(postbox, json_file, indent=3)
     
     return [wiz_specific_instruc, direc_response]
 
-def overseer_io(wizard_str, usercontent, overseer_instruc_base, to_do, send, postbox):
+def overseer_io(wizard_str, usercontent, overseer_system_base, to_do, send, postbox):
     if(to_do != ''):
-        postbox[id + ' Overseer']["systemcontent"] = overseer_instruc_base + to_do
+        postbox[wizard_str + ' Overseer']["systemcontent"] = overseer_system_base + to_do
         with open('postbox.json', 'w') as json_file:
             json.dump(postbox, json_file, indent=3)
 
@@ -158,7 +159,7 @@ def overseer_io(wizard_str, usercontent, overseer_instruc_base, to_do, send, pos
     return [finalpass, to_do, overseer_response]
 
 def wizard_io(wizard_str, usercontent, send, postbox):
-    wizardresponse = request(id, usercontent, 1, postbox)
+    wizardresponse = request(wizard_str, usercontent, 1, postbox)
 
     [filename, code, unnamed_code_flag] = executor(wizardresponse)
     
@@ -198,7 +199,7 @@ def scribe_io(usercontent, send, postbox):
 
 header_docs = 'Current documentation stored in user_documentation.txt:\nNo documentation written yet.\n'
 while True:
-    with open('postbox.json', 'w') as postbox_file:
+    with open('postbox.json', 'r') as postbox_file:
         postbox = json.load(postbox_file)
     
     [wiz_specific_instruc, direc_response] = director_io('', 1, postbox)
@@ -207,8 +208,9 @@ while True:
         finalpass = False
         docs = ''
         wiz_str = str(wiz).zfill(2)
-
-        [finalpass, overseer_response] = overseer_io(wiz_str, wiz_specific_instruc[wiz], wiz_specific_instruc[wiz], '', 1, postbox)
+        overseer_system_base = postbox[wiz_str + ' Overseer']["systemcontent"]
+        [finalpass, to_do, overseer_response] = overseer_io(wiz_str, wiz_specific_instruc[wiz], overseer_system_base, '', 1, postbox)
+        wiz_response = ''
         while (finalpass == False):
             
             fetchcontent = fetcher(wiz_response)
@@ -218,14 +220,15 @@ while True:
             
             [filename, code, wiz_response] = wizard_io(wiz_str, overseer_response + fetch_file + header_docs, 1, postbox)
             header_docs = scribe_io(wiz_response, 1, postbox)
-            [finalpass, to_do, overseer_response] = overseer_io(wiz_str, wiz_response + header_docs, to_do, 1, postbox)
-
+            [finalpass, to_do, overseer_response] = overseer_io(wiz_str, wiz_response + header_docs, overseer_system_base, to_do, 1, postbox)
 
     with open(output_dir + 'user_documentation.txt', 'r') as docs_file:
         docs = docs_file.read()
     postbox["00"]["usercontent"] = postbox["00"]["usercontent"] + '\n' + 'An iteration has been finished. Here is the documentation for it:\n' + docs
     with open(file_path, 'w') as json_file:
         json.dump(postbox, json_file, indent=3)
+
+'''
 while True:
 
     with open(file_path, 'w') as json_file:
@@ -320,3 +323,4 @@ while True:
     postbox["00"]["usercontent"] = postbox["00"]["usercontent"] + '\n' + 'An iteration has been finished. Here is the documentation for it:\n' + docs
     with open(file_path, 'w') as json_file:
         json.dump(postbox, json_file, indent=3)
+'''

@@ -56,5 +56,4 @@ def clear():
             file_path = os.path.join('output', file)
             os.remove(file_path)
 
-    
 clear()
