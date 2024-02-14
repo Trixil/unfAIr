@@ -1,26 +1,2 @@
 scribe:
-******
-File name: voice_sample_sorter.py
-Syntax: list_files_voice_samples()
-Description: This function browses to the specified directory and reads all voice sample files in the directory. It lists and returns all the files in the directory.
-******
-scribe:
-Got it. I will keep a documentation file user_documentation.txt for each new code file, and when a new file is given I will respond only with its documentation in the specified format, including the file name, syntax and a concise description. Code file content will not be included in this documentation.
-scribe:
-Current documentation stored in user_documentation.txt:
-
-No documentation written yet.
-
-Current instruction for you: 
-You are asked to write a Python script to navigate to the 'voice' directory and retrieve the list of all the voice samples. However, we also need to distinguish each sample by their character's voice, so you have to provide more context about the nature of these audio files or the conventions used in their filenames to indicate different characters. Please elaborate on this matter. If there are no such indications in the filenames, we might need to assess the voice acting cast of Umineko to deducing which character is speaking in each audio sample.
-scribe:
-File name: list_voice_samples.py
-Syntax: list_files_voice_samples()
-Description: This function, when called, navigates to the 'voice' directory at the path "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" and lists all the files present in the directory, effectively listing all voice samples. The voice samples' list is then returned by the function.
-scribe:
-File name: list_voice_samples.py
-Syntax: list_files_voice_samples()
-Description: The function 'list_files_voice_samples' when called navigates to the 'voice' directory at the specified path "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" and lists all files within the directory. It provides a list of all voice samples present in the directory.
-******
-scribe:
-Got it. In handling new code files, I will strictly maintain a documentation file "user_documentation.txt". When provided with a new code file, my response will solely be the file's documentation in the required format, which include the file's name, its syntax, and a short, clear description. It will not involve the actual content of the code file.
+Understood. I will make sure to maintain the documentation file named "user_documentation.txt" with each new code file being handed to me. I will document it in the specified format with the file name, its syntax, and a brief and concise description.

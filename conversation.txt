@@ -1,174 +1,34 @@
 00:
-01: Audio File Sorter and Identifier
-Instructions: Your function is two-fold: 
+01: Data Analyst
+Instructions: Your role as Data Analyst is to extract voice samples from the location specified. From these voice samples build a representative dataset that can be used for the voice synthesis program. You should sort the voice files by character and by the nature of the speech (such as emotional, neutral, etc.) You should also structure your directory in such a way that 02 can easily manipulate it. Sub-directories based on characters is highly suggested. 
 
-1. Create a Python script that navigates to the 'voice' directory at the specified pathway, "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09". This script should sort through all voice samples and categorize them by their underlying character's voice. 
-   
-2. Use the IBM Watson AI service or any similar services to identify the different characteristics of each character's voice. Keep this information stored in a dictionary with filenames for keys and characteristics like pitch, tone, accent, and speed as values. 
-
-02: Text-to-Speech Converter
-Instructions: Your function is to create a Python script that does the following:
-
-1. Given a specific piece of text, the script should determine the time distribution of speech in each voice sample and generate speech segments that match those of actual audio samples. 
-
-2. Create the speech segments using the preprocessed voice samples from role 01. 
-
-3. Make sure to adjust the characteristics of the audio (pitch, tone, speed) to match those of the characters' voices previously identified. Keep in mind not to alter any characteristics beyond what's possible with the original voices (don't make a character's voice higher than it ever goes in the samples, for instance).
-
-Finally, the script should compile all the speech segments to form a complete speech in the character's voice.
+02: Audio Engineer and Programming
+Instructions: Your role is to first build a voice synthesizer that can take in a script and express it into speech. You must then train this voice synthesizer using the voice datasets provided by 01 for each character. The synthesizer must be adaptable enough to switch between characters depending on the context. Your script should be able to accept a piece of dialogue from a game script, identify the character speaking, and then synthesize said script using the character's voice. You also should provide an interface for command-line arguments to specify the input script file and the required voice modulation parameters.
 01 Overseer:
-To-do:
-1. Navigate to the 'voice' directory at the specified pathway, "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" and sort through all voice samples and categorize them by their underlying character's voice. (Not Started)
-2. Use IBM Watson AI service or similar services to identify the different characteristics of each character's voice. The information should be stored in a dictionary with filenames for keys and characteristics like pitch, tone, accent, and speed as values. (Not Started)
+02 can easily manipulate it. Sub-directories based on characters is highly suggested.
 
-Current instruction for you:
-To begin with the first task, write a Python function that navigates to the specified pathway. This function should also open and read all voice sample files in the directory. Moreover, design the function in such a way that we can identify the underlying character's voice for each voice sample.
+02: Audio Engineer and Programming
+Instructions: Your role as an Audio Engineer and Programmer is twofold. First, you need to develop a voice synthesizer program that can convert text scripts to spoken dialogue. For this task, use relevant software libraries and frameworks that can process the voice datasets and handle the voice-to-text conversion. 
+
+Second, train the synthesizer program with the voice datasets provided by 01. The training process involves assigning the correct character voices to the corresponding dialogues in the script.
+
+Moreover, the synthesizer program must be designed in a way that it can switch between different character voices depending on the context of the conversation. 
+
+Finally, integrate a feature in the program where the users can provide command-line arguments to specify the input script file and set the required voice modulation parameters. Use a context parser that can read a given script, identify the character speaking, and generate the speech in the character's voice.
 01:
 Fetch: None
-Message: I understood the task as described. I will begin by writing a script that browses to the specified directory and read all voice sample files in the directory. For now, I'll just print the list of files in the directory as I'm not yet advised about the specific file format or how to identify the underlying character's voice from each file.
-File name: voice_sample_sorter.py
-Code:
-```python
-import os
-
-def list_files_voice_samples():
-    path = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
-    voice_samples = []
-
-    if os.path.exists(path):
-        for root, dirs, files in os.walk(path):
-            for file in files:
-                voice_samples.append(file)
-    else:
-        print("The specified directory cannot be found.")
-    return voice_samples
-
-print(list_files_voice_samples())
-```
-scribe:
-******
-File name: voice_sample_sorter.py
-Syntax: list_files_voice_samples()
-Description: This function browses to the specified directory and reads all voice sample files in the directory. It lists and returns all the files in the directory.
-******
-01 Overseer:
-To-do:
-1. Navigate to the 'voice' directory at the specified pathway, "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" and sort through all voice samples and categorize them by their underlying character's voice. (In Progress)
-2. Use IBM Watson AI service or similar services to identify the different characteristics of each character's voice. The information should be stored in a dictionary with filenames for keys and characteristics like pitch, tone, accent, and speed as values. (Not Started)
-
-Current instruction for you: 
-The code currently retrieves a list of all the voice samples in the directory. To help identify the underlying character of each voice sample, we need to determine a method of differentiation. This might be based on the filename or on the audio sample itself. Please clarify the format of the voice sample files and how we might distinguish between different characters.
-01:
-Fetch: None
-Message: I understand your request. Because we won't be able to use voice analyzing services such as Watson AI, the voice samples need to be sorted based on their filenames or any other kind of information that doesn't involve analyzing the audio sample itself. So, could you provide more information about the filenames and how they relate to the characters?
-File name: None
-Code: No code provided yet.
-scribe:
-Got it. I will keep a documentation file user_documentation.txt for each new code file, and when a new file is given I will respond only with its documentation in the specified format, including the file name, syntax and a concise description. Code file content will not be included in this documentation.
-01 Overseer:
-To-do:
-1. Navigate to the 'voice' directory at the specified pathway, "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" and sort through all voice samples and categorize them by their underlying character's voice. (In Progress)
-2. Use IBM Watson AI service or similar services to identify the different characteristics of each character's voice. The information should be stored in a dictionary with filenames for keys and characteristics like pitch, tone, accent, and speed as values. (Not Started)
-
-Current documentation stored in user_documentation.txt:
-No documentation written yet.
-
-Current instruction for you: 
-You are asked to write a Python script to navigate to the 'voice' directory and retrieve the list of all the voice samples. However, we also need to distinguish each sample by their character's voice, so you have to provide more context about the nature of these audio files or the conventions used in their filenames to indicate different characters. Please elaborate on this matter. If there are no such indications in the filenames, we might need to assess the voice acting cast of Umineko to deducing which character is speaking in each audio sample.
-01:
-Fetch: None
-Message: To continue, I would require more details about the file naming convention used to indicate different characters in the voice samples. Without this information, distinguishing between samples would be difficult, if not impossible. Do the filenames of the samples in any way convey the character's voice they relate to? If so, could you please explain that? If no such naming convention followed, the use of an external service like Watson AI is still optional and decisions regarding the same should be made by you.
-File name: None
-Code: No code provided.
-scribe:
-Current documentation stored in user_documentation.txt:
-
-No documentation written yet.
-
-Current instruction for you: 
-You are asked to write a Python script to navigate to the 'voice' directory and retrieve the list of all the voice samples. However, we also need to distinguish each sample by their character's voice, so you have to provide more context about the nature of these audio files or the conventions used in their filenames to indicate different characters. Please elaborate on this matter. If there are no such indications in the filenames, we might need to assess the voice acting cast of Umineko to deducing which character is speaking in each audio sample.
-01 Overseer:
-To-do:
-1. Navigate to the 'voice' directory at the specified pathway, "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" and sort through all voice samples and categorize them by their underlying character's voice. (In Progress)
-2. Use IBM Watson AI service or similar services to identify the different characteristics of each character's voice. The information should be stored in a dictionary with filenames for keys and characteristics like pitch, tone, accent, and speed as values. (Not Started)
-
-Current documentation stored in user_documentation.txt:
-
-No documentation written yet.
-
-Current instruction for you: 
-
-Please write a Python script which navigates to the 'voice' directory located at "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09". This script should list all voice samples present in the directory. For now, you can ignore the problem of distinguishing between different characters' voices. Just focus on listing all available voice samples.
-01:
-Fetch: None
-Message: Understood. I will start working on writing a Python script to navigate to the 'voice' directory and list all the voice samples.
-File name: list_voice_samples.py
-Code: 
-```python
-import os
-
-def list_files_voice_samples():
-    directory_path = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
-    voice_samples = os.listdir(directory_path)
-    return voice_samples
-```
-scribe:
-File name: list_voice_samples.py
-Syntax: list_files_voice_samples()
-Description: This function, when called, navigates to the 'voice' directory at the path "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" and lists all the files present in the directory, effectively listing all voice samples. The voice samples' list is then returned by the function.
-01 Overseer:
-To-do:
-1. Navigate to the 'voice' directory at the specified pathway, "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" and sort through all voice samples and categorize them by their underlying character's voice. (In Progress)
-2. Use IBM Watson AI service or similar services to identify the different characteristics of each character's voice. The information should be stored in a dictionary with filenames for keys and characteristics like pitch, tone, accent, and speed as values. (Not Started)
-
-Current documentation stored in user_documentation.txt:
-File name: list_voice_samples.py
-Syntax: list_files_voice_samples()
-Description: This function, when called, navigates to the 'voice' directory at the path "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" and lists all the files present in the directory, effectively listing all voice samples. The voice samples' list is then returned by the function.
-
-Current instruction for you:
-
-Please implement the list_files_voice_samples() function in the Python environment and run the function to determine if it correctly identifies and lists all the voice files in the directory "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09". Remember to validate the output to ensure all files are returned correctly.
-01:
-Fetch: list_voice_samples.py
-Message: Understood. I will fetch the file called "list_voice_samples.py" to read its contents.
-File name: None
+Message: Understood the responsibilities and the response format. I am ready to start the work of creating a text to speech program.
 Code: None
+File name: None
 scribe:
-File name: list_voice_samples.py
-Syntax: list_files_voice_samples()
-Description: The function 'list_files_voice_samples' when called navigates to the 'voice' directory at the specified path "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" and lists all files within the directory. It provides a list of all voice samples present in the directory.
-******
+Understood. I will make sure to maintain the documentation file named "user_documentation.txt" with each new code file being handed to me. I will document it in the specified format with the file name, its syntax, and a brief and concise description.
 01 Overseer:
-Your task is to first navigate to the given directory, "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09", then use Python's os module to list out all .ogg files found within that directory.
+To-do:
+1. Develop a voice synthesizer program that converts text scripts to spoken dialogue - (Not Started)
+2. Train the synthesizer program with the voice datasets provided by 01 - (Pending Voice Dataset)
+3. Design the synthesizer program to switch between different character voices depending on the context of the conversation - (Not Started)
+4. Integrate a feature in the program where users can provide command-line arguments to specify the input script file and set the required voice modulation parameters - (Not Started)
+5. Use a context parser to read a given script, identify the character speaking, and generate the speech in the character's voice - (Not Started)
 
-Here is a possible implementation of that task:
-
-```python
-import os
-
-def list_files_voice_samples():
-    dir_path = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
-    voice_samples = [f for f in os.listdir(dir_path) if f.endswith('.ogg')]
-    return voice_samples
-```
-
-Please implement the list_files_voice_samples() function in the Python environment and run the function to determine if it correctly identifies and lists all the voice files in the directory "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09". Remember to validate the output to ensure all files are returned correctly.
-01:
-Fetch: list_voice_samples.py
-Message: I apologize for misunderstanding the instruction previously. It seems we lack the execution environment to run the function directly. We can only write and edit the codes without executing them. However, based on the function description and the given Python snippet, we should be able to write a Python script to navigate to the 'voice' directory and list all the .ogg files.
-
-Let's proceed to write a new Python script that identifies and lists all the voice files in the "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" directory as per the given instruction and guidelines.
-File name: voice_sample_identifier.py
-Code: 
-```python
-import os
-
-def list_files_voice_samples():
-    dir_path = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
-    voice_samples = [f for f in os.listdir(dir_path) if f.endswith('.ogg')]
-    return voice_samples
-```
-   
-scribe:
-Got it. In handling new code files, I will strictly maintain a documentation file "user_documentation.txt". When provided with a new code file, my response will solely be the file's documentation in the required format, which include the file's name, its syntax, and a short, clear description. It will not involve the actual content of the code file.
+Current instruction for you:
+Develop a basic script that can convert text scripts to spoken dialogue using any language or library you prefer. Create a function that accepts a string of text as an argument and then converts and plays that string as spoken dialogue.

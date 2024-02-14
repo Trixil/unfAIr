@@ -1,71 +1,10 @@
 01 Overseer:
-Text-to-Speech Converter
-Instructions: Your function is to create a Python script that does the following:
+can easily manipulate it. Sub-directories based on characters is highly suggested. 
 
-1. Given a specific piece of text, the script should determine the time distribution of speech in each voice sample and generate speech segments that match those of actual audio samples. 
-
-2. Create the speech segments using the preprocessed voice samples from role 01. 
-
-3. Make sure to adjust the characteristics of the audio (pitch, tone, speed) to match those of the characters' voices previously identified. Keep in mind not to alter any characteristics beyond what's possible with the original voices (don't make a character's voice higher than it ever goes in the samples, for instance).
-
-Finally, the script should compile all the speech segments to form a complete speech in the character's voice
+02: Audio Engineer and Programming
+Instructions: Your role is to first build a voice synthesizer that can take in a script and express it into speech. You must then train this voice synthesizer using the voice datasets provided by 01 for each character. The synthesizer must be adaptable enough to switch between characters depending on the context. Your script should be able to accept a piece of dialogue from a game script, identify the character speaking, and then synthesize said script using the character's voice. You also should provide an interface for command-line arguments to specify the input script file and the required voice modulation parameters
 01 Overseer:
 Fetch: None
-Message: I understood the task as described. I will begin by writing a script that browses to the specified directory and read all voice sample files in the directory. For now, I'll just print the list of files in the directory as I'm not yet advised about the specific file format or how to identify the underlying character's voice from each file.
-File name: voice_sample_sorter.py
-Code:
-```python
-import os
-
-def list_files_voice_samples():
-    path = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
-    voice_samples = []
-
-    if os.path.exists(path):
-        for root, dirs, files in os.walk(path):
-            for file in files:
-                voice_samples.append(file)
-    else:
-        print("The specified directory cannot be found.")
-    return voice_samples
-
-print(list_files_voice_samples())
-```Current documentation stored in user_documentation.txt:
-
-
-01 Overseer:
-Fetch: None
-Message: I understand your request. Because we won't be able to use voice analyzing services such as Watson AI, the voice samples need to be sorted based on their filenames or any other kind of information that doesn't involve analyzing the audio sample itself. So, could you provide more information about the filenames and how they relate to the characters?
+Message: Understood the responsibilities and the response format. I am ready to start the work of creating a text to speech program.
+Code: None
 File name: None
-Code: No code provided yet.Current documentation stored in user_documentation.txt:
-
-
-01 Overseer:
-Fetch: None
-Message: To continue, I would require more details about the file naming convention used to indicate different characters in the voice samples. Without this information, distinguishing between samples would be difficult, if not impossible. Do the filenames of the samples in any way convey the character's voice they relate to? If so, could you please explain that? If no such naming convention followed, the use of an external service like Watson AI is still optional and decisions regarding the same should be made by you.
-File name: None
-Code: No code provided.Current documentation stored in user_documentation.txt:
-
-
-01 Overseer:
-Fetch: None
-Message: Understood. I will start working on writing a Python script to navigate to the 'voice' directory and list all the voice samples.
-File name: list_voice_samples.py
-Code: 
-```python
-import os
-
-def list_files_voice_samples():
-    directory_path = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
-    voice_samples = os.listdir(directory_path)
-    return voice_samples
-```Current documentation stored in user_documentation.txt:
-
-
-01 Overseer:
-Fetch: list_voice_samples.py
-Message: Understood. I will fetch the file called "list_voice_samples.py" to read its contents.
-File name: None
-Code: NoneCurrent documentation stored in user_documentation.txt:
-
-

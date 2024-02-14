@@ -1,64 +1,21 @@
 01 Overseer:
+02 can easily manipulate it. Sub-directories based on characters is highly suggested.
+
+02: Audio Engineer and Programming
+Instructions: Your role as an Audio Engineer and Programmer is twofold. First, you need to develop a voice synthesizer program that can convert text scripts to spoken dialogue. For this task, use relevant software libraries and frameworks that can process the voice datasets and handle the voice-to-text conversion. 
+
+Second, train the synthesizer program with the voice datasets provided by 01. The training process involves assigning the correct character voices to the corresponding dialogues in the script.
+
+Moreover, the synthesizer program must be designed in a way that it can switch between different character voices depending on the context of the conversation. 
+
+Finally, integrate a feature in the program where the users can provide command-line arguments to specify the input script file and set the required voice modulation parameters. Use a context parser that can read a given script, identify the character speaking, and generate the speech in the character's voice.
+01 Overseer:
 To-do:
-1. Navigate to the 'voice' directory at the specified pathway, "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" and sort through all voice samples and categorize them by their underlying character's voice. (Not Started)
-2. Use IBM Watson AI service or similar services to identify the different characteristics of each character's voice. The information should be stored in a dictionary with filenames for keys and characteristics like pitch, tone, accent, and speed as values. (Not Started)
+1. Develop a voice synthesizer program that converts text scripts to spoken dialogue - (Not Started)
+2. Train the synthesizer program with the voice datasets provided by 01 - (Pending Voice Dataset)
+3. Design the synthesizer program to switch between different character voices depending on the context of the conversation - (Not Started)
+4. Integrate a feature in the program where users can provide command-line arguments to specify the input script file and set the required voice modulation parameters - (Not Started)
+5. Use a context parser to read a given script, identify the character speaking, and generate the speech in the character's voice - (Not Started)
 
 Current instruction for you:
-To begin with the first task, write a Python function that navigates to the specified pathway. This function should also open and read all voice sample files in the directory. Moreover, design the function in such a way that we can identify the underlying character's voice for each voice sample.
-01 Overseer:
-To-do:
-1. Navigate to the 'voice' directory at the specified pathway, "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" and sort through all voice samples and categorize them by their underlying character's voice. (In Progress)
-2. Use IBM Watson AI service or similar services to identify the different characteristics of each character's voice. The information should be stored in a dictionary with filenames for keys and characteristics like pitch, tone, accent, and speed as values. (Not Started)
-
-Current instruction for you: 
-The code currently retrieves a list of all the voice samples in the directory. To help identify the underlying character of each voice sample, we need to determine a method of differentiation. This might be based on the filename or on the audio sample itself. Please clarify the format of the voice sample files and how we might distinguish between different characters.
-01 Overseer:
-To-do:
-1. Navigate to the 'voice' directory at the specified pathway, "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" and sort through all voice samples and categorize them by their underlying character's voice. (In Progress)
-2. Use IBM Watson AI service or similar services to identify the different characteristics of each character's voice. The information should be stored in a dictionary with filenames for keys and characteristics like pitch, tone, accent, and speed as values. (Not Started)
-
-Current documentation stored in user_documentation.txt:
-No documentation written yet.
-
-Current instruction for you: 
-You are asked to write a Python script to navigate to the 'voice' directory and retrieve the list of all the voice samples. However, we also need to distinguish each sample by their character's voice, so you have to provide more context about the nature of these audio files or the conventions used in their filenames to indicate different characters. Please elaborate on this matter. If there are no such indications in the filenames, we might need to assess the voice acting cast of Umineko to deducing which character is speaking in each audio sample.
-01 Overseer:
-To-do:
-1. Navigate to the 'voice' directory at the specified pathway, "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" and sort through all voice samples and categorize them by their underlying character's voice. (In Progress)
-2. Use IBM Watson AI service or similar services to identify the different characteristics of each character's voice. The information should be stored in a dictionary with filenames for keys and characteristics like pitch, tone, accent, and speed as values. (Not Started)
-
-Current documentation stored in user_documentation.txt:
-
-No documentation written yet.
-
-Current instruction for you: 
-
-Please write a Python script which navigates to the 'voice' directory located at "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09". This script should list all voice samples present in the directory. For now, you can ignore the problem of distinguishing between different characters' voices. Just focus on listing all available voice samples.
-01 Overseer:
-To-do:
-1. Navigate to the 'voice' directory at the specified pathway, "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" and sort through all voice samples and categorize them by their underlying character's voice. (In Progress)
-2. Use IBM Watson AI service or similar services to identify the different characteristics of each character's voice. The information should be stored in a dictionary with filenames for keys and characteristics like pitch, tone, accent, and speed as values. (Not Started)
-
-Current documentation stored in user_documentation.txt:
-File name: list_voice_samples.py
-Syntax: list_files_voice_samples()
-Description: This function, when called, navigates to the 'voice' directory at the path "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09" and lists all the files present in the directory, effectively listing all voice samples. The voice samples' list is then returned by the function.
-
-Current instruction for you:
-
-Please implement the list_files_voice_samples() function in the Python environment and run the function to determine if it correctly identifies and lists all the voice files in the directory "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09". Remember to validate the output to ensure all files are returned correctly.
-01 Overseer:
-Your task is to first navigate to the given directory, "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09", then use Python's os module to list out all .ogg files found within that directory.
-
-Here is a possible implementation of that task:
-
-```python
-import os
-
-def list_files_voice_samples():
-    dir_path = "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09"
-    voice_samples = [f for f in os.listdir(dir_path) if f.endswith('.ogg')]
-    return voice_samples
-```
-
-Please implement the list_files_voice_samples() function in the Python environment and run the function to determine if it correctly identifies and lists all the voice files in the directory "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09". Remember to validate the output to ensure all files are returned correctly.
+Develop a basic script that can convert text scripts to spoken dialogue using any language or library you prefer. Create a function that accepts a string of text as an argument and then converts and plays that string as spoken dialogue.

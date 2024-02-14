@@ -1,18 +1,6 @@
 00:
-01: Audio File Sorter and Identifier
-Instructions: Your function is two-fold: 
+01: Data Analyst
+Instructions: Your role as Data Analyst is to extract voice samples from the location specified. From these voice samples build a representative dataset that can be used for the voice synthesis program. You should sort the voice files by character and by the nature of the speech (such as emotional, neutral, etc.) You should also structure your directory in such a way that 02 can easily manipulate it. Sub-directories based on characters is highly suggested. 
 
-1. Create a Python script that navigates to the 'voice' directory at the specified pathway, "C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09". This script should sort through all voice samples and categorize them by their underlying character's voice. 
-   
-2. Use the IBM Watson AI service or any similar services to identify the different characteristics of each character's voice. Keep this information stored in a dictionary with filenames for keys and characteristics like pitch, tone, accent, and speed as values. 
-
-02: Text-to-Speech Converter
-Instructions: Your function is to create a Python script that does the following:
-
-1. Given a specific piece of text, the script should determine the time distribution of speech in each voice sample and generate speech segments that match those of actual audio samples. 
-
-2. Create the speech segments using the preprocessed voice samples from role 01. 
-
-3. Make sure to adjust the characteristics of the audio (pitch, tone, speed) to match those of the characters' voices previously identified. Keep in mind not to alter any characteristics beyond what's possible with the original voices (don't make a character's voice higher than it ever goes in the samples, for instance).
-
-Finally, the script should compile all the speech segments to form a complete speech in the character's voice.
+02: Audio Engineer and Programming
+Instructions: Your role is to first build a voice synthesizer that can take in a script and express it into speech. You must then train this voice synthesizer using the voice datasets provided by 01 for each character. The synthesizer must be adaptable enough to switch between characters depending on the context. Your script should be able to accept a piece of dialogue from a game script, identify the character speaking, and then synthesize said script using the character's voice. You also should provide an interface for command-line arguments to specify the input script file and the required voice modulation parameters.

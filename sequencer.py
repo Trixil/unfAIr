@@ -7,7 +7,6 @@ import textwrap
 
 output_dir = "output/"
 
-print("Current working directory changed to", os.getcwd())
 clear()
 user_input = ""
 
@@ -108,7 +107,7 @@ def director_io(usercontent, send, postbox):
 
     if(usercontent == ''):
         usercontent = postbox["00"]["usercontent"]
-    direc_response = request("00", usercontent, send, postbox)
+    direc_response = request("00", usercontent, '', send, postbox)
 
     # Get the number of items in the dictionary (which represents the JSON object)
     maxChecks = 10
@@ -142,13 +141,13 @@ def director_io(usercontent, send, postbox):
     
     return [wiz_specific_instruc, direc_response]
 
-def overseer_io(wizard_str, usercontent, overseer_system_base, to_do, send, postbox):
+def overseer_io(wizard_str, usercontent, overseer_system_base, illusion, to_do, send, postbox):
     if(to_do != ''):
         postbox[wizard_str + ' Overseer']["systemcontent"] = overseer_system_base + to_do
         with open('postbox.json', 'w') as json_file:
             json.dump(postbox, json_file, indent=3)
 
-    overseer_response = request(wizard_str + ' Overseer', usercontent, send, postbox)
+    overseer_response = request(wizard_str + ' Overseer', usercontent, illusion, send, postbox)
     
     to_do_end_index = overseer_response.find('Current instruction for you:\n')
     to_do = overseer_response[0:to_do_end_index-1]
@@ -158,8 +157,8 @@ def overseer_io(wizard_str, usercontent, overseer_system_base, to_do, send, post
     
     return [finalpass, to_do, overseer_response]
 
-def wizard_io(wizard_str, usercontent, send, postbox):
-    wizardresponse = request(wizard_str, usercontent, 1, postbox)
+def wizard_io(wizard_str, usercontent, illusion, send, postbox):
+    wizardresponse = request(wizard_str, usercontent, illusion, 1, postbox)
 
     [filename, code, unnamed_code_flag] = executor(wizardresponse)
     
@@ -182,7 +181,7 @@ def scribe_io(usercontent, send, postbox):
         docs = 'No documentation written yet.\n'
     header_docs = 'Current documentation stored in user_documentation.txt:\n' + docs + '\n'
 
-    input_text = request("scribe", header_docs + usercontent, 1, postbox)
+    input_text = request("scribe", usercontent, header_docs, send, postbox)
     file_name_start = input_text.find("File name: ") + len("File name: ")
     file_name_end = input_text.find("\n", file_name_start)
     file_name = input_text[file_name_start:file_name_end]
@@ -209,7 +208,7 @@ while True:
         docs = ''
         wiz_str = str(wiz).zfill(2)
         overseer_system_base = postbox[wiz_str + ' Overseer']["systemcontent"]
-        [finalpass, to_do, overseer_response] = overseer_io(wiz_str, wiz_specific_instruc[wiz], overseer_system_base, '', 1, postbox)
+        [finalpass, to_do, overseer_response] = overseer_io(wiz_str, wiz_specific_instruc[wiz], overseer_system_base, '', '', 1, postbox)
         wiz_response = ''
         while (finalpass == False):
             
@@ -218,9 +217,9 @@ while True:
             fetch_file_code = fetchcontent[1]
             fetch_file = '\nContents of ' + fetch_file_name +':\n' + fetch_file_code
             
-            [filename, code, wiz_response] = wizard_io(wiz_str, overseer_response + fetch_file + header_docs, 1, postbox)
+            [filename, code, wiz_response] = wizard_io(wiz_str, overseer_response, fetch_file + header_docs, 1, postbox)
             header_docs = scribe_io(wiz_response, 1, postbox)
-            [finalpass, to_do, overseer_response] = overseer_io(wiz_str, wiz_response + header_docs, overseer_system_base, to_do, 1, postbox)
+            [finalpass, to_do, overseer_response] = overseer_io(wiz_str, wiz_response, overseer_system_base, header_docs, to_do, 1, postbox)
 
     with open(output_dir + 'user_documentation.txt', 'r') as docs_file:
         docs = docs_file.read()
