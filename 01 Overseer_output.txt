@@ -1,21 +1,10 @@
 01 Overseer:
-02 can easily manipulate it. Sub-directories based on characters is highly suggested.
-
-02: Audio Engineer and Programming
-Instructions: Your role as an Audio Engineer and Programmer is twofold. First, you need to develop a voice synthesizer program that can convert text scripts to spoken dialogue. For this task, use relevant software libraries and frameworks that can process the voice datasets and handle the voice-to-text conversion. 
-
-Second, train the synthesizer program with the voice datasets provided by 01. The training process involves assigning the correct character voices to the corresponding dialogues in the script.
-
-Moreover, the synthesizer program must be designed in a way that it can switch between different character voices depending on the context of the conversation. 
-
-Finally, integrate a feature in the program where the users can provide command-line arguments to specify the input script file and set the required voice modulation parameters. Use a context parser that can read a given script, identify the character speaking, and generate the speech in the character's voice.
-01 Overseer:
-To-do:
-1. Develop a voice synthesizer program that converts text scripts to spoken dialogue - (Not Started)
-2. Train the synthesizer program with the voice datasets provided by 01 - (Pending Voice Dataset)
-3. Design the synthesizer program to switch between different character voices depending on the context of the conversation - (Not Started)
-4. Integrate a feature in the program where users can provide command-line arguments to specify the input script file and set the required voice modulation parameters - (Not Started)
-5. Use a context parser to read a given script, identify the character speaking, and generate the speech in the character's voice - (Not Started)
+To-do: 
+1. Write code to scan through the directory containing the voice samples - (Not started)
+2. Extract necessary audio features from each audio file - (Not started)
+3. Implement error handling for unsupported file formats and unreadable files - (Not started)
+4. Save the extracted audio data in a parse-able format - (Not started)
+5. Document each step and the extracted features of each file - (Not started)
 
 Current instruction for you:
-Develop a basic script that can convert text scripts to spoken dialogue using any language or library you prefer. Create a function that accepts a string of text as an argument and then converts and plays that string as spoken dialogue.
+Let's start by writing the script that will allow your code to scan through the directory located at C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09 and list all the files it contains. This script should be able to handle any exceptions or errors that might occur if it does not find the directory or if something else goes wrong. Remember to provide detailed comments explaining what part of your code is doing.

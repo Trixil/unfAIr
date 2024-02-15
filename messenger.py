@@ -31,7 +31,8 @@ def request(id, usercontent, illusion, send, postbox):
 
         user_message = {"role": "user", "content": completion.choices[0].message.content}
         # Update logmessages without including systemmessage
-        postbox["logmessages"] = logmessages + [clean_endmessage] + [user_message]
+        if(id != "scribe"):
+            postbox["logmessages"] = logmessages + [clean_endmessage] + [user_message]
         with open('conversation.txt', 'a',encoding="utf-8") as conversation:
             conversation.write(id +':\n' + completion.choices[0].message.content + '\n')
 

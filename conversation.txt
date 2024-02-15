@@ -1,34 +1,52 @@
 00:
-01: Data Analyst
-Instructions: Your role as Data Analyst is to extract voice samples from the location specified. From these voice samples build a representative dataset that can be used for the voice synthesis program. You should sort the voice files by character and by the nature of the speech (such as emotional, neutral, etc.) You should also structure your directory in such a way that 02 can easily manipulate it. Sub-directories based on characters is highly suggested. 
+01: Audio File Parser
+Instructions: Your job involves working with the directory containing the voice samples. Your code should accordingly scan through all the voice samples located in C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09. For each audio file found, your code should extract the necessary audio features such as pitch, tone, volume, speed etc. Ensure to implement error handling for unsupported file formats and unreadable files. Save your extracted data in an easy to parse format for 02 to use, and document the process and which features were extracted from each file. Provide detailed code comments.
 
-02: Audio Engineer and Programming
-Instructions: Your role is to first build a voice synthesizer that can take in a script and express it into speech. You must then train this voice synthesizer using the voice datasets provided by 01 for each character. The synthesizer must be adaptable enough to switch between characters depending on the context. Your script should be able to accept a piece of dialogue from a game script, identify the character speaking, and then synthesize said script using the character's voice. You also should provide an interface for command-line arguments to specify the input script file and the required voice modulation parameters.
+02: Voice Modelling and Text-to-Speech Synthesis Developer
+Instructions: Your role begins after 01's. Utilise the data parsed by 01 and try to create a voice model that best mimics the character's voice. Your code should learn from the information provided by 01 to create a model for the desired character's voice. Once the model is ready, apply it to a text-to-speech synthesis program's output. The resultant speech should bear a resemblance to the character's voice in terms of tone, pitch, volume, speed etc. Be sure to handle edge cases and test your code extensively with different sentences to ensure the synthesized voice is as close as possible to the actual character's voice. Document your method, the design of your model, and how well it handles different cases. Provide extensive code comments as well.
 01 Overseer:
-02 can easily manipulate it. Sub-directories based on characters is highly suggested.
-
-02: Audio Engineer and Programming
-Instructions: Your role as an Audio Engineer and Programmer is twofold. First, you need to develop a voice synthesizer program that can convert text scripts to spoken dialogue. For this task, use relevant software libraries and frameworks that can process the voice datasets and handle the voice-to-text conversion. 
-
-Second, train the synthesizer program with the voice datasets provided by 01. The training process involves assigning the correct character voices to the corresponding dialogues in the script.
-
-Moreover, the synthesizer program must be designed in a way that it can switch between different character voices depending on the context of the conversation. 
-
-Finally, integrate a feature in the program where the users can provide command-line arguments to specify the input script file and set the required voice modulation parameters. Use a context parser that can read a given script, identify the character speaking, and generate the speech in the character's voice.
-01:
-Fetch: None
-Message: Understood the responsibilities and the response format. I am ready to start the work of creating a text to speech program.
-Code: None
-File name: None
-scribe:
-Understood. I will make sure to maintain the documentation file named "user_documentation.txt" with each new code file being handed to me. I will document it in the specified format with the file name, its syntax, and a brief and concise description.
-01 Overseer:
-To-do:
-1. Develop a voice synthesizer program that converts text scripts to spoken dialogue - (Not Started)
-2. Train the synthesizer program with the voice datasets provided by 01 - (Pending Voice Dataset)
-3. Design the synthesizer program to switch between different character voices depending on the context of the conversation - (Not Started)
-4. Integrate a feature in the program where users can provide command-line arguments to specify the input script file and set the required voice modulation parameters - (Not Started)
-5. Use a context parser to read a given script, identify the character speaking, and generate the speech in the character's voice - (Not Started)
+To-do: 
+1. Write code to scan through the directory containing the voice samples - (Not started)
+2. Extract necessary audio features from each audio file - (Not started)
+3. Implement error handling for unsupported file formats and unreadable files - (Not started)
+4. Save the extracted audio data in a parse-able format - (Not started)
+5. Document each step and the extracted features of each file - (Not started)
 
 Current instruction for you:
-Develop a basic script that can convert text scripts to spoken dialogue using any language or library you prefer. Create a function that accepts a string of text as an argument and then converts and plays that string as spoken dialogue.
+Let's start by writing the script that will allow your code to scan through the directory located at C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09 and list all the files it contains. This script should be able to handle any exceptions or errors that might occur if it does not find the directory or if something else goes wrong. Remember to provide detailed comments explaining what part of your code is doing.
+01:
+Fetch: None
+Message: I understand the task, I will now create the Python script for scanning the directory and listing the files. 
+
+File name: scan_directory.py
+Code: 
+```python
+import os
+
+try:
+    # Path to the directory containing the voice samples
+    path_to_directory = 'C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09' 
+    
+    # List to store files in directory
+    files_in_directory = [] 
+    
+    # Loop over the files in directory
+    for file_name in os.listdir(path_to_directory):
+        # Append files to the list 
+        files_in_directory.append(file_name)
+
+    print("Files listed in the directory:", files_in_directory)
+
+except FileNotFoundError:
+    print("The specified directory could not be found. Please check that your path_to_directory is correct.")
+except Exception as e:
+    # Handle any other exceptions that weren't handled by the previous except blocks
+    print("An error occurred: ", e)
+```
+scribe:
+******
+File name: scan_directory.py
+Syntax: N/A (The script does not contain function definitions)
+Description: This Python script scans the files in a designated directory and lists all of the files it contains. If the specified directory does not exist, it alerts the user with an error message.
+******
+

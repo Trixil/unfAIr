@@ -1,5 +1,29 @@
 01:
 Fetch: None
-Message: Understood the responsibilities and the response format. I am ready to start the work of creating a text to speech program.
-Code: None
-File name: None
+Message: I understand the task, I will now create the Python script for scanning the directory and listing the files. 
+
+File name: scan_directory.py
+Code: 
+```python
+import os
+
+try:
+    # Path to the directory containing the voice samples
+    path_to_directory = 'C:/Program Files (x86)/Steam/steamapps/common/Umineko/sound/voice/09' 
+    
+    # List to store files in directory
+    files_in_directory = [] 
+    
+    # Loop over the files in directory
+    for file_name in os.listdir(path_to_directory):
+        # Append files to the list 
+        files_in_directory.append(file_name)
+
+    print("Files listed in the directory:", files_in_directory)
+
+except FileNotFoundError:
+    print("The specified directory could not be found. Please check that your path_to_directory is correct.")
+except Exception as e:
+    # Handle any other exceptions that weren't handled by the previous except blocks
+    print("An error occurred: ", e)
+```

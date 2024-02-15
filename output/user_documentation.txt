@@ -1,3 +1,7 @@
-File name: . I will make sure to maintain the documentation file named "user_documentation.txt" with each new code file being handed to me. I will document it in the specified format with the file name, its syntax, and a brief and concise description
-Content: od. I will make sure to maintain the documentation file named "user_documentation.txt" with each new code file being handed to me. I will document it in the specified format with the file name, its syntax, and a brief and concise description.
+File name: scan_directory.py
+Content: ile name: scan_directory.py
+Syntax: N/A (The script does not contain function definitions)
+Description: This Python script scans the files in a designated directory and lists all of the files it contains. If the specified directory does not exist, it alerts the user with an error message.
+******
+
 ******

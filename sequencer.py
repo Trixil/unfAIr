@@ -29,8 +29,8 @@ def executor(response):
     code_start_index = response.find('```python\n')+9
     code_end_index = response.find('```', code_start_index+1)
     if((code_start_index == -1) or (code_end_index == -1)):
-        print('Error: Could not find code. Here is the response:\n' + response)
         code = ''
+        filename = 'No code written'
     else:
         code = response[code_start_index:code_end_index]
 
@@ -50,8 +50,7 @@ def update_documentation(file_path, file_description):
     with open(output_dir + 'user_documentation.txt', 'a+') as f:
         f.write(file_path_line + '\n' + file_description_line + '\n******\n')
         docs = f.read()
-    
-    return docs
+        return docs
 
 
 def fetcher(response):
@@ -123,7 +122,7 @@ def director_io(usercontent, send, postbox):
     # Extract direc_response for each wizard and place it in the corresponding overseer's systemcontent
     for i in range(1, wizardcount+1):
         start_index = direc_response.find(str(i).zfill(2))
-        end_index = direc_response.find(str(i+1).zfill(2)) if (i < wizardcount + 1) else len(direc_response)
+        end_index = direc_response.find(str(i+1).zfill(2) + ':') if (i < wizardcount + 1) else len(direc_response)
     
         # Extract the substring starting from the position of wizardcount
         if start_index != -1:
@@ -142,18 +141,21 @@ def director_io(usercontent, send, postbox):
     return [wiz_specific_instruc, direc_response]
 
 def overseer_io(wizard_str, usercontent, overseer_system_base, illusion, to_do, send, postbox):
-    if(to_do != ''):
+    if((to_do != '') and (to_do != 'No To-do found.')):
         postbox[wizard_str + ' Overseer']["systemcontent"] = overseer_system_base + to_do
         with open('postbox.json', 'w') as json_file:
             json.dump(postbox, json_file, indent=3)
-
-    overseer_response = request(wizard_str + ' Overseer', usercontent, illusion, send, postbox)
+    elif(to_do == 'No To-do found.'):
+        illusion += '\nIMPORTANT MESSAGE FROM SYSTEM ADMIN: No To-do was found in your last response. If you are not finished with the tasks, please copy the last To-do you wrote in the conversation, update it to match the current progress, and output it in your next response as the first thing. If you have finished all of the tasks, then write the words \"SEND CODE\" at the top of your response and ignore anything else in this message.'
     
-    to_do_end_index = overseer_response.find('Current instruction for you:\n')
-    to_do = overseer_response[0:to_do_end_index-1]
+    overseer_response = request(wizard_str + ' Overseer', usercontent, illusion, send, postbox)
+    to_do_start_index = overseer_response.find('To-do')
+    if(to_do_start_index != -1):
+        to_do_end_index = overseer_response.find('Current instruction for you:\n')
+        to_do = overseer_response[to_do_start_index:to_do_end_index]
+    else:
+        to_do = 'No To-do found.'
     finalpass = (overseer_response.find('SEND CODE\n') != -1)
-    header_docs = ''
-    overseer_response += 'Current documentation stored in user_documentation.txt:\nNo documentation written yet.\n'
     
     return [finalpass, to_do, overseer_response]
 
@@ -218,7 +220,8 @@ while True:
             fetch_file = '\nContents of ' + fetch_file_name +':\n' + fetch_file_code
             
             [filename, code, wiz_response] = wizard_io(wiz_str, overseer_response, fetch_file + header_docs, 1, postbox)
-            header_docs = scribe_io(wiz_response, 1, postbox)
+            if(code != ''):
+                header_docs = scribe_io(wiz_response, 1, postbox)
             [finalpass, to_do, overseer_response] = overseer_io(wiz_str, wiz_response, overseer_system_base, header_docs, to_do, 1, postbox)
 
     with open(output_dir + 'user_documentation.txt', 'r') as docs_file:
