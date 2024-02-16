@@ -29,7 +29,7 @@ def request(id, usercontent, illusion, send, postbox):
             messages=message_request
         )
 
-        user_message = {"role": "user", "content": completion.choices[0].message.content}
+        user_message = {"role": "user", "content": id + ': ' + completion.choices[0].message.content}
         # Update logmessages without including systemmessage
         if(id != "scribe"):
             postbox["logmessages"] = logmessages + [clean_endmessage] + [user_message]

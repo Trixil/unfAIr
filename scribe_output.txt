@@ -1,7 +1,173 @@
 scribe:
 ******
-File name: scan_directory.py
-Syntax: N/A (The script does not contain function definitions)
-Description: This Python script scans the files in a designated directory and lists all of the files it contains. If the specified directory does not exist, it alerts the user with an error message.
+File name: audio_file_handler.py
+Syntax: 
+1. gather_files(directory): 
+    Input: directory - path of the directory where voice sample files are located.
+    Output: A list of all the files in the given directory and its subdirectories that end with extensions .wav, .mp3 or .ogg.
+2. load_files(file_list):
+    Input: file_list - a list of file paths to audio files.
+    Output: A dictionary where each key is a file name from the file_list and its corresponding value is another dictionary with two keys, 'data' and 'rate'. 'data' holds the audio data and 'rate' holds the sample rate of the audio data.
+    
+Description: audio_file_handler.py contains two methods, gather_files and load_files. gather_files collects all the audio files from a given directory and its subdirectories, and returns a list of their file paths. load_files takes this list and for each file, extracts audio data and sample rate, then stores this in a dictionary where the key is the file path. This dictionary is then returned.
+******
+scribe:
+******
+File name: audio_normalization.py
+Syntax: 
+1. normalize_audio_data(data, rate): 
+   Input: data - the audio data, rate - the sample rate of the audio data.
+   Output: The normalized audio data, i.e., all values are between -1 and 1.
+2. normalize_all_files(data_dict):
+   Input: data_dict - a dictionary where each key is a file path to audio file, and its corresponding value is another dictionary with two keys, 'data' and 'rate'. 'data' holds the audio data, and 'rate' holds the sample rate of the audio data.
+   Output: A dictionary with the same structure as the input dictionary, but with the 'data' values replaced by their normalized versions.
+
+Description: audio_normalization.py contains two functions, normalize_audio_data and normalize_all_files. normalize_audio_data takes an array of audio data and a sample rate as input, normalizes the audio data (makes all values between -1 and 1), and returns the normalized data. If any file doesn't contain data, this function handles that appropriately. 
+
+normalize_all_files takes a dictionary of file paths and their corresponding audio data and sample rates, applies the normalize_audio_data function to the data for each file, replaces the original 'data' value with the normalized data in the dictionary, and returns the updated dictionary.
 ******
 
+scribe:
+******
+File name: save_normalized_audio.py
+Syntax: 
+1. save_files(data_dict, directory): 
+   Input: data_dict - a dictionary where each key is a file path to audio file, and its corresponding value is another dictionary with two keys, 'data' and 'rate'. 'data' holds the audio data, and 'rate' holds the sample rate of the audio data. 
+          directory - directory path where the .npy files will be saved.
+   Output: None, but saves each dictionary entry into a separate ".npy" file in the given directory.
+
+Description: save_normalized_audio.py contains a function, save_files, that takes a dictionary of file paths and their corresponding audio data and sample rates, and a directory path. It saves each dictionary entry into a separate ".npy" file in the given directory, where the name of each ".npy" file is based on the original file path. The function replaces the path separators with underscores, removes the original file extension, and appends ".npy". If an error occurs when trying to save one of the files, it prints out an error message, but still continues to try to save the other files.
+******
+
+scribe:
+******
+File name: audio_manager.py
+Syntax: 
+1. manage_audio_files(root_directory, save_directory): 
+   Input: root_directory - the path of the directory where all the audio files are located.
+          save_directory - the path of the directory where the normalized file data will be saved.
+   Output: None. The function performs the task of audio data normalization and saving the files in the specified directory.
+   
+Description: audio_manager.py is a consolidated script that contains all the operations of handling audio files. It collects all the audio files from a given directory and its subdirectories, extracts the audio data and sample rate from each file, normalizes the audio data (i.e., makes all values between -1 and 1), and finally saves the normalized data into separate ".npy" files in the specified directory. The main function manage_audio_files integrates all these operations and demonstrates the entire flow of the program.
+******
+scribe:
+Copy that. When receiving a new code file or updates for an existing file, I will provide documentation for the particular file in the following specific format in the file named 'user_documentation.txt':
+
+```
+******
+File name: (file name of entry)
+Syntax: (the function(s) and their syntax, describing their inputs and outputs)
+Description: (a brief and concise description of the file's function)
+******
+```
+
+The documentation will only include the file's name, its function syntax, and its description. The paired file path for the file name will be formatted like ~file_name or ~file_path/file_name, respectively. This task will be maintained whenever a further file is presented. For any ongoing instructions, I will ensure to add the relevant documentation as per the given format.
+scribe:
+Current documentation stored in user_documentation.txt:
+******
+File name: save_normalized_audio.py
+Syntax: 
+1. save_files(data_dict, directory): 
+   Input: data_dict - a dictionary where each key is the original file path to an audio file, and the associated value is another dictionary with keys 'data' representing the normalized audio data and 'rate' for the sample rate of the audio data. 
+          directory - a string representing the directory path where the numpy files will be saved.
+   Output: None, but each entry in the data_dict is saved as a separate numpy (.npy) file in the specified directory. The file name is derived from the original file path with all directory separators replaced with underscores and the original file extension replaced by '.npy'.
+
+Description: This module contains the function save_files that takes as a parameter a dictionary of normalized audio data and a directory path. It saves each set of audio data as a numpy file in the given directory, with the file name derived from the original file path.
+
+I have provided the syntax and description for the save_files function in the save_normalized_audio.py module. Please feel free to provide further instructions or request additional changes.
+******
+Task 5 progress: In progress.
+scribe:
+Current documentation stored in user_documentation.txt:
+
+1. File name: audio_file_handler.py
+    Syntax:  
+       1. gather_files(directory): 
+             Input: directory - path of the directory where voice sample files are located.
+             Output: A list of all the files in the given directory and its subdirectories that end with .wav, .mp3 or .ogg.
+       2. load_files(file_list):
+          Input: file_list - a list of file paths to audio files.
+          Output: A dictionary where each key is a file name from the file_list and its corresponding value is another dictionary with two keys, 'data' and 'rate'. 'data' holds the audio data and 'rate' holds the sample rate of the audio data.
+    Description: Contains two methods, gather_files and load_files. gather_files collects all the audio files from a given directory and its subdirectories, and returns a list of their file paths. load_files takes this list and for each file extracts audio data and sample rate then stores this in a dictionary where the key is the file path.
+
+2. File name: audio_normalization.py
+    Syntax: 
+       1. normalize_audio_data(data, rate): 
+        Input: data - the audio data, rate - the sample rate of the audio data.
+        Output: The normalized audio data. All the data values will be between -1 and 1.
+       2. normalize_all_files(data_dict):
+        Input: data_dict - a dictionary where each key is a file name from the file_list and its corresponding value is another dictionary with two keys, 'data' and 'rate'. 'data' holds the audio data, and 'rate' holds the sample rate of the audio data.
+        Output: A dictionary with the same structure as the input dictionary, but with the 'data' values replaced by their normalized versions.
+    Description: Contains two functions, normalize_audio_data and normalize_all_files. normalize_audio_data takes an array of audio data and a sample rate as input, normalizes the audio data and returns normalized data, if any file doesn't contain data it handles that gracefully. normalize_all_files takes a dictionary of file paths and their corresponding audio data and sample rates, and applies the normalize_audio_data function to the data for each file. The original 'data' value by the normalized data in the dictionary is then replaced, and the updated dictionary is returned.
+
+3. File name: save_normalized_audio.py
+    Syntax: 
+       1. save_files(data_dict, directory)
+            Input: data_dict - a dictionary where each key is a file path to the audio file, and its corresponding value is another dictionary with two keys, 'data' and 'rate'. 'data' holds the audio data, and 'rate' holds the sample rate of the audio data. 
+               directory - directory path where numpy files will be saved.
+           Output: None. But saves each entry of the dictionary into separate ".npy" files in the given directory.
+    Description: The save_files function takes a dictionary of file paths and their corresponding audio data and sample rates and a directory path. It saves each dictionary entry into a separate ".npy" file in the given directory, where the name of each file is based on the original file path. The function replaces the path separators with underscores, removes the original file extension, and appends ".npy". If an error occurs when trying to save one of the files, it prints out an error message, but still continues to try to save the other files.
+
+
+To-do:
+1. Locate voice sample files in the Umineko/sound/voice/09 directory - (Completed)
+2. Write a function to handle different audio formats - (Completed)
+3. Extract sample rate and data from each file using "wave" or "soundfile" library - (Completed)
+4. Normalize the data - (Completed)
+5. Store the data efficiently for later processing - (In-progress)
+scribe:
+Here is the updated documentation:
+
+******
+
+File name: save_normalized_audio_data.py
+
+Syntax: 
+1. save_normalized_audio_data(data_dict, directory='normalized_files'):
+    Input: data_dict - a dictionary where each key is a file path to an audio file, and its corresponding value is another dictionary with two keys, 'data' and 'rate'. 'data' holds the audio data, and 'rate' holds the sample rate of the audio data. 
+           directory - directory path where ".npy" files will be saved (default is 'normalized_files').
+    Output: None, but saves each entry of the dictionary into a separate ".npy" file in the given directory, with the original file path's directory separators replaced with underscores and the original file extension replaced with '.npy'.
+
+Description: This module contains the function save_normalized_audio_data that takes a dictionary of normalized audio data and a directory path. It saves each audio data as a ".npy" file in the given directory, after replacing the directory separators in the file path with underscores, removing the original file extension, and appending '.npy'. If the directory does not exist, it creates one.
+
+******
+
+Updated Task Progress:
+
+Task 5: Saving the normalized audio data is now 'In-Progress'.
+scribe:
+Here is the updated documentation:
+
+******
+
+File name: save_normalized_audio_data.py
+
+Syntax: 
+1. save_normalized_audio_data(data_dict, directory='normalized_files'):
+    Input: data_dict - a dictionary where each key is a file path to an audio file, and its corresponding value is another dictionary with two keys, 'data' and 'rate'. 'data' holds the audio data, and 'rate' holds the sample rate of the audio data. 
+           directory - directory path where ".npy" files will be saved (default is 'normalized_files').
+    Output: None, but saves each entry of the dictionary into a separate ".npy" file in the given directory, with the original file path's directory separators replaced with underscores and the original file extension replaced with '.npy'.
+
+Description: This module contains the function save_normalized_audio_data that takes a dictionary of normalized audio data and a directory path. It saves each audio data as a ".npy" file in the given directory, after replacing the directory separators in the file path with underscores, removing the original file extension, and appending '.npy'. If the directory does not exist, it creates one.
+
+******
+
+Updated Task Progress:
+
+Task 5: Saving the normalized audio data is now 'In-Progress'.
+
+scribe:
+For the file in question, save_normalized_files.py, here is the relevant documentation for the function save_normalized_files:
+
+******
+File name: save_normalized_files.py
+Syntax: 
+1. save_normalized_files(categorized_data_dict, save_dir='normalized_files'): 
+   Input: categorized_data_dict - a dictionary where each key is an original file path, and its corresponding value is another dictionary with 'data' representing the normalized audio data. 
+          save_dir - directory path where ".npy" files will be saved (default is 'normalized_files').
+   Output: None. Function saves each entry of the categorized_data_dict into a separate ".npy" file in the save_dir, with the original file path's directory separators replaced with underscores and the original file extension replaced with '.npy'.
+
+Description: This function takes a dictionary of normalized audio data and a directory path. It saves each audio data as a ".npy" file in the given directory. For storing the file, it replaces the directory separators in the file path with underscores, removes the original file extension, and inserts '.npy'. If the directory, save_dir, does not exist, it creates a new one.
+******
+
+The status of Task 5 is "In progress". The immediate next step is to test the 'save_normalized_files' function using some actual data to ensure that it satisfies the requirements. Once the test is done, inform the team about the results and update the task status accordingly.

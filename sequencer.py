@@ -42,15 +42,18 @@ def executor(response):
 
     return [filename, code, unnamed_code_flag]
 
-def update_documentation(file_path, file_description):
+def update_documentation(file_content):
 
-    file_path_line = f"File name: {file_path}"
-    file_description_line = f"Content: {file_description}"
-
+    '''
+        file_path_line = f"File name: {file_path}"
+        file_description_line = f"Content: {file_description}"
+    '''
     with open(output_dir + 'user_documentation.txt', 'a+') as f:
-        f.write(file_path_line + '\n' + file_description_line + '\n******\n')
+        f.write(file_content)
+
+    with open(output_dir + 'user_documentation.txt', 'r') as f:
         docs = f.read()
-        return docs
+    return docs
 
 
 def fetcher(response):
@@ -182,16 +185,15 @@ def scribe_io(usercontent, send, postbox):
     if(docs == ''):
         docs = 'No documentation written yet.\n'
     header_docs = 'Current documentation stored in user_documentation.txt:\n' + docs + '\n'
-
     input_text = request("scribe", usercontent, header_docs, send, postbox)
-    file_name_start = input_text.find("File name: ") + len("File name: ")
-    file_name_end = input_text.find("\n", file_name_start)
-    file_name = input_text[file_name_start:file_name_end]
+    '''    file_name_start = input_text.find("File name: ") + len("File name: ")
+        file_name_end = input_text.find("\n", file_name_start)
+        file_name = input_text[file_name_start:file_name_end]
 
-    content_start = input_text.find("Content: ") + len("Content: ")
-    content = input_text[content_start:]
-
-    docs = update_documentation(file_name, content)
+        content_start = input_text.find("Description:") + len("Description:")
+        content = input_text[content_start:]
+    '''
+    docs = update_documentation(input_text)
     header_docs = 'Current documentation stored in user_documentation.txt:\n' + docs + '\n'
     with open(file_path, 'w') as json_file:
         json.dump(postbox, json_file, indent=3)
