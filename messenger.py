@@ -16,10 +16,17 @@ def request(id, usercontent, illusion, send, postbox):
     else:
         clean_endmessage = {"role": "user", "content": f"{usercontent}"}
     
-    if(len(logmessages) >= 6):
+    if(len(logmessages) >= 10):
         logmessages.pop(0)
         logmessages.pop(0)
-    message_request = logmessages[:]  # Copy logmessages to avoid modifying original list
+    
+    if(id.find('Overseer') == -1):
+        endmessage["role"] = "user"
+        clean_endmessage["role"] = "user"
+    else:
+        endmessage["role"] = "assistant"
+        clean_endmessage["role"] = "assistant"
+    message_request = logmessages[0:len(logmessages)-2]  # Copy logmessages to avoid modifying original list
     message_request.append(endmessage)
     message_request.append(systemmessage)  # Add systemmessage to request
 
@@ -40,7 +47,7 @@ def request(id, usercontent, illusion, send, postbox):
             id_conversation.write(id +':\n' + completion.choices[0].message.content + '\n')
             id_conversation.close()
         with open(f'{id}_input.txt', 'a',encoding="utf-8") as id_conversation:
-            id_conversation.write(id +':\n' + usercontent + '\n')
+            id_conversation.write(id +':\n' + usercontent + illusion + '\n')
             id_conversation.close()
         postbox[id]["cachedmessage"] = completion.choices[0].message.content
 

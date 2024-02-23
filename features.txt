@@ -1,11 +1,26 @@
 features
 
 1. wizard "message", "fetch", "code" format
+DONE
+
 2. overseer takes instructions from director, remembers it, keeps track of progress of each task, and creates first task to wizard. updates task progress upon code receipt. once you mark one task as finished, move on to the next task in the list you were given. once all tasks have been completed, write "SEND" on the first line of your message.
+REPLACED WITH WARNING GIVEN TO OVERSEER TO COPY AND UPDATE TO-DO
 3. documenter writes asterisks at end of line
 DONE
 
 4. create conversation in .txt
 DONE
+
 5. overseer to do is parsed and saved as 01_progress.txt
+REPLACED WITH WARNING GIVEN TO OVERSEER TO COPY AND UPDATE TO-DO
+
 6. make overseer say "PASS ON"
+
+7. create integrater llm who, after a new file is created or after all code has been created, receives
+	1. the code (if only new file is created)
+	2. the file structure and documentation
+	3. the to-do list
+and creates a main script 
+8. remove user_documentation.txt and replace it with a user_documentation.json
+
+9. add tokenizer function to logmessages clearing

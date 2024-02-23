@@ -176,27 +176,32 @@ def wizard_io(wizard_str, usercontent, illusion, send, postbox):
     clean_wizardresponse = wizardresponse[0:fetch_start_index] + wizardresponse[fetch_end_index:]
     return [filename, code, wizardresponse]
 
-def scribe_io(usercontent, send, postbox):
-    # opening and printing docs
-    with open(output_dir + 'user_documentation.txt', 'r') as docs_file:
-        docs = docs_file.read()
+def scribe_io(docs, usercontent, send, postbox):
     
     # checking if docs is empty and appending it to wizard input string
-    if(docs == ''):
-        docs = 'No documentation written yet.\n'
-    header_docs = 'Current documentation stored in user_documentation.txt:\n' + docs + '\n'
-    input_text = request("scribe", usercontent, header_docs, send, postbox)
-    '''    file_name_start = input_text.find("File name: ") + len("File name: ")
-        file_name_end = input_text.find("\n", file_name_start)
-        file_name = input_text[file_name_start:file_name_end]
+    if(docs == {}):
+        header_docs = 'Current documentation stored in user_documentation.txt:\nNo documentation written yet.\n'
+    else:
+        header_docs = 'Current documentation stored in user_documentation.txt:\n'
+        for entry in docs:
+            header_docs += '\nFile name:\n' + docs[file_name]
+            header_docs += '\nSyntax:\n' + docs[file_name]["Syntax"]
+            header_docs += '\nDescription:\n' + docs[file_name]["Description"]
+    
 
-        content_start = input_text.find("Description:") + len("Description:")
-        content = input_text[content_start:]
-    '''
-    docs = update_documentation(input_text)
+    input_text = request("scribe", usercontent, header_docs, send, postbox)
+    file_name_start = input_text.find("File name: ") + len("File name: ")
+    file_name_end = input_text.find("\n", file_name_start)
+    file_name = input_text[file_name_start:file_name_end]
+    syntax_start = input_text.find("Syntax:") + len("Syntax:")
+    syntax_end = input_text.find('\n', syntax_start)
+    syntax = input_text[syntax_start:syntax_end]
+    content_start = input_text.find("Description:") + len("Description:")
+    content_end = input_text.find("\n", content_start)
+    content = input_text[content_start:content_end]
+    
+    docs.update({file_name: {'Syntax': syntax, 'Description': content}})
     header_docs = 'Current documentation stored in user_documentation.txt:\n' + docs + '\n'
-    with open(file_path, 'w') as json_file:
-        json.dump(postbox, json_file, indent=3)
 
     return header_docs
 
@@ -209,10 +214,10 @@ while True:
     wiz_count = len(wiz_specific_instruc)
     for wiz in range(1, wiz_count + 1):
         finalpass = False
-        docs = ''
+        docs = {}
         wiz_str = str(wiz).zfill(2)
         overseer_system_base = postbox[wiz_str + ' Overseer']["systemcontent"]
-        [finalpass, to_do, overseer_response] = overseer_io(wiz_str, wiz_specific_instruc[wiz], overseer_system_base, '', '', 1, postbox)
+        [finalpass, to_do, overseer_response] = overseer_io(wiz_str, wiz_specific_instruc[wiz-1], overseer_system_base, '', '', 1, postbox)
         wiz_response = ''
         while (finalpass == False):
             
@@ -223,7 +228,7 @@ while True:
             
             [filename, code, wiz_response] = wizard_io(wiz_str, overseer_response, fetch_file + header_docs, 1, postbox)
             if(code != ''):
-                header_docs = scribe_io(wiz_response, 1, postbox)
+                header_docs = scribe_io(docs, wiz_response, 1, postbox)
             [finalpass, to_do, overseer_response] = overseer_io(wiz_str, wiz_response, overseer_system_base, header_docs, to_do, 1, postbox)
 
     with open(output_dir + 'user_documentation.txt', 'r') as docs_file:

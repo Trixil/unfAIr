@@ -1,284 +1,90 @@
 scribe:
 Fetch: None
-Message: I am starting to write code to locate the voice sample files in the Umineko/sound/voice/09 directory. After this, I will write a function to handle different audio formats.
+Message: Acknowledged. I will start by writing the code for importing the relevant libraries for deep learning and speech synthesis.
 Code: 
 ```python
 import os
-import soundfile as sf
-
-# Function to locate and gather audio files from specific directory
-def gather_files(directory):
-    file_list = []
-    for root, dirs, files in os.walk(directory):
-        for file in files:
-            if file.endswith(('.wav', '.mp3', '.ogg')):
-                file_list.append(os.path.join(root, file))
-    return file_list
-
-# Function to handle different audio formats
-def load_files(file_list):
-    data_dict = {}
-    for file in file_list:
-        data, samplerate = sf.read(file)
-        data_dict[file] = { 'data': data, 'rate': samplerate }
-    return data_dict
-```
-File name: audio_file_handler.py
-scribe:
-Fetch: None
-Message: I am now starting to implement the function to normalize the audio data, and to apply this function on all the audio data. I'll also ensure the function is able to handle situations where an audio file might not contain any data.
-Code: 
-```python
+import librosa
 import numpy as np
-
-# Function to normalize the audio data
-def normalize_audio_data(data, rate):
-    if data.size == 0:
-        return data
-    max_data = np.max(np.abs(data))
-    if max_data == 0:
-        return data
-    normalized_data = data / max_data
-    return normalized_data
-
-# Function to apply normalization on all the audio data
-def normalize_all_files(data_dict):
-    for file, value in data_dict.items():
-        normalized_data = normalize_audio_data(value['data'], value['rate'])
-        value['data'] = normalized_data
-    return data_dict
+import matplotlib.pyplot as plt
+import tensorflow as tf
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Dense, Dropout, LSTM, Bidirectional
+from tensorflow.keras.optimizers import Adam
+from sklearn.model_selection import train_test_split
+from scipy.signal import spectrogram
 ```
-File name: audio_normalization.py
+File name: library_import.py
 scribe:
 Fetch: None
-Message: I will now create a function to save all normalized audio data. It will place each audio data into a separate numpy binary file with a reference to the original file path, adjusted for separations and extensions. The function will also include error handling to account for potential issues such as non-existing directories. 
+Message: Acknowledged. I will start the process of creating the voice model by first importing the necessary libraries for deep learning and speech synthesis.
 Code: 
 ```python
 import os
+import librosa
 import numpy as np
-
-def save_files(data_dict, directory):
-    if not os.path.exists(directory):
-        os.makedirs(directory)
-    for file, value in data_dict.items():
-        formatted_file_name = file.replace(os.sep, '_')
-        formatted_file_name = os.path.splitext(formatted_file_name)[0]
-        np.save(os.path.join(directory, formatted_file_name), value)
+import matplotlib.pyplot as plt
+import tensorflow as tf
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Dense, Dropout, LSTM, Bidirectional
+from tensorflow.keras.optimizers import Adam
+from sklearn.model_selection import train_test_split
+from scipy.signal import spectrogram
 ```
-File name: save_normalized_audio.py
+File name: library_import.py
 scribe:
 Fetch: None
-Message: I will now combine all the functions from 'audio_file_handler.py', 'audio_normalization.py', and 'save_normalized_audio.py' into a Python script named 'audio_manager.py'. This script will contain a sequence of calling these functions to demonstrate working code that loads, normalizes, and saves the audio files in an orderly manner. The safe folder for storing these processed files will be named 'normalized_files'. Let's proceed.
+Message: Understood. I will start by writing a script to import necessary libraries. Here is the requested code:
 Code: 
 ```python
 import os
+import librosa
 import numpy as np
-
-#functions from audio_file_handler.py
-def gather_files(directory):
-    for root, dirs, files in os.walk(directory):
-        for file in files:
-            if file.endswith(('.wav', '.mp3', '.ogg')):
-                yield os.path.join(root, file)
-
-def load_files(file_list):
-    from scipy.io import wavfile 
-    import soundfile
-    from pydub import AudioSegment
-
-    audio_data = {}
-    for file_path in file_list:
-        if file_path.endswith('.wav'):
-            rate, data = wavfile.read(file_path)
-            audio_data[file_path] = {'rate': rate, 'data': data}
-        else:
-            data, rate = soundfile.read(file_path)
-            audio_data[file_path] = {'rate': rate, 'data': data}
-    return audio_data
-
-#functions from audio_normalization.py
-def normalize_audio_data(data, rate):
-    data = data / np.abs(data).max()
-    return data
-
-def normalize_all_files(data_dict):
-    for file_path, file_data in data_dict.items():
-        if 'data' in file_data and file_data['data'].size > 0:
-            file_data['data'] = normalize_audio_data(file_data['data'], file_data['rate'])
-    return data_dict
-
-#function from save_normalized_audio.py
-def save_files(data_dict, directory):
-    if not os.path.exists(directory):
-        os.makedirs(directory)
-    for file, value in data_dict.items():
-        formatted_file_name = file.replace(os.sep, '_')
-        formatted_file_name = os.path.splitext(formatted_file_name)[0]
-        np.save(os.path.join(directory, formatted_file_name), value)
-
-#main function
-def manage_audio_files(root_directory, save_directory):
-    file_list = gather_files(root_directory)
-    audio_dict = load_files(file_list)
-    normalized_dict = normalize_all_files(audio_dict)
-    save_files(normalized_dict, save_directory)
-
-if __name__ == "__main__":
-    #Test Case: Assume audio files are in the directory "audio_samples"
-    manage_audio_files('audio_samples', 'normalized_files')
-
+import matplotlib.pyplot as plt
+import tensorflow as tf
 ```
-File name: audio_manager.py
+File name: import_libraries.py
 scribe:
 Fetch: None
-Message: I'm creating the function 'save_files' that will store data from different audio files without overwriting any previous data. The data will be stored in a '.npy' file format for efficient storage and retrieval. I will create a new directory 'normalized_files', where these files will be stored. The function will also handle the directory separators by replacing them with underscores to avoid any complications. This feature will be encapsulated in a function named 'save_files' which will be added in the 'save_normalized_audio.py' file. After implementing this function, I'll update the 'user_documentation.txt' file correspondingly.
+Message: Acknowledged. I will start by writing the code for importing the necessary libraries for deep learning and speech synthesis.
 Code: 
 ```python
-import numpy as np
 import os
-
-def save_files(data_dict, directory): 
-    if not os.path.exists(directory):
-        os.makedirs(directory)
-    for file, value in data_dict.items():
-        formatted_file_name = file.replace(os.sep, '_')
-        formatted_file_name = os.path.splitext(formatted_file_name)[0]
-        np.save(os.path.join(directory, formatted_file_name), value)
+import librosa
+import numpy as np
+import matplotlib.pyplot as plt
+import tensorflow as tf
 ```
-File name: save_normalized_audio.py
-Current documentation stored in user_documentation.txt:
-************
-File name: save_normalized_audio.py
-Syntax: 
-1. save_files(data_dict, directory): 
-   Input: data_dict - a dictionary where each key is the original file path to an audio file, and the associated value is another dictionary with keys 'data' representing the normalized audio data and 'rate' for the sample rate of the audio data. 
-          directory - a string representing the directory path where the numpy files will be saved.
-   Output: None, but each entry in the data_dict is saved as a separate numpy (.npy) file in the specified directory. The file name is derived from the original file path with all directory separators replaced with underscores and the original file extension replaced by '.npy'.
-
-Description: This module contains the function save_files that takes as a parameter a dictionary of normalized audio data and a directory path. It saves each set of audio data as a numpy file in the given directory, with the file name derived from the original file path.
-******
-Task 5 progress: In progress.
+File name: import_libraries.py
 scribe:
 Fetch: None
-Message: As instructed, I am implementing the function 'save_files'. This function will be responsible for storing the normalized audio data. The data will be stored as '.npy' files, allowing for efficient storage and retrieval. Data from each audio file will be saved as a separate '.npy' file in the directory 'normalized_files'. If this directory doesn't currently exist, the function will create it.
-
-File paths in the data dictionary will be converted to a safe format for file names by replacing all instances of the directory separator with underscores. This ensures the original file hierarchy is preserved in a way that is safe for all operating systems.
-
-The progress of task 5 has been updated to "In progress" as requested. Here is the updated task list:
-
-To-do:
-1. Locate voice sample files in the Umineko/sound/voice/09 directory - (Completed)
-2. Write a function to handle different audio formats - (Completed)
-3. Extract sample rate and data from each file using "wave" or "soundfile" library - (Completed)
-4. Normalize the data - (Completed)
-5. Store the data efficiently for later processing - (In-progress)
+Message: Acknowledged. I will start by writing the code for importing the relevant libraries for deep learning and speech synthesis.
 Code: 
 ```python
-import numpy as np
 import os
-
-def save_files(data_dict, directory="normalized_files"): 
-    if not os.path.exists(directory):
-        os.makedirs(directory)
-    for file, value in data_dict.items():
-        formatted_file_name = file.replace(os.sep, '_')
-        formatted_file_name = os.path.splitext(formatted_file_name)[0] + '.npy'
-        np.save(os.path.join(directory, formatted_file_name), value)
+import librosa
+import numpy as np
+import matplotlib.pyplot as plt
+import tensorflow as tf
 ```
-File name: normalize_and_save.py
-Once saved, the specific file path can be used in future as a reference to access the stored data. Happy to provide further updates or make adjustments as needed.
+File name: library_import.py
+In terms of documentation.
+File name: library_import.py
+Syntax: No functions.
+Description: This file imports the necessary libraries for developing a voice model using deep learning and speech synthesis. These include os and librosa for locating and loading voice samples, TensorFlow for building the model, numpy for numerical operations, and matplotlib for visualizing the data. Additional libraries will be imported as needed in the subsequent steps of the process.
 scribe:
 Fetch: None
-Message: As per your instructions, I have begun working on task 5, which is saving the normalized audio data. I plan to store the data using numpy's ".npy" file format because of its smaller storage size and efficient retrieval. Each file's data will be saved in a separate ".npy" file, in the directory named 'normalized_files'. When saving these files, I will replace the directory separators in the original file path with underscores to avoid any potential errors. The progress of task 5 has been updated to "In-progress" as per your request.
-
-Code: 
-```python 
-import numpy as np
-import os
-
-def save_files(data_dict, directory='normalized_files'):
-    # Create directory if it doesn't exist
-    if not os.path.exists(directory):
-        os.makedirs(directory)
-    # Iterate over each file's data
-    for file_path, data in data_dict.items():
-        # Replace directory separators with underscores
-        modified_file_name = file_path.replace(os.path.sep, '_')
-        np.save(f'{directory}/{modified_file_name}', data)
-```
-File name: save_normalized_audio.py
-scribe:
-Fetch: None
-Message: The code for saving the normalized audio data has been successfully written. As per your instructions, each file's data is being stored in a separate ".npy" file in a directory named 'normalized_files'. If that directory doesn't exist, it's being created. File names are being modified by replacing directory separators with underscores to avoid any errors.
-The code provided takes care of all these requirements. Let me know if any further actions or modifications are needed.
-Code: 
-```python 
-import numpy as np
-import os
-
-def save_normalized_audio_data(data_dict, directory='normalized_files'):
-    # Create directory if it doesn't exist
-    if not os.path.exists(directory):
-        os.makedirs(directory)
-    # Iterate over each file's data
-    for file_path, audio_data in data_dict.items():
-        # Replace directory separators with underscores
-        modified_file_name = file_path.replace(os.sep, '_') + ".npy"
-        # Save the file
-        np.save(os.path.join(directory, modified_file_name), audio_data['normalized_data'])
-```
-File name: save_normalized_audio_data.py
-
-scribe:
-Fetch: None
-Message: Task 5 is now in progress. I am writing the final major task, which is to save the normalized audio data. The data will be saved using numpy's ".npy" file format due to their smaller storage size and efficient retrieval. Each file's data will be stored in a separate ".npy" file in a newly created 'normalized_files' directory. The directory separators in the original file path will be replaced with underscores to prevent any errors. For example, a file originally in 'Umineko/sound/voice/09/FILE.ogg', will be stored as 'Umineko_sound_voice_09_FILE.npy'.
+Message: Understood. I'm importing the essential libraries needed for building a voice model utilizing deep learning and speech synthesis.
 Code: 
 ```python
-import numpy as np
 import os
-
-def save_normalized_files(categorized_data_dict, save_dir='normalized_files'):
-    # Create directory if not exists
-    if not os.path.exists(save_dir):
-        os.makedirs(save_dir)
-
-    # Save each file's data in a separate ".npy" file
-    for file_path, audio_data in categorized_data_dict.items():
-        file_name = file_path.replace(os.path.sep, '_')
-        np.save(f'{save_dir}/{file_name}.npy', audio_data['data'])
-```
-File name: save_normalized_files.py
-scribe:
-Fetch: None
-Message: Task 5 of the audio analysis project is now ongoing. We are developing the save_normalized_audio_data function within the save_normalized_audio_data.py file for efficiently storing the normalized audio data. This function will save every normalized audio file's data into a separate numpy ".npy" file for the advantage of its small data size and efficient retrieval. The directory in which these data files are saved is adaptable and can be specified, with a default value set to 'normalized_files'. If this directory does not exist, the function will create it. 
-
-The given logic offers a smart way to avoid potential saving errors due to directory path characters that are not acceptable in a proper filename, such as directory separators. Paths originally stored as something like 'Umineko/sound/voice/09/FILE.ogg' will be converted to 'Umineko_sound_voice_09_FILE.npy'. This approach will keep the original path information within the filename and ensures filenames won't clash due to removing character separators. 
-
-It is crucial to verify this workflow by testing the save_normalized_audio_data function. It would provide more confidence and confirmation of the function's correct operation if possible.
-
-Code: 
-```python 
+import librosa
 import numpy as np
-import os
-
-def save_normalized_audio_data(categorized_data_dict, save_dir='normalized_files'):
-    # Create directory if not exists
-    if not os.path.exists(save_dir):
-        os.makedirs(save_dir)
-
-    # Save each file's data in a separate ".npy" file
-    for file_path, audio_data in categorized_data_dict.items():
-        # Replace directory separators with underscores
-        file_name = file_path.replace(os.path.sep, '_')
-        np.save(f'{save_dir}/{file_name}.npy', audio_data['data'])
+import matplotlib.pyplot as plt
+import tensorflow as tf
 ```
-File name: save_normalized_audio_data.py
-
-To-do:
-1. Locate voice sample files in the Umineko/sound/voice/09 directory - (Completed)
-2. Write a function to handle different audio formats - (Completed)
-3. Extract sample rate and data from each file using "wave" or "soundfile" library - (Completed)
-4. Normalize the data - (Completed)
-5. Efficiently store normalized audio data - (In-progress)
-
-Your next immediate step should be testing the save_normalized_audio_data function with some actual data to verify if it works properly. Once the test is completed, please inform the other team members of its results so that we can move forward. If it passes, the status of Task 5 will change to "Completed". If it fails, be sure to provide enough information for troubleshooting.
+File name: import_libraries.py
+Documentation:
+File name: import_libraries.py
+Syntax: No functions, main program statements only.
+Description: This script imports vital libraries for creating a voice model. The TensorFlow library is used to build the machine learning model, Librosa library is leveraged to load and process audio files while Numpy for numerical operations. Matplotlib is imported for the purpose of visualizing spectrograms. Other libraries such as Sklearn will be imported in the future as required.
